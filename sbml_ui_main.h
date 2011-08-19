@@ -1,0 +1,57 @@
+#ifndef SBML_UI_MAIN_H
+#define SBML_UI_MAIN_H
+
+#include <sbml/SBMLTypes.h>
+#include "sbml_formatter.h"
+#include "sbml_ui_general.h"
+#include "sbml_display.h"
+#include "sbml_cleanup.h"
+#include "sbml_integrate.h"
+#include "sbml_confInput.h"
+
+/*! User Interface class for main menu. For alpha this is remaining very simple, though in later releases we may refactor a lot of the UI methods from SBML_formatter and any subclasses into here.
+  !*/
+
+class SBML_UI_main : public SBML_UI_general {
+
+ private:
+  
+ public:
+  /*! \b Overview: Simple class which displays the welcome to SBML screen
+
+    \b Preconditions: None
+
+    \b Postconditions: Display welcome version and version to standard output
+
+    !*/ 
+  void intro();
+  
+  /*! \b Overview: Shows the main splashscreen for the software, giving users a range of options to select different activitues
+
+    \b Preconditions: Bool should be set to true if model integration is possible (i.e. two valid models have loaded) or false if not
+
+    \b Postconditions: Returns the following characers depending on the users choice;
+
+    Integration true;
+    A - explore models
+    S - display model summary
+    H - Help
+
+    Integration false
+    A - explore models
+    S - display model summary
+    H - Help
+    I - integrate models
+
+    !*/   
+  char main_screen_display(bool integrate);
+  
+  void print_help();
+  void print_usage();
+  void print_version();
+  void print_logo();
+  
+};
+
+#endif
+  
