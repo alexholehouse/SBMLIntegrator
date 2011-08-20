@@ -80,7 +80,7 @@ void SBML_cleanup::consolidate_units(){
     
     cout << "there are " << number_unused << " unused units" << endl;
     
-    display_new->show_unit_definitions(clean_model);
+    display_new->show_unitDefinitions(clean_model);
     
     // if you have 0 or 1 units left, escape this loop or you get a segfault
     if (clean_model->getNumUnitDefinitions() == 0 || clean_model->getNumUnitDefinitions() == 1){
@@ -362,13 +362,14 @@ bool SBML_cleanup::replace_species(Species* inputA, Species* inputB, char C, int
     initAs->setSymbol(inputB->getId());
   }
     break;
-
+    
   case 'R':{
     Rule* rule = clean_model->getRule(i); 
     log_stream << "Replacing species " << inputA->getId() << " in rule with " 
 	       << inputB->getId() << endl;
     rule->setVariable(inputB->getId());
   }
+    break;
     
   case 'r':{
     Reaction* rxn = clean_model->getReaction(i);	

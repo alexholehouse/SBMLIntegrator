@@ -47,6 +47,8 @@ class SBML_formatter {
   ModifierSpeciesReference* species2ModifierSpeciesReference(const Species* species, const Reaction* rxn);
   
   double doubleGet(double lower, double upper);
+  
+  double doubleGet_guarenteed(double lower, double upper);
 
   char* selectorGet();
   
@@ -62,7 +64,7 @@ class SBML_formatter {
   template <class T> void append_to_ID(T* element, std::string to_append){
     
     // for diagnostics only (although worth keeping)
-    log_stream << "Template function append_to_ID. If this fails likely the type passed to append_to_ID does not have an ID member variable!" << std::endl;
+    log_stream << "Template function append_to_ID. If this fails likely the type passed to append_to_ID does not have an ID memnber variable!" << std::endl;
     
     std::string newID = element->getId();
     std::string error;

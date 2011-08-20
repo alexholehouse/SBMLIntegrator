@@ -68,43 +68,44 @@ bool SBML_confInput::load_conf(std::string conf_file)
   else
     log_stream << "User defined conf file used (" << conf_file  << ")" << endl;
 
-  if (!getcwd(path_c, sizeof(path_c))){
-    cerr << "Fatal Error (line 223 in sbml_formatter.cpp) - unable to get current directory" << endl;
-    exit (1);
-  }
+  if (!getcwd(path_c, sizeof(path_c)))
+    autoAbort("Fatal Error (line 223 in sbml_formatter.cpp) - unable to get current directory");
   
   // set end to terminal character for proper formatting;
   path_c[sizeof(path_c) - 1] = '\0';
   
   DIR *dirp = NULL;
   dirp = opendir(path_c); 
-
+  
   string currentDir(path_c);
 
   if (dirp) 
   { 
     struct dirent *dp = NULL; 
     
+    log_stream << "Searching for configuration file;" << endl;
     while ( (dp = readdir( dirp )) != NULL ) 
-    { 
+      { 
       std::string file( dp->d_name ); 
-      cout << "filename: " << file << endl;
+      log_stream << "filename: " << file << endl;
 
 	if (file == conf_file){
 	  conf_stream.open(file.c_str(), ifstream::in);
 	  stream_set = true;
 	  	  
-	  log_stream << "Conf file loaded succesfully :-)" << endl;
+	  log_stream << "Conf file loaded succesfully" << endl;
 	  
-	  closedir( dirp ); 
+	  closedir(dirp); 
 	  return true;
 	}
 	
     } 
-    
+    cout << "#######################################################" << endl;
     cerr << "ERROR - unable to find " << conf_file << " - files are;" << endl;
     log_stream << "ERROR - unable to find " << conf_file << " - files are;" << endl;
-    
+
+    cout << "You can explore the loaded models, but integration will not be possible" << endl;
+    any_key_to_continue();
     
     closedir( dirp ); 
   } 
@@ -220,15 +221,20 @@ void SBML_confInput::conf_preprocess(){
       conf_stream.get(temp_char);
       if (temp_char == ']'){
 	log_stream << "ERROR - in conf_preprocess() line 166, two [] back-to-back - this usually means there is missing data!" << endl;
-	exit(1);
+	autoAbort("Error in .conf file - two square brackets back to back ([]) - this usually indicates missing data! - Aborting...");
       }
     }
-
   }
 
-  // TO DO - ensure all components of modelB are defined somwhere in here
-
-  // TO DO - ensure no components are referred to more than once
+  for (int i = 0 ; i < 10 ; i++){
+    
+    if (seek_locations[i] == -1)
+      autoAbort("Error in .conf file - unable to find one of the ten sections");
+    
+    if (seek_locations[i] == -2)
+      autoAbort("Error in .conf file - unspecified stream error on loading file");
+  }
+    
   
   log_stream << "Preprocessing finished successfully" << endl;
   
@@ -237,13 +243,14 @@ void SBML_confInput::conf_preprocess(){
 
 // #############################################################################################
 // FIND_IN_FILE
-// finds the pointer location inf conf_file of the defined section. Returns -2 if stream is bad, and -1 if cannot
-// be found.
+// finds the pointer location in conf_file of the defined section. 
+// Returns -2 if stream is bad, and -1 if cannot be found.
 //
-// NB - on exit of this function, find_in_file resets the stream position and error flags to the beginning. 
-// however, on input it only resets if reset is true (allowing you to start searching where the position pointer 
-// is currently set to. If you're just searching the whole file make sure you include the reset variable 
-// to true.
+// NB - on exit of this function, find_in_file resets the stream position and error flags to the 
+// beginning. 
+// However, on input it only resets if reset is true (allowing you to start searching where the 
+// position pointer is currently set to. If you're just searching the whole file make sure you 
+// include the reset variable to true.
 
 int SBML_confInput::find_in_file(std::string section, bool reset){
 
@@ -608,12 +615,6 @@ void SBML_confInput::set_replace_or_integrate_list(const Model* modelA, const Mo
 
     elements = get_number_list(number_array);
     even_number(elements);
-
-    cout << "Number of ";
-    if (replace)
-      cout << "replacement rxns = " << elements << endl;
-    else
-      cout << "integrate rxns = " << elements << endl;
     
     for (int i = 0 ; i < elements ; i=i+2){
       
@@ -935,8 +936,6 @@ int SBML_confInput::get_number_list(int*& number_array){
   char input[MAX_NUMBER];
   char temp_char = ' ';
 
-  cout << "Original number: " << original_seekpos << endl;
-  
   // set input_array to all ' '
   reset_cstr(input, MAX_NUMBER);
   
@@ -987,12 +986,15 @@ int SBML_confInput::get_number_list(int*& number_array){
       }
     }
   }
-  
-  cout << "Input array is : " ;
-  for (int i = 0; i < ret_val ;i++)
-    cout << number_array[i] << " ";
-  
-  cout << endl;
+   
+  // used for debugging/analysis - left in for future work...
+  if (false){ 
+    log_stream << "Input array is : " ;
+    for (int i = 0; i < ret_val ;i++)
+      cout << number_array[i] << " ";
+    
+    cout << endl;
+  }
   
   return ret_val;
 }

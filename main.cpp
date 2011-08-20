@@ -10,9 +10,6 @@ int main (int argc, char* argv[])
 {
  
   SBML_display *display_object=NULL;
-  //SBML_cleanup *cleanup_object1=NULL;
-  //SBML_cleanup *cleanup_object2=NULL;
-
   SBMLDocument* document1=NULL;
   SBMLDocument* document2=NULL;
   
@@ -85,7 +82,6 @@ int main (int argc, char* argv[])
   }
 
   display_object = new SBML_display;
-  //cleanup_object1 = new SBML_cleanup(document1);
   
   if (integrate){
     document2 = readSBML(argv[2+offset]);
@@ -104,7 +100,7 @@ int main (int argc, char* argv[])
       cerr << "Exiting..." << endl;
       return 1;
     }
-
+    
     integrate_framework = new SBML_integrate(document1->getModel(), document2->getModel(), argv[1+offset], argv[2+offset]);
     
   }
@@ -112,28 +108,35 @@ int main (int argc, char* argv[])
   // intro splashscreen!
   interface.print_logo();
   interface.intro();
+
+  bool repeat_run = false;
   
   while (!exit){
     
-    decision = interface.main_screen_display(integrate);
+    decision = interface.main_screen_display(integrate, repeat_run);
+    
+    repeat_run = true;
     
     switch (decision)
       {  
       case 'A':
 	if (!integrate){
-	  display_object->show_summary(document1->getModel());
-	  display_object->show_all(document1->getModel());
+	  display_object->select_components_to_show(document1->getModel(), "Model");
 	}
 	
 	else {
-	  cout << "TO DO - chose model to view" << endl;
+	  interface.explore_models(document1->getModel(), 
+				   document2->getModel(), 
+				   display_object, 
+				   argv[1+offset], 
+				   argv[2+offset]);
 	}
 	break;
 	
       case 'S':
-	display_object->show_summary(document1->getModel());
+	display_object->show_summary(document1->getModel(), argv[1+offset]);
 	if (integrate)
-	  display_object->show_summary(document2->getModel());
+	  display_object->show_summary(document2->getModel(), argv[2+offset]);
 	break;
 
       case 'Q':

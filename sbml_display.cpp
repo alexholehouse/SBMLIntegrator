@@ -10,12 +10,13 @@ using namespace std;
 
 // print a summary of the model to screen
 //-----------------------------------------------------------------------------------
-void SBML_display::show_summary(const Model* model){
+void SBML_display::show_summary(const Model* model, string filename){
   
   print_header("Display Summary", true);
   
   cout << "Model ID --------------- " << model->getId() << endl;
-  cout << "Model name ------------- " << model->getName() << endl;
+  cout << "Model name ------------- " << model->getName() << " (file name = " 
+       << filename << ")" << endl;
   cout << "Model version ---------- " << model->getVersion() << endl;
   cout << "ModeL level ------------ " << model->getLevel() << endl;
   cout << "Model substance units -- " << model->getSubstanceUnits() << endl;
@@ -43,14 +44,98 @@ void SBML_display::show_summary(const Model* model){
   any_key_to_continue();
 }
 
+void SBML_display::select_components_to_show(const Model* model, string message){
+  double selector;
+  string input;
+  system("clear");
+  cout << "---------------------------------------" << endl;
+  cout << "NB: " << message << endl;
+  
+  while (true){
+    cout << "Select components to show\n";
+    cout << "---------------------------------------" << endl;
+    cout << "[1] ------------ Function Definitions" << endl
+	 << "[2] ------------ Unit Definitions" << endl
+	 << "[3] ------------ Compartments " << endl
+	 << "[4] ------------ Species " << endl
+	 << "[5] ------------ Parameters" << endl
+	 << "[6] ------------ Rules" << endl
+	 << "[7] ------------ Initial Assignments" << endl
+	 << "[8] ------------ Constraints" << endl
+	 << "[9] ------------ Reactions" << endl
+	 << "[10] ----------- Events" << endl
+	 << "[11] ----------- Return" << endl
+	 << "Select: ";
+    
+    selector = doubleGet_guarenteed(1,11);
+    
+    switch(static_cast<int>(selector))
+      {
+	// Unit Definitions  
 
+      case 1:
+	show_functionDefinitions(model);
+	break;
+	
+      case 2:
+	show_unitDefinitions(model);
+	break;
+	
+	// compartments
+      case 3:
+	show_compartments(model);
+	break;	
+	
+	// species
+      case 4:
+	show_species(model);
+	break;
+	  
+	// Parameters
+      case 5:
+	show_parameters(model);
+	break;
+	
+	// Rules
+      case 6:
+	show_rules(model);
+	break;
+
+      case 7:
+	show_initial_assignments(model);
+	break;
+
+      case 8:
+	show_constraints(model);
+	break;
+	  
+	// Reacions
+      case 9:
+	show_reactions(model);
+	break;
+
+      case 10:
+	show_events(model);
+	break;
+	
+	// return to previous method
+      case 11:
+	return;
+	
+      default:
+	cout << "Not a valid selection.\n";
+      } // end of switch
+
+    any_key_to_continue();
+  }
+}
 
 
 // Function to show the all the model's entities
 //-----------------------------------------------------------------------------------
 void SBML_display::show_all(const Model* model){
-  show_functions(model);
-  show_unit_definitions(model);
+  show_functionDefinitions(model);
+  show_unitDefinitions(model);
   show_compartments(model);
   show_species(model);
   show_parameters(model);
@@ -70,7 +155,7 @@ void SBML_display::show_all(const Model* model){
 // #############################################################################################
 // Function to show the model's functions
 // 
-void SBML_display::show_functions(const Model* model){
+void SBML_display::show_functionDefinitions(const Model* model){
   
   const ListOfFunctionDefinitions* list_of_function_defs;
   const FunctionDefinition* function;
@@ -103,7 +188,7 @@ void SBML_display::show_functions(const Model* model){
 //
 // show the model's unit definition
 //-----------------------------------------------------------------------------------
-void SBML_display::show_unit_definitions(const Model* model){  
+void SBML_display::show_unitDefinitions(const Model* model){  
   
   // number of units - calculated each time incase of model updates
   int num_units = model->getNumUnitDefinitions();
@@ -790,7 +875,7 @@ void SBML_display::show_events(const Model* model) {
 //
 
 void SBML_display::select_components_to_list(const Model* model, string message){
-  char* selector;
+  double selector;
   string input;
   system("clear");
   cout << "---------------------------------------" << endl;
@@ -802,42 +887,42 @@ void SBML_display::select_components_to_list(const Model* model, string message)
     cout << "[1] ----------- Unit Definitions\n[2] ----------- Compartments \n[3] ----------- Species \n[4] ----------- Parameters\n[5] ----------- Rules\n[6] ----------- Reactions\n[7] ----------- Return\n" << endl;
     cout << "Select: ";
     
-    selector = selectorGet();
+    selector = doubleGet_guarenteed(1,7);
     
-    switch(selector[0])
+    switch(static_cast<int>(selector))
       {
 	// Unit Definitions  
-      case '1':
+      case 1:
 	list_unit_definitions(model);
 	break;
 	
 	// compartments
-      case '2':
+      case 2:
 	list_compartments(model);
 	break;	
 	
 	// species
-      case '3':
+      case 3:
 	list_species(model);
 	break;
 	  
 	// Parameters
-      case '4':
+      case 4:
 	list_parameters(model);
 	break;
 	
 	// Rules
-      case '5':
+      case 5:
 	list_rules(model);
 	break;
 	  
 	// Reacions
-      case '6':
+      case 6:
 	list_reactions(model);
 	break;
 	
 	// return to previous method
-      case '7':
+      case 7:
 	return;
 	
       default:

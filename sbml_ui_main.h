@@ -17,6 +17,8 @@ class SBML_UI_main : public SBML_UI_general {
  private:
   
  public:
+
+  // #############################################################################################
   /*! \b Overview: Simple class which displays the welcome to SBML screen
 
     \b Preconditions: None
@@ -26,6 +28,7 @@ class SBML_UI_main : public SBML_UI_general {
     !*/ 
   void intro();
   
+  // #############################################################################################
   /*! \b Overview: Shows the main splashscreen for the software, giving users a range of options to select different activitues
 
     \b Preconditions: Bool should be set to true if model integration is possible (i.e. two valid models have loaded) or false if not
@@ -44,12 +47,22 @@ class SBML_UI_main : public SBML_UI_general {
     I - integrate models
 
     !*/   
-  char main_screen_display(bool integrate);
+  char main_screen_display(bool integrate, bool reset);
   
+  // #############################################################################################
   void print_help();
+
+  // #############################################################################################
   void print_usage();
+  
+  // #############################################################################################
   void print_version();
+  
+  // #############################################################################################
   void print_logo();
+  
+  // #############################################################################################
+  void explore_models(Model* model1, Model* model2, SBML_display* display_framework, string model1_name, string model2_name);
   
 };
 

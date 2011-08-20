@@ -1,6 +1,6 @@
 SBMLIntegrator: main.o sbml_display.o sbml_search.o sbml_formatter.o sbml_cleanup.o sbml_ui_general.o sbml_ui_main.o sbml_integrate.o sbml_confInput.o sbml_integration_container.o sbml_listpair_container.o sbml_integrate_helper.o sbml_integrate_replace.o sbml_integrate_import.o sbml_augment.o sbml_integrate_integrate.o
 
-	g++ -I /usr/local/include/ -L /usr/local/lib/ -lsbml -lstdc++ -lm -Wall -g main.o sbml_display.o sbml_search.o sbml_ui_main.o sbml_ui_general.o sbml_formatter.o sbml_cleanup.o sbml_integrate.o sbml_confInput.o sbml_integration_container.o sbml_listpair_container.o sbml_integrate_helper.o sbml_integrate_replace.o sbml_integrate_import.o sbml_integrate_integrate.o sbml_augment.o -o ../SBMLIntegrator
+	g++ -I /usr/local/include/ -L /usr/local/lib/ -lsbml -lstdc++ -lm -Wall -g main.o sbml_display.o sbml_search.o sbml_ui_main.o sbml_ui_general.o sbml_formatter.o sbml_cleanup.o sbml_integrate.o sbml_confInput.o sbml_integration_container.o sbml_listpair_container.o sbml_integrate_helper.o sbml_integrate_replace.o sbml_integrate_import.o sbml_integrate_integrate.o sbml_augment.o -o SBMLIntegrator
 
 main.o: main.cpp sbml_display.h sbml_formatter.h sbml_search.h
 	g++ -I /usr/local/include/ -L /usr/local/lib/ -lsbml -lstdc++ -lm -Wall -g -c main.cpp

@@ -24,12 +24,13 @@ class SBML_display : public SBML_UI_general {
   // screen
   
   // Parent display functions
-  void show_summary(const Model* inputM);
+  void show_summary(const Model* inputM, std::string filename);
   void show_all(const Model* inputM);
   
   // specific display functions
-  void show_functions(const Model* inputM);
-  void show_unit_definitions(const Model* inputM);
+  void select_components_to_show(const Model* model, std::string message);
+  void show_functionDefinitions(const Model* inputM);
+  void show_unitDefinitions(const Model* inputM);
   void show_compartments(const Model* inputM);
   void show_species(const Model* inputM);
   void show_parameters(const Model* inputM);

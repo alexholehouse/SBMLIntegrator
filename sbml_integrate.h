@@ -44,7 +44,7 @@ class SBML_integrate : public SBML_UI_general {
 
     !*/
   void integrate_models_display_options();
-  void integrate_models_explore_models();
+  void integrate_models_explore_models(bool quick);
   void integrate_models_explore_parameters();
   
   // #############################################################################################

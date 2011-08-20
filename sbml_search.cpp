@@ -251,37 +251,6 @@ string SBML_search::get_reaction_formula(const Reaction* rxn){
   
 }
 
-
-// Debugging tool!
-void SBML_search::nodechecker(const ASTNode* node){
-  
-  cout << "TYPE = " << node->getType() << endl;
-  cout << "Number of children = " << node->getNumChildren() << endl;
-  cout << "Constant: " << node->isConstant() << endl;			  
-  cout << "Bool: " << node->isBoolean() << endl;
-  cout << "Function: " << node->isFunction() << endl;
-  cout << "Infinity: " << node-> isInfinity() << endl;
-  cout << "Integer: " << node-> isInteger()<< endl;
-  cout << "Number: " << node-> isNumber() << endl;
-  cout << "Lambda: " << node-> isLambda() << endl;
-  cout << "LOg10: " << node-> isLog10()<< endl;
-  cout << "Logical: " << node-> isLogical()<< endl;
-  cout << "Name: " << node-> isName() << endl;
-  cout << "NaN: " << node-> isNaN()<< endl;
-  cout << "NegInfinity: " << node-> isNegInfinity() << endl;
-  cout << "Operator: " << node-> isOperator() << endl;
-  cout << "Piecewise: " << node-> isPiecewise() << endl;
-  cout << "Rational: " << node-> isRational() << endl;
-  cout << "Real: " << node-> isReal() << endl;
-  cout << "Relational: " << node-> isRelational() << endl;
-  cout << "isSqrt: " << node->isSqrt() << endl;
-  cout << "isUMinus: " << node-> isUMinus() << endl;
-
-  if (node->isName())
-    cout << "Name: " <<node->getName()  << endl;
-  
-}
-
 // #############################################################################################
 // #                                     IS_PRESENT BLOCK                                      #
 // #############################################################################################
@@ -477,15 +446,15 @@ bool SBML_search::locate_and_replace_mathML(Model* model, std::string query, std
     ASTNode new_node(*(temp_rule->getMath()));
     new_node_p = &new_node;
     
-    log_stream << "----BEFORE RECURSIVE REPLACEMENT: " << SBML_formulaToString(new_node_p) << endl;
-
-    log_stream << "RULE: " << temp_rule->getId() << endl;
+    //log_stream << "----BEFORE RECURSIVE REPLACEMENT: " << SBML_formulaToString(new_node_p) << endl;
+    
+    //log_stream << "RULE: " << temp_rule->getId() << endl;
     end = locate_and_replace(new_node_p, query, replacement);
     if (end)
       return true;
     
     temp_rule->setMath(new_node_p);
-    log_stream << "----AFTER RECURSIVE REPLACEMENT: " << SBML_formulaToString(temp_rule->getMath()) << endl;
+    //log_stream << "----AFTER RECURSIVE REPLACEMENT: " << SBML_formulaToString(temp_rule->getMath()) << endl;
   }
   
   // CONSTRAINT ---------------------------------------------
@@ -625,10 +594,6 @@ bool SBML_search::locate_and_replace(Model* model, UnitDefinition* inputA, UnitD
   
   // Model substanceUnits value - default value for units if not explicity set can be given in the model as the
   // substanceUnits attribute
-
-
-  cout << "Debug -- " << inputA->getId() << endl;
-  cout << "Debug -- " << model->getSubstanceUnits() << endl;
   
   if (inputA->getId() == model->getSubstanceUnits()){
     end = replace_unit(inputA, inputB, 'M', 0); 

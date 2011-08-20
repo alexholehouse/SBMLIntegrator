@@ -42,8 +42,6 @@ double SBML_formatter::doubleGet(double lower, double upper){
   char temp;
   double val;
   
-
-  
   in = stringGet();
   const char* in_cstr = in.c_str();
 
@@ -65,6 +63,21 @@ double SBML_formatter::doubleGet(double lower, double upper){
 
   return val;
 }
+
+double SBML_formatter::doubleGet_guarenteed(double lower, double upper){
+  
+  double val = doubleGet(lower, upper);
+  
+  while (val == c_FAIL_DOUBLEGET){
+    cout << "**** Invalid selection ****" << endl;
+    cout << "Please reselect :";
+    val = doubleGet(lower,upper);
+  }
+
+  return val;
+}
+
+    
 
 
 SpeciesReference* SBML_formatter::species2SpeciesReference(const Species* species, const Reaction* rxn){
@@ -161,19 +174,15 @@ void SBML_formatter::autoAbort(string message){
 //-----------------------------------------------------------------------------------
 SBML_formatter::SBML_formatter(){
 
-  // if this is the first time a file with an SBML_formatter base is created you generate new logfile, which is then used throughout
+  // If this is the first time a file with an SBML_formatter base is created you generate 
+  // new logfile, which is then used throughout
   
   if (!logfile_set){
 
-    char mkdir[22];
-
-    strcpy(mkdir, "mkdir logs_11_11_1111\0");
     
-    system(mkdir);
+    system("mkdir logs\0");
     
-    string name = "logs_";
-    name.append("11_11_1111");
-    name.append("/");
+    string name = "logs/";
     
     name.append("logat_");
     name.append(get_time());

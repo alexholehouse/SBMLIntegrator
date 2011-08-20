@@ -136,13 +136,13 @@ double SBML_integrate::init(const char* _input_A_filename, const char* _input_B_
 
   print_header("LOAD FILES", true);
   
-  cout << "Which of these files should the BASE MODEL be based on? This is the model which forms the foundations of your integration model - i.e. it's copied over, and then you import, integrate and replace elements from the import model into the base model" << endl;
+  cout << endl << "Which of these files should the BASE MODEL be based on? This is the model which forms the foundations\nof your integration model - i.e. it's copied over, and then you import, integrate and replace elements\nfrom the import model into the base model" << endl << endl;
   
   while (true){
-    cout << "[1] ------------ " << _input_A_filename << endl
-	 << "[2] ------------ " << _input_B_filename << endl;
+    cout << " [1] ------------ " << _input_A_filename << endl
+	 << " [2] ------------ " << _input_B_filename << endl << endl;
   
-    cout  << "Please select: ";
+    cout  << " Please select: ";
 
     return_val = doubleGet(1,2);
 
@@ -180,10 +180,10 @@ void SBML_integrate::integrate_models(){
     print_header("Integrate model", true);
     cout << endl;
     
-    cout << "The software has selected that you are integrating " << model_B_filename 
-	 << "(designated the impoort model, model ID " << model_B->getId() << ") into " 
-	 << model_A_filename << "( designated the base mode, model ID " << model_A->getId() 
-	 << "). " << endl;
+    cout << "You have designated " << model_B_filename 
+	 << " as the import model, model ID [" << model_B->getId() << "] and " 
+	 << model_A_filename << " as the base mode, model ID [" << model_A->getId() 
+	 << "]." << endl << endl;
     
     integrate_models_display_options();
     
@@ -273,8 +273,19 @@ void SBML_integrate::integrate_models(){
       break;
     }
       
-    case 11:
-      integrate_models_explore_models();
+    case 11:{
+      cout << "Do you require a quick overview or a detailed overview of components?" << endl;
+      cout << " [1] ------------ Quick Overview" << endl
+	   << " [2] ------------ Detailed Overview" << endl;
+      
+      cout << " Select: ";
+      int quick = doubleGet_guarenteed(1,2);
+      
+      if (quick == 1)
+	integrate_models_explore_models(true);
+      else
+	integrate_models_explore_models(false);
+    }
       
       break;
 
@@ -307,72 +318,71 @@ void SBML_integrate::integrate_models(){
 // display options for integrate_elements
 
 void SBML_integrate::integrate_models_display_options(){
-  cout << "[1] ------------ Integrate Function Definitions (" 
+  cout << " [1] ------------ Integrate Function Definitions (" 
        << input_file.get_num_integrate_functionDefinitions() << ")";
   if (integration_done_array[0])
     cout << " (DONE)";
   cout << endl;
   
-  cout << "[2] ------------ Integrate Unit Definitions ("
+  cout << " [2] ------------ Integrate Unit Definitions ("
        << input_file.get_num_integrate_unitDefinitions() << ")    ";
   if (integration_done_array[1])
     cout << " (DONE)";
   cout << endl;
   
-  cout << "[3] ------------ Integrate Compartments ("
+  cout << " [3] ------------ Integrate Compartments ("
        << input_file.get_num_integrate_compartments()<< ")        ";
   if (integration_done_array[2])
     cout << " (DONE)";
   cout << endl;
   
-  cout << "[4] ------------ Integrate Species ("
+  cout << " [4] ------------ Integrate Species ("
        << input_file.get_num_integrate_species()<< ")             ";
   if (integration_done_array[3])
     cout << " (DONE)";
   cout << endl;
   
-  cout << "[5] ------------ Integrate Parameters ("
+  cout << " [5] ------------ Integrate Parameters ("
        << input_file.get_num_integrate_parameters()<< ")          ";
   if (integration_done_array[4])
     cout << " (DONE)";
   cout << endl;
   
-  cout << "[6] ------------ Integrate Initial Assignments ("
+  cout << " [6] ------------ Integrate Initial Assignments ("
        << input_file.get_num_integrate_initialAssignments()<< ") ";
   if (integration_done_array[5])
     cout << " (DONE)";
   cout << endl;
   
-  cout << "[7] ------------ Integrate Rules ("
+  cout << " [7] ------------ Integrate Rules ("
        << input_file.get_num_integrate_rules() << ")               ";
   if (integration_done_array[6])
     cout << " (DONE)";
   cout << endl;
-  
-  
-  cout << "[8] ------------ Integrate Constraints ("
+    
+  cout << " [8] ------------ Integrate Constraints ("
        << input_file.get_num_integrate_constraints() << ")         ";
   if (integration_done_array[7])
     cout << " (DONE)";
   cout << endl;
   
-  cout << "[9] ------------ Integrate Reactions ("
+  cout << " [9] ------------ Integrate Reactions ("
        << input_file.get_num_integrate_reactions() << ")           ";
   if (integration_done_array[8])
     cout << " (DONE)";
   cout << endl;
   
-  cout << "[10] ----------- Integrate Events ("
+  cout << " [10] ----------- Integrate Events ("
        << input_file.get_num_integrate_events() << ")              ";
   if (integration_done_array[9])
     cout << " (DONE)";
   cout << endl;
   
-  cout << "[11] ----------- Explore models" << endl;
-  cout << "[12] ----------- Explore replacement, import and integration parameters " << endl;
-  cout << "[13] ----------- Write Integrated Model" << endl;
-  cout << "[14] ----------- Run replacementl" << endl;
-  cout << "[15] ----------- Return to main menu " << endl;
+  cout << " [11] ----------- Explore models" << endl;
+  cout << " [12] ----------- Explore replacement, import and integration parameters " << endl;
+  cout << " [13] ----------- Write Integrated Model" << endl;
+  cout << " [14] ----------- Run replacementl" << endl;
+  cout << " [15] ----------- Return to main menu " << endl;
 }
 
 
@@ -381,7 +391,7 @@ void SBML_integrate::integrate_models_display_options(){
 //
 // Function to select a model to implement the display_model function on
 
-void SBML_integrate::integrate_models_explore_models(){
+void SBML_integrate::integrate_models_explore_models(bool quick){
   int AorBorC;
   
   system("clear");
@@ -389,16 +399,28 @@ void SBML_integrate::integrate_models_explore_models(){
   cout << "There are three models we can look at in this system. The two you've selected to\nload into the program, and the integrated model you're creating.The integrated model\nis based on the bigger of the two models you're going to integrate, from here-on\nout called the 'base model." << endl << endl;
 
   cout << "------- Models and filenames -------------" << endl;
-  cout << "Base model --------- " << model_A_filename << endl;
-  cout << "Import model ------- " << model_B_filename << endl << endl;
+  cout << " Base model ----------- " << model_A_filename << endl;
+  cout << " Import model --------- " << model_B_filename << endl << endl;
   
   AorBorC = display_framework.compare3way("Please select a model to explore", "Base model", "Import model", "Integration model", false);
-	
-  if (AorBorC == 0)
-    display_framework.select_components_to_list(model_A, "Base model - loaded model which the integration model is based on");
+  
+  if (AorBorC == 0){
     
-  if (AorBorC == 1)
-    display_framework.select_components_to_list(model_B, "Import model - model being integrated into the base model to create the integration model");
+    if (quick)
+      display_framework.select_components_to_list(model_A, "Base model - loaded model which the integration model is based on");
+    
+    else
+      display_framework.select_components_to_show(model_A, "Base model - loaded model which the integration model is based on");
+  }
+  
+    
+  if (AorBorC == 1){
+    if (quick)
+      display_framework.select_components_to_list(model_B, "Import model - model being integrated into the base model to create the integration model");
+    
+    else
+      display_framework.select_components_to_list(model_B, "Import model - model being integrated into the base model to create the integration model");
+  }
   
   if (AorBorC == 2)
     display_framework.select_components_to_list(model_new, "Integration model - model being created");
