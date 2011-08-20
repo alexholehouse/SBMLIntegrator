@@ -175,11 +175,6 @@ class SBML_integrate_integrate : SBML_integrate_helper {
     \b<Notes>: The user is shown the contents of the reactions product list, and they are then asked to select which product(s) to remove from this list. These reaction species are removed from the list and the underlying object destroyed (though not the Species which the speciesReference is referring to !*/
   void remove_speciesRef(Reaction* rxn, bool reactant);
   
-  
-
-
-  
-  
   // returns 0 if new element ID is not to replace anything in the model
   // return 1 if the new element ID is to replace references to Bs ID
   // returns if the new elememnt is to to replace reference to As 
@@ -188,7 +183,8 @@ class SBML_integrate_integrate : SBML_integrate_helper {
   // prints a message to STDOUT relating to selecting a new ID for an element
   void new_ID_message(std::string item);
   
-  
+  // standard message if nothing to integrate exists
+  void nothing_to_integrate(string item);
 };
 
 #endif

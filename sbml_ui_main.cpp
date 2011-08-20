@@ -18,85 +18,58 @@ void SBML_UI_main::intro(){
        << endl << endl;
 }
 
-char SBML_UI_main::main_screen_display(bool integrate, bool reset){
+int SBML_UI_main::main_screen_display(bool integrate, bool reset){
+  
+  int i;
+  double selector;
   
   if (reset)
     system("clear");
-  
-  char* input;
+
+  if (integrate)
+    i = 1;
+  else
+    i = 0;
+  cout << "----- SBMLIntegrator - Main Menu -----" << endl;
   cout << "   Select an option from below:" << endl << endl;
     
-    if (integrate)
-      cout  << "   Explore Model ----------------------------------------- A" << endl;
-    else
-      cout  << "   Explore Models ---------------------------------------- A" << endl;
-
-    cout << "   Display model summary --------------------------------- S" << endl
-	 << "   TESTFUNCTION -------------------------------------------T" << endl
-	 << "   Help ---------------------------------------------------H" << endl;
-    
-    if (integrate){
-      cout  << "   Integrate models ---------------------------------------I" << endl;
-    }
-    
-    cout << endl;
-    
-    cout << "   Quit ---------------------------------------------------Q" << endl << endl;
-    cout << "   Select: "; 
-    
-    while (true){
-      input = selectorGet();
-      switch (input[0]){
-	
-      case 'A':
-	return 'A';
-      
-      case 'S':
-	return 'S';
-      
-      case 'H':
-	return 'H';
-
-      case 'Q':
-	return 'Q';
-      
-      case 'T':
-	return 'T';
-	
-      case 'I':
-	if (integrate)
-	  return 'I';
-	else
-	  break;
-
-      default:
-	cout << "\n**** Invalid Selection (" << input[0] << ") **** - Please reselect :";
-      }
-    }
-    
+  cout  << " [1] ------------ Explore Models  " << endl;
+  cout  << " [2] ------------ Display Model Summary  " << endl;
+  
+  if (integrate)
+    cout << " [3] ------------ Integrate models " << endl;
+  
+  cout << " [" << i+3 << "] ------------ Quit " << endl;
+  
+  cout << endl;
+  
+  cout << " Select: "; 
+  selector = doubleGet_guarenteed(1,i+4);
+  
+  return (static_cast<int>(selector));
 }
 
 void SBML_UI_main::print_help(){
-
+  
   print_usage();
   
   cerr << "Control options available within the tool, but can either take one or two sbml \nfiles. If one file is taken, the model can be displayed, and consolidated,\nremoving redundant components, and a copy saved. If two are files taken, \nthese can be integrated into a single SBML model."
     
-	 << endl << endl << endl
-
-	 << "We recommend writing the output of this program to a text file or piping to\nlessfor a clear method to overview the model being described. Hopefully in\nfuture releases we'll have a better interface and a GUI, but for now this is\nwhat we've got - functionality over usebility"
-
-	 << endl << endl
-      
-	 << " [OPTIONS] " << endl
-	 << "  --help        Display this message" << endl 
-	 << "  --version     Display the program version" << endl
-	 << "  -o            Define output model name (.xml added)" << endl
-      
-	 << endl
-	 << endl
-
-	 << "About: This software was developed entirly by alex holehouse. For questions,\nconcerns, frustration and praise contact him at alex.holehouse@gmail.com" << endl;
+       << endl << endl << endl
+    
+       << "We recommend writing the output of this program to a text file or piping to\nlessfor a clear method to overview the model being described. Hopefully in\nfuture releases we'll have a better interface and a GUI, but for now this is\nwhat we've got - functionality over usebility"
+    
+       << endl << endl
+    
+       << " [OPTIONS] " << endl
+       << "  --help        Display this message" << endl 
+       << "  --version     Display the program version" << endl
+       << "  -o            Define output model name (.xml added)" << endl
+    
+       << endl
+       << endl
+    
+       << "About: This software was developed entirly by alex holehouse. For questions,\nconcerns, frustration and praise contact him at alex.holehouse@gmail.com" << endl;
 }
 
 void SBML_UI_main::print_usage(){

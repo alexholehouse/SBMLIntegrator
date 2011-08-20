@@ -7,7 +7,7 @@
 using namespace std;
 
 void SBML_UI_general::any_key_to_continue(){
-  cout << "Press any key to continue...";
+  cout << " Press any key to continue...";
   string input;
   getline(cin,input,'\n');
 }

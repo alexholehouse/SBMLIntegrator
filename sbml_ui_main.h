@@ -47,7 +47,7 @@ class SBML_UI_main : public SBML_UI_general {
     I - integrate models
 
     !*/   
-  char main_screen_display(bool integrate, bool reset);
+  int main_screen_display(bool integrate, bool reset);
   
   // #############################################################################################
   void print_help();

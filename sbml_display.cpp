@@ -13,33 +13,32 @@ using namespace std;
 void SBML_display::show_summary(const Model* model, string filename){
   
   print_header("Display Summary", true);
-  
-  cout << "Model ID --------------- " << model->getId() << endl;
-  cout << "Model name ------------- " << model->getName() << " (file name = " 
-       << filename << ")" << endl;
-  cout << "Model version ---------- " << model->getVersion() << endl;
-  cout << "ModeL level ------------ " << model->getLevel() << endl;
-  cout << "Model substance units -- " << model->getSubstanceUnits() << endl;
-  cout << "Model time units ------- " << model->getTimeUnits() << endl;
-  cout << "Model volume units ----- " << model->getVolumeUnits() << endl;
-  cout << "Model area units ------- " << model->getAreaUnits() << endl;
-  cout << "Model length units ----- " << model->getLengthUnits() << endl;
-  cout << "Model extent units ----- " << model->getExtentUnits() << endl;
-  cout << "Model conversion factor- " << model->getConversionFactor() << endl;
+  cout << "File name ---------------- " << filename << endl;
+  cout << "Model ID ----------------- " << model->getId() << endl;
+  cout << "Model name --------------- " << model->getName() << endl; 
+  cout << "Model version ------------ " << model->getVersion() << endl;
+  cout << "ModeL level -------------- " << model->getLevel() << endl;
+  cout << "Model substance units ---- " << model->getSubstanceUnits() << endl;
+  cout << "Model time units --------- " << model->getTimeUnits() << endl;
+  cout << "Model volume units ------- " << model->getVolumeUnits() << endl;
+  cout << "Model area units --------- " << model->getAreaUnits() << endl;
+  cout << "Model length units ------- " << model->getLengthUnits() << endl;
+  cout << "Model extent units ------- " << model->getExtentUnits() << endl;
+  cout << "Model conversion factor -- " << model->getConversionFactor() << endl;
   
   cout << "---------------------------------" << endl;
   cout << "Summary of model components" << endl;
   cout << "---------------------------------" << endl;
-  cout << "No of funtions: " << model->getNumFunctionDefinitions() << endl;
-  cout << "No of unit definitions: " << model->getNumUnitDefinitions() << endl;
-  cout << "No of compartments: " << model->getNumCompartments() << endl;
-  cout << "No of species: " << model->getNumSpecies() << endl;
-  cout << "No of parameters: " << model->getNumParameters() << endl;
-  cout << "No of initial assigments: " << model->getNumInitialAssignments() << endl;
-  cout << "No of rules: " << model->getNumRules() << endl;
-  cout << "No of constraints: " << model->getNumConstraints() << endl;
-  cout << "No of reactions: " << model->getNumReactions() << endl;
-  cout << "No of events: " << model->getNumEvents() << endl;
+  cout << "No of funtions ----------- " << model->getNumFunctionDefinitions() << endl;
+  cout << "No of unit definitions --- " << model->getNumUnitDefinitions() << endl;
+  cout << "No of compartments ------- " << model->getNumCompartments() << endl;
+  cout << "No of species ------------ " << model->getNumSpecies() << endl;
+  cout << "No of parameters --------- " << model->getNumParameters() << endl;
+  cout << "No of initial assigments - " << model->getNumInitialAssignments() << endl;
+  cout << "No of rules -------------- " << model->getNumRules() << endl;
+  cout << "No of constraints -------- " << model->getNumConstraints() << endl;
+  cout << "No of reactions ---------- " << model->getNumReactions() << endl;
+  cout << "No of events ------------- " << model->getNumEvents() << endl;
   cout << "----------------------------------" << endl;
   any_key_to_continue();
 }
@@ -959,7 +958,7 @@ void SBML_display::list_species(const Model* inputM){
   cout << "---- List of Species ----" << endl;
   cout << "[No] <Species ID>" << endl;
   int num = inputM->getNumSpecies();
-  for (int i = 0 ; i < num ; i++)
+   for (int i = 0 ; i < num ; i++)
     cout << "[" << i << "] " << (inputM->getSpecies(i))->getId() << endl;
 }
 
@@ -981,9 +980,10 @@ void SBML_display::list_rules(const Model* inputM){
     rule = inputM->getRule(i);
     
     if (rule->isAlgebraic())
-      cout << "[" << i << "] " << rule->getFormula() << endl;
+      cout << "[" << i << "] " << endl << "  Formula: " << rule->getFormula() << endl << endl;
     else
-      cout << "[" << i << "] " << rule->getId() << " (" << rule->getFormula() << ")" << endl;
+      cout << "[" << i << "] " << rule->getId() << endl << "  Formula: " 
+	   << rule->getFormula()  << endl << endl;
   }
 }
 void SBML_display::list_reactions(const Model* inputM){

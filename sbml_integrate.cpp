@@ -136,7 +136,7 @@ double SBML_integrate::init(const char* _input_A_filename, const char* _input_B_
 
   print_header("LOAD FILES", true);
   
-  cout << endl << "Which of these files should the BASE MODEL be based on? This is the model which forms the foundations\nof your integration model - i.e. it's copied over, and then you import, integrate and replace elements\nfrom the import model into the base model" << endl << endl;
+  cout << endl << "Which of these files should the BASE MODEL be based on? This is the model which\nforms the foundations of your integration model - i.e. it's copied over, and\nthen you import, integrate and replace elements from the import model into\nthe base model" << endl << endl;
   
   while (true){
     cout << " [1] ------------ " << _input_A_filename << endl
@@ -180,19 +180,20 @@ void SBML_integrate::integrate_models(){
     print_header("Integrate model", true);
     cout << endl;
     
-    cout << "You have designated " << model_B_filename 
-	 << " as the import model, model ID [" << model_B->getId() << "] and " 
-	 << model_A_filename << " as the base mode, model ID [" << model_A->getId() 
-	 << "]." << endl << endl;
+    cout << "Import model is: " << model_B_filename << endl
+	 << " --> Model ID [" << model_B->getId() << "]" << endl << endl
+	 << "Base model is: " << model_A_filename << endl
+	 << " --> Model ID [ " << model_A->getId() << "]" << endl << endl;
+      
     
     integrate_models_display_options();
     
-    cout << "Please select an option: ";
+    cout << " Please select an option: ";
     selector = doubleGet(1,15);
 
     while (selector == c_FAIL_DOUBLEGET){
       invalid_selection();
-      cout << "Please reselect: ";
+      cout << " Please reselect: ";
       selector = doubleGet(1,15);
     }
     
@@ -300,7 +301,10 @@ void SBML_integrate::integrate_models(){
       break;
        
     case 14:
+      cout << endl << " ---> Running replacement...";
       replace_elements();
+      cout << " ...replacement complete!" << endl << endl;
+      any_key_to_continue();
       
       break;      
 
@@ -402,7 +406,7 @@ void SBML_integrate::integrate_models_explore_models(bool quick){
   cout << " Base model ----------- " << model_A_filename << endl;
   cout << " Import model --------- " << model_B_filename << endl << endl;
   
-  AorBorC = display_framework.compare3way("Please select a model to explore", "Base model", "Import model", "Integration model", false);
+  AorBorC = display_framework.compare3way(" Please select a model to explore", "Base model", "Import model", "Integration model", false);
   
   if (AorBorC == 0){
     

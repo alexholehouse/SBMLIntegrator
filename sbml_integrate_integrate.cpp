@@ -17,16 +17,24 @@ using namespace std;
 
 SBML_integrate_integrate::SBML_integrate_integrate(Model* _model_new){
   
+  // set variables and build cleanup framework
   model_new = _model_new;
-
   cleanup_framework = new SBML_cleanup(model_new, false);
-
-  cout << "SBML_integrate_integrate_constructor" << endl;
+  
   return;
 }
 
   
 
+// #############################################################################################
+// NOTHING TO INTEGRATE
+//
+void SBML_integrate_integrate::nothing_to_integrate(string item){
+  
+  cout << endl << " No " << item << " to integrate" << endl << endl;
+  log_stream << "No " << item << " to intergrate" << endl;
+  any_key_to_continue();
+}
 
 
 
@@ -38,13 +46,11 @@ void SBML_integrate_integrate::integrate_functionDefinitions(SBML_confInput& inp
 }
 
 
-
 // #############################################################################################
 // INTEGRATE_UNITDEFINITIONS
 //
 void SBML_integrate_integrate::integrate_unitDefinitions(SBML_confInput& input_file, Model* model_new, SBML_listpair_container<ListOfUnitDefinitions>& listpair){ 
   // support to be added - why would you want to *integrate* units?
-
 }
 
 // #############################################################################################
@@ -58,8 +64,9 @@ void SBML_integrate_integrate::integrate_compartments(SBML_confInput& input_file
 
   // number of compartments to integrate, as defined by the conf file
   int num = input_file.get_num_integrate_compartments();
+  
   if (num == 0){
-    log_stream << "No Compartments to intergrate" << endl;
+    nothing_to_integrate("compartment");
     return;
   }
   
@@ -213,8 +220,9 @@ void SBML_integrate_integrate::replacement_list_update(Compartment* inNew_copy, 
 void SBML_integrate_integrate::integrate_species(SBML_confInput& input_file, Model* model_new, SBML_listpair_container<ListOfSpecies>& listpair){       
   int AorB;
   int num = input_file.get_num_integrate_species();
+
   if (num == 0){
-    log_stream << "No species to intergrate" << endl;
+    nothing_to_integrate("species");
     return;
   }
   
@@ -377,11 +385,13 @@ void SBML_integrate_integrate::replacement_list_update(Species* inNew_copy, Spec
 void SBML_integrate_integrate::integrate_parameters(SBML_confInput& input_file, Model* model_new, SBML_listpair_container<ListOfParameters>& listpair){   
   int AorB;
   int num = input_file.get_num_integrate_parameters();
+  
   if (num == 0){
-    log_stream << "No parameters to intergrate" << endl;
+    nothing_to_integrate("parameters");
     return;
   }
-
+  
+  
   // used as a flag to indicate the role of this new parameter in terms of replacing the original parameters
   //
   
@@ -541,8 +551,9 @@ void SBML_integrate_integrate::integrate_rules(SBML_confInput& input_file, Model
 
   int AorB;
   int num = input_file.get_num_integrate_rules();
+  
   if (num == 0){
-    log_stream << "No rules to intergrate" << endl;
+    nothing_to_integrate("rules");
     return;
   }
 
@@ -610,8 +621,9 @@ void SBML_integrate_integrate::integrate_rules(SBML_confInput& input_file, Model
       if (AorB == 1)
 	inNew_copy->setName(tempB->getName());
     }
+    
     // math formula
-
+    
     message = "\nThis rule is ";
     if (inNew->isAlgebraic())
       message.append("an algabraic rule. Such a rule is in effect at all times, and it is up to the user to ensure such a rule is not overdetermined, and additionally reaction rates cannot be determined by algebraic rules.\n "); 
@@ -637,8 +649,8 @@ void SBML_integrate_integrate::integrate_rules(SBML_confInput& input_file, Model
     // if the rule is algebraic and it's changed (no point if it hasn't changed)
     if ( (inNew->isAlgebraic() ) && (inNew->getFormula() != inNew_copy->getFormula()) ){
       
-      cout << "Do you want this new rule to replace the original one? i.e. replace ("
-	   << inNew->getFormula() << ") with (" 
+      cout << "Do you want this new rule to replace the original one? i.e. replace " << endl
+ 	   << inNew->getFormula() << endl << " ---- with ---- " << endl 
 	   << inNew_copy->getFormula() << ")?" << endl;
       
       if ('Y' == yes_or_no()){
@@ -656,10 +668,9 @@ void SBML_integrate_integrate::integrate_rules(SBML_confInput& input_file, Model
     // if the rule is not algebrai
     else {
       
-      cout << "Do you want this new rule (" << inNew_copy->getId() 
-	   << ") to replace the original one (" << inNew->getId() << ")? i.e. replace ("
-	   << inNew->getFormula() << ") with (" << inNew_copy->getFormula() << ")?" 
-	   << endl;
+      cout << "Do you want this new rule to replace the original one? i.e. replace " << endl
+ 	   << inNew->getFormula() << endl << " ---- with ---- " << endl 
+	   << inNew_copy->getFormula() << ")?" << endl;
       
       if ('Y' == yes_or_no()){
 	Rule* toDel = model_new->removeRule(location);
@@ -721,8 +732,9 @@ void SBML_integrate_integrate::integrate_reactions(SBML_confInput& input_file, M
   // so we need a different approach for replacement
 
   int num = input_file.get_num_integrate_reactions();
+
   if (num == 0){
-    log_stream << "No reactions to integrate" << endl;
+    nothing_to_integrate("reactions");
     return;
   }
 
@@ -899,7 +911,8 @@ char SBML_integrate_integrate::edit_reaction_ui(){
   char* selector;
   string line;
   
-  cout << "Please select an option" << endl;
+  
+  cout << endl << " Please select an option" << endl;
   cout << "[1] ----------- Edit Name\n[2] ----------- Edit Formula\n[3] ----------- Edit Stoichiometry\n[4] ----------- Edit Modifiers\n[5] ----------- Edit Kinetic Law\n[6] ----------- Get model Information\n[7] ----------- Continue " << endl;
   
   cout << "Select: ";

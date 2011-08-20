@@ -20,7 +20,7 @@ int main (int argc, char* argv[])
   bool exit = false;
   
   // output of main
-  char decision;
+  int decision;
   SBML_UI_main interface;
   
   // if no arguments provided, or only one argument provided and that argument isn't 
@@ -119,7 +119,7 @@ int main (int argc, char* argv[])
     
     switch (decision)
       {  
-      case 'A':
+      case 1:
 	if (!integrate){
 	  display_object->select_components_to_show(document1->getModel(), "Model");
 	}
@@ -133,26 +133,27 @@ int main (int argc, char* argv[])
 	}
 	break;
 	
-      case 'S':
+      case 2:
 	display_object->show_summary(document1->getModel(), argv[1+offset]);
 	if (integrate)
 	  display_object->show_summary(document2->getModel(), argv[2+offset]);
 	break;
 
-      case 'Q':
+      case 3:
+	if (integrate)
+	  integrate_framework->test(document1->getModel());
+	else{
+	  cout << "Exiting - thanks for playing!" << endl;
+	  exit = true;
+	}
+      	break;
+	
+      case 4:
 	cout << "Exiting - thanks for playing!" << endl;
 	exit = true;
-      	break;
-
-      case 'T':
-	integrate_framework->test(document1->getModel());
 	break;
       }	
   }
-  
-  
-  
-  
   
   // exit post-amble
   delete display_object;
