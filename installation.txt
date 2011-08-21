@@ -1,0 +1,45 @@
+Installation instructions
+
+
+- Easy way if root access is available
+       1) Download the LibSBML package
+       2) In Ubuntu this is as easy as 
+       
+		sudo apt-get install libsbml
+
+       	  This installs the SBML C and C++ APIs in their standard
+          locations.
+       3) Then simply run make -f makefile_standard
+
+
+- Slightly harder way
+       1) Download the sbml source from
+       	  http://sourceforge.net/projects/sbml/files/libsbml/5.0.0/
+       2) Unzip, cd into that directory, run configure as follows
+       
+       	  ./configure --prefix ~/Documents/libsbml_installation/
+
+	  This installs the include files and the libraries on the
+	  in the --prefix directory
+       3) Type 
+	  
+	  make
+
+       4) Type 
+	
+	  make install
+
+       5) We have now installed the SBML library in our custom
+          location of ~/Documents/libsbml_installation/. To ensure
+	  that our compilation using the library works we must add 
+	  this location to the LD_LIBRARY_PATH. To do this, type
+	  
+	  setenv LD_LIBRARY_PATH ~/Documents/libsbml_installation/
+
+	  and additionally add 
+
+	  setenv LD_LIBRARY_PATH ~/Documents/libsbml_installation/ 
+
+	  to your .bashrc or .cshrc 
+
+       6) finally, run make -f makefile_autonomous
