@@ -34,11 +34,11 @@ Installation instructions
 	  that our compilation using the library works we must add 
 	  this location to the LD_LIBRARY_PATH. To do this, type
 	  
-	  setenv LD_LIBRARY_PATH ~/Documents/libsbml_installation/
+	  setenv LD_LIBRARY_PATH ~/Documents/libsbml_installation/lib/
 
 	  and additionally add 
 
-	  setenv LD_LIBRARY_PATH ~/Documents/libsbml_installation/ 
+	  setenv LD_LIBRARY_PATH ~/Documents/libsbml_installation/lib/
 
 	  to your .bashrc or .cshrc 
 
