@@ -1,3 +1,6 @@
+// Copyright Alex Holehouse 2011
+// Distributed under the terms of the GNU general public license - see COPYING.txt for more details
+
 #include <iostream>
 #include <string>
 #include <sbml/SBMLTypes.h>
@@ -99,17 +102,18 @@ void SBML_UI_main::explore_models(Model* model1, Model* model2, SBML_display* di
   int selector;
   print_header("Explore models", true);
   cout << "Please select one of the two models you wish to explore" << endl << endl
-       << "  " << "[1] -------------------------------------------- " << model1_name << endl
-       << "  " << "[2] -------------------------------------------- " << model2_name << endl 
+       << "  " << "[1] ------------ " << model1_name << endl
+       << "  " << "[2] ------------ " << model2_name << endl 
        << endl << "  Please select (1 or 2): ";
   
   selector = doubleGet_guarenteed(1,2);
   
+  string message = "Model filename is ";
     
-  if (selector ==1)
-    display_framework->select_components_to_show(model1, model1_name);
+  if (selector == 1)
+    display_framework->select_components_to_show(model1, message.append(model1_name));
   else
-    display_framework->select_components_to_show(model2, model2_name);
+    display_framework->select_components_to_show(model2, message.append(model2_name));
       
   
 

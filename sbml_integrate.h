@@ -1,3 +1,6 @@
+// Copyright Alex Holehouse 2011
+// Distributed under the terms of the GNU general public license - see COPYING.txt for more details
+
 #ifndef SBML_INTEGRATE_H
 #define SBML_INTEGRATE_H
 
@@ -12,12 +15,12 @@
 #include <iostream>
 #include <fstream>
 
-
-
 class SBML_integrate : public SBML_UI_general {
   
  public:
   SBML_integrate(const Model* input_A, const Model* input_B, const char* input_A_filename, const char* input_B_filename);
+
+  void integration();
   
   void integrate_models();
   bool read_config_file();

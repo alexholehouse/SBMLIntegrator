@@ -1,3 +1,6 @@
+// Copyright Alex Holehouse 2011
+// Distributed under the terms of the GNU general public license - see COPYING.txt for more details
+
 #include <iostream>
 #include <string>
 #include <sbml/SBMLTypes.h>
@@ -10,6 +13,7 @@ void SBML_UI_general::any_key_to_continue(){
   cout << " Press any key to continue...";
   string input;
   getline(cin,input,'\n');
+  cout << endl;
 }
 
 void SBML_UI_general::invalid_selection(){

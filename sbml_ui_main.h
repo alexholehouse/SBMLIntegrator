@@ -1,3 +1,6 @@
+// Copyright Alex Holehouse 2011
+// Distributed under the terms of the GNU general public license - see COPYING.txt for more details
+
 #ifndef SBML_UI_MAIN_H
 #define SBML_UI_MAIN_H
 
@@ -33,18 +36,20 @@ class SBML_UI_main : public SBML_UI_general {
 
     \b Preconditions: Bool should be set to true if model integration is possible (i.e. two valid models have loaded) or false if not
 
-    \b Postconditions: Returns the following characers depending on the users choice;
+    \b Postconditions: Returns the following value depending on the users choice;
 
     Integration true;
-    A - explore models
-    S - display model summary
-    H - Help
-
+    1 - Explore models
+    2 - Display model summary
+    3 - Integrate models
+    4 - Quit
+    
     Integration false
-    A - explore models
-    S - display model summary
-    H - Help
-    I - integrate models
+    1 - Explore models
+    2 - Display model summary
+    3 - Quit
+
+    
 
     !*/   
   int main_screen_display(bool integrate, bool reset);

@@ -1,5 +1,7 @@
-#include "sbml_integrate_integrate.h"
+// Copyright Alex Holehouse 2011
+// Distributed under the terms of the GNU general public license - see COPYING.txt for more details
 
+#include "sbml_integrate_integrate.h"
 #include <sbml/SBMLTypes.h>
 #include <string>
 #include <iostream>
@@ -302,7 +304,9 @@ void SBML_integrate_integrate::integrate_species(SBML_confInput& input_file, Mod
       inNew_copy->setConstant(tempB->getConstant());
 
     // conversion factor ---------------------------------------------------------------------
-    cout << "NB - Conversion factor must refer to a parameterID which is *CONSTANT*" << endl;
+    if (inNew->getConversionFactor() != tempB->getConversionFactor())
+      cout << "NB - Conversion factor must refer to a parameterID which is *CONSTANT*" << endl;
+    
     AorB = display_framework.compare("Conversion factor", inNew->getConversionFactor(), tempB->getConversionFactor(), true);
     if (AorB == 1)
       inNew_copy->setConversionFactor(tempB->getConversionFactor());
@@ -1579,12 +1583,10 @@ void SBML_integrate_integrate::replacement_list_update(Event* inNew_copy, Event*
 //
 void SBML_integrate_integrate::new_ID_message(std::string item){
   
-  cout << "Unless you specifically add things in these integrations, nothing in the model will refer to this " 
-       << item << " (as it's brand new to both models!" << endl;
+  cout << "Unless you specifically add things in these integrations, nothing in the model will refer to this (" 
+       << item << ") because it is brand new to both models!" << endl;
       
-  cout << "Please define an ID for it! This ID needs to be globally unique, so to test if it's" 
-       << " unique please check in the .xml file. An automated software fix for this is *JUST*"
-       << " around the corner! Sorry about this" << endl 
+  cout << "Please define an ID for it! This ID needs to be globally unique, so to test if it's \nunique please check in the .xml file. An automated software fix for this is *JUST* \naround the corner! Sorry about this" << endl 
        << "Currently, the existing " << item << " IDs are:" << endl;
   
 }
@@ -1601,26 +1603,19 @@ void SBML_integrate_integrate::new_ID_message(std::string item){
 // 
 int SBML_integrate_integrate::for_replacement_UI(string newID, string oldBID){
   
+  char decision;
+  cout << endl << "### Change references? ###" << endl;
   cout << "Would you like references to " << oldBID 
-       << ", the ID of the element just integrated into " 
-       << newID << " to be replaced by the newly updated/created species? (" 
-       << newID << ")" << endl;
-  
-  while (true){
-    cout << "Y/N?: ";
-    char decision;
-    cin >> decision;
-    cin.ignore();
+       << ", the ID of the element\njust integrated into " 
+       << newID << " to be replaced by\nthe newly updated/created species? (" 
+       << newID << ")" << endl << endl;
 
-    cout << "You selected " << decision << endl;
+  decision = yes_or_no();
 
-    if (decision == 'Y' || decision == 'y')
-      return 1;
-
-    else if (decision == 'N' || decision == 'n')
-      return 0;
-  
-  } 
+  if (decision == 'Y')
+    return 1;
+  else
+    return 0;
 }
 
 

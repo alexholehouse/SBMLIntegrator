@@ -1,3 +1,21 @@
+// Copyright Alex Holehouse 2011
+// Distributed under the terms of the GNU general public license - see COPYING.txt for more details
+
+/*! \mainpage SBMLIntegrator
+ 
+  SBMLIntegrator is a a simple to use tool for Linux which allows for the integration of two SBML models into one single model. The purpose of this functionality is to faciliate model integration to propel the investigation of crosstalk between seperatly defined but biologically connected pathways.
+
+  Included here is a documentation of the software generate through doxygen. It gives an overview of classes and functions to provide a pseudo-interactive guide to the code generated. The purpose of this is twofold.
+
+  1) It provides a means to describe and explain the code justification for future optimisation, enhancement and development. The code is well commented throughout, so this documentation provides
+  an overview to the architechture. If more detailed is required, the source code can be examined.
+
+  2) For this dissertation, rather than describing the code in detail in the report, code implementation can be viewed here, with both code comments in the code and a code overview provided by this documentation. This gives a much more natural way to interpret the code, as well as avoiding the formatting issues and longwinded descriptions needed to "describe" code, rather than simply referring to it.
+
+   
+ !*/
+
+
 #ifndef SBML_FORMATTER_H
 #define SBML_FORMATTER_H
 

@@ -1,3 +1,5 @@
+// Copyright Alex Holehouse 2011
+// Distributed under the terms of the GNU general public license - see COPYING.txt for more details
 #include "sbml_augment.h"
 #include "sbml_formatter.h"
 

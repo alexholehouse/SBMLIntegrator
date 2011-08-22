@@ -1,3 +1,6 @@
+// Copyright Alex Holehouse 2011
+// Distributed under the terms of the GNU general public license - see COPYING.txt for more details
+
 #ifndef SBML_DISPLAY_H
 #define SBML_DISPLAY_H
 

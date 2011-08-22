@@ -1,3 +1,6 @@
+// Copyright Alex Holehouse 2011
+// Distributed under the terms of the GNU general public license - see COPYING.txt for more details
+
 #include "sbml_display.h"
 #include "sbml_search.h"
 #include "sbml_integrate.h"
@@ -136,7 +139,7 @@ double SBML_integrate::init(const char* _input_A_filename, const char* _input_B_
 
   print_header("LOAD FILES", true);
   
-  cout << endl << "Which of these files should the BASE MODEL be based on? This is the model which\nforms the foundations of your integration model - i.e. it's copied over, and\nthen you import, integrate and replace elements from the import model into\nthe base model" << endl << endl;
+  cout << endl << "Which of these files should the BASE MODEL be based on? This is the model which\nforms the foundations of your integration model - i.e. it's copied into the\nsoftware, and then you import, integrate and replace elements from the other model\n(from here on called the IMPORT MODEL) into the base model;" << endl << endl;
   
   while (true){
     cout << " [1] ------------ " << _input_A_filename << endl
@@ -153,13 +156,24 @@ double SBML_integrate::init(const char* _input_A_filename, const char* _input_B_
   }
 }
 
+// #############################################################################################
+// parent function called by main
+
+
+void SBML_integrate::integration(){
+  
+  import_elements();
+  replace_elements();
+  integrate_models();
+}
+
 
 
 // #############################################################################################
 // test function for debugging
 
 void SBML_integrate::test(Model* retarded){
-  
+
   import_elements();
   replace_elements();
   integrate_models();

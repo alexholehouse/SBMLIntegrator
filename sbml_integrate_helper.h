@@ -1,3 +1,6 @@
+// Copyright Alex Holehouse 2011
+// Distributed under the terms of the GNU general public license - see COPYING.txt for more details
+
 #ifndef SBML_INTEGRATE_HELPER_H
 #define SBML_INTEGRATE_HELPER_H
 
@@ -40,12 +43,10 @@ class SBML_integrate_helper : public SBML_UI_general {
     while (exit == false){
       switch (selector) {
 	
-	
       case 'A':
 	// nothing to do
 	exit = true;
 	break;
-      
       
       case 'B':
 	inNew_copy->setMath(tempB->getMath());
@@ -63,7 +64,6 @@ class SBML_integrate_helper : public SBML_UI_general {
         std::cin.ignore(); 
       }
     }
-
       return;
   }
   
@@ -107,12 +107,8 @@ class SBML_integrate_helper : public SBML_UI_general {
 		  << " doesn't work. \nPlease try again, or if this is broken and you want to "
 		  << "abort please enter Q: ";
       }
-      
     }
-    
   }
-
-  
 };
 
 #endif

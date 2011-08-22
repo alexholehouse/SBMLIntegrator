@@ -1,3 +1,6 @@
+// Copyright Alex Holehouse 2011
+// Distributed under the terms of the GNU general public license - see COPYING.txt for more details
+
 #ifndef SBML_SEARCH_H
 #define SBML_SEARCH_H
 
@@ -109,10 +112,8 @@ class SBML_search : public SBML_UI_general {
 };
 
 
-// To avoid cyclic dependencies we had to put this here, as a template function it must be in the.h file but
-// as with search_framework a superclass of SBML_display had to be here
-// YES I know this is bad. YES this search/display structure will be refactored before Beta.
-//
+// To avoid cyclic dependencies we had to put this here, as a template function it must be in 
+// the.h file but as with search_framework a superclass of SBML_display had to be here
 // 
 
 template <class T> 
@@ -122,16 +123,16 @@ int SBML_display::compare_units(const T compA, const T compB, const Model* model
   SBML_search search_framework;
   
   while(true){
-    std::cout << "### Units ###" << std::endl
-	      << "Ensure that if you select option B, it actually exists in the model (i.e. you set it as one of the elements to import in the .conf file. Software support to check this coming real soon, but at the moment please try and be careful!" << std::endl
-	      << "  A ----- " << compA->getUnits() << " = " 
+    std::cout << "### Units ###" << std::endl;
+    std::cout << "Ensure that if you select option B, it actually exists in the model" << std::endl << "(i.e. you set it as one of the elements to import in the .conf file." << std::endl << "Software support to check this coming real soon, but at the moment" << std::endl << "please try and be careful!)" << std::endl << std::endl
+	      << " A ----- " << compA->getUnits() << " = " 
 	      << search_framework.units_lookup(modelA, compA->getUnits()) << std::endl
       
-	      << "  B ----- " << compB->getUnits() << " = " 
+	      << " B ----- " << compB->getUnits() << " = " 
 	      << search_framework.units_lookup(modelB, compB->getUnits()) << std::endl;
     
  
-    std::cout << "Select A or B: ";
+    std::cout << std::endl << " Select A or B: ";
     std::cin >> selector;
     std::cin.ignore();
     std::cout << std::endl;

@@ -1,5 +1,7 @@
-#include "sbml_formatter.h"
+// Copyright Alex Holehouse 2011
+// Distributed under the terms of the GNU general public license - see COPYING.txt for more details
 
+#include "sbml_formatter.h"
 #include <stdio.h>
 #include <fstream>
 #include <iostream>
@@ -263,7 +265,7 @@ void SBML_formatter::logfile_add_message(int error, std::string element, std::st
  
 char SBML_formatter::yes_or_no(){
   char input;
-  cout << "    Please select Y/N: ";
+  cout << " Please select Y/N: ";
 
   while (true){
     cin >> input;
@@ -275,7 +277,7 @@ char SBML_formatter::yes_or_no(){
     if (input == 'N' || input == 'n')
       return 'N';
 
-    cout << "    Sorry - selection (" << input << ") not recognized. \n    Please select Y or N: ";
+    cout << " Sorry - selection (" << input << ") not recognized.\n Please select Y or N: ";
   }
 }
 

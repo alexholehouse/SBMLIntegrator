@@ -1,3 +1,6 @@
+// Copyright Alex Holehouse 2011
+// Distributed under the terms of the GNU general public license - see COPYING.txt for more details
+
 #include "sbml_display.h"
 #include "sbml_search.h"
 
@@ -1000,29 +1003,29 @@ int SBML_display::compare(string title, string A, string B, bool disclaimer){
   
   char selector = ' ';
 
-  // if both are the same no need to change!c
+  // if both are the same no need to change!
   if (A == B)
     return 0;
   
   while(true){
     cout << "### " << title << " ###" << endl;
     if (disclaimer){
-      cout << "Ensure that if you select option B, it actually exists in the model (i.e. you set it as one of the elements to import in the .conf file. Software support to check this coming real soon, but at the moment please try and be careful!" << endl;
+      cout << "Ensure that if you select option B, it actually exists in the model\n(i.e. you set it as one of the elements to import in the .conf file.\nSoftware support to check this coming real soon, but at the moment\nplease try and be careful!)" << endl;
     }
     
-    cout << "    A ----- "; 
+    cout << " A ----- "; 
     if (A == "")
       cout << " [NONE DEFINED]" << endl;
     else
       cout << A << endl;
     
-    cout << "    B ----- ";
+    cout << " B ----- ";
     if (B == "")
       cout << " [NONE DEFINED]" << endl;
     else
       cout << B << endl;
-    
-    cout << "    Select (A or B): ";
+
+    cout << endl << " Select (A or B): ";
     // take in A or B
     cin >> selector;
     cin.ignore();	
@@ -1050,28 +1053,28 @@ int SBML_display::compare3way(string title, string A, string B, string C, bool d
   while(true){
     cout << "### " << title << " ###" << endl;
     if (disclaimer){
-      cout << "Ensure that if you select option B, it actually exists in the model (i.e. you set it as one of the elements to import in the .conf file. Software support to check this coming real soon, but at the moment please try and be careful!" << endl;
+      cout << "Ensure that if you select option B, it actually exists in the model\n(i.e. you set it as one of the elements to import in the .conf file.\nSoftware support to check this coming real soon, but at the moment\nplease try and be careful!)" << endl;
     }
     
-    cout << "    A ----- "; 
+    cout << " A ----- "; 
     if (A == "")
       cout << " [NONE DEFINED]" << endl;
     else
       cout << A << endl;
     
-    cout << "    B ----- ";
+    cout << " B ----- ";
     if (B == "")
       cout << " [NONE DEFINED]" << endl;
     else
       cout << B << endl;
     
-    cout << "    C ----- ";
+    cout << " C ----- ";
     if (C == "")
       cout << " [NONE DEFINED]" << endl;
     else
       cout << C << endl;
     
-    cout << "\nSelect (A, B or C): ";
+    cout << endl << "Select (A, B or C): ";
     
     // take in A, B or C
     selector = selectorGet();

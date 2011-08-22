@@ -1,5 +1,7 @@
-#include "sbml_cleanup.h"
+// Copyright Alex Holehouse 2011
+// Distributed under the terms of the GNU general public license - see COPYING.txt for more details
 
+#include "sbml_cleanup.h"
 #include <string>
 #include <fstream>
 #include <sbml/SBMLTypes.h>
