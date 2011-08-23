@@ -17,7 +17,6 @@ class SBML_UI_general : public SBML_formatter {
   
  private:
  
-
 };
 
 #endif
