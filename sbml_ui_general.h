@@ -15,9 +15,8 @@ class SBML_UI_general : public SBML_formatter {
   void print_header(const std::string _header, bool clear);
   void print_footer();
   
-  
  private:
-  
+ 
 
 };
 
