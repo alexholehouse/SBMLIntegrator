@@ -104,75 +104,11 @@ we hope to add a GUI layer using the QT framework, which would facilitate
 installation and use in both Windows and Linux based environments (see 
 section 4 for more details).
 
-There are two ways to install and compile the software. At present these
-are multi-step, though a single installation script will be developed to
-ease this process. However, despite this, it remains a fairly straight 
-forward process at present. 
+In keeping with the idea of keeping it simple, to install just run
 
-=== EASY INSTALLATION
-This is appropriate where root access is possible, and involves the 
-installation of the LibSBML 5.0.0 package 
-(http://sourceforge.net/projects/sbml/files/libsbml/5.0.0/Linux/)
+bash INSTALL.sh
 
- 1) Download and install the LibSBML package. In Ubuntu this is as easy as;
-       
-    sudo apt-get install libsbml
-
-    This installs the SBML C and C++ APIs in their standard locations.
-
- 2) Then simply cd into the SBMLIntegrator folder and run;
-
-    make -f makefile_standard
-
-For the record, this installation installs the LibSBML into the 
-/usr/local/lib folder
-
-=== STANDALONE INSTALLATION
-This is slightly more complex, and involves compiling and installing the 
-LibSBML 5.0.0 package into a custom directory local to the user. 
-
-Appropriate where root access is not possible. This installs the LibSBML
-library into ~/Documents/libsbml_installation. A complete script to define 
-where this installation should go will be added, but for now we're 
-building to this default location.
-
- 1) Download the sbml source from 
-    
-    http://sourceforge.net/projects/sbml/files/libsbml/5.0.0/
-
- 2) Unzip, cd into that directory, run configure as follows;
-       
-    ./configure --prefix ~/Documents/libsbml_installation/
-
-    This configures the installation for the library and defines 
-    the destination directory as ~/Documents/libsbml_installation/
-
- 3) Next type;
-	  
-    make
-
- 4) finally, type;
-	
-    make install
-
- 5) We have now installed the SBML library in our custom
-    location of ~/Documents/libsbml_installation/lib/. To ensure
-    that our compilation using the library works we must add  
-    this folder to the LD_LIBRARY_PATH. To do this, type
-	  
-    setenv LD_LIBRARY_PATH ~/Documents/libsbml_installation/lib/
-  
-    and additionally add 
-  
-    setenv LD_LIBRARY_PATH ~/Documents/libsbml_installation/lib/
-
-    to your .bashrc or .cshrc. This ensure we add this folder to
-    the LD_LIBRARY_PATH variable in the future automatically.
-
-6) Finally, cd into the SBMLIntegrator director and run;
-
-   make -f makefile_autonomous
-
+in the SBMLIntegrator folder
 
 
 

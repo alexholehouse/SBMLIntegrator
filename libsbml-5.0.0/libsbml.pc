@@ -1,0 +1,13 @@
+Name: libSBML
+Description: An API library for reading/writing/manipulating SBML
+URL: http://sbml.org/Software/libSBML
+Version: 5.0.0
+
+prefix=/home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml
+exec_prefix=/home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml
+libdir=/home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml/lib
+includedir=/home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml/include
+
+Libs: -L${libdir}        -lxml2 -lz -lbz2 -lsbml -lstdc++ -lm
+Cflags: -I${includedir}  
+Requires: libxml-2.0 >= 2.6.22

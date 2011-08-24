@@ -1,0 +1,37 @@
+CompressCommon.lo: CompressCommon.cpp \
+ /home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml-5.0.0/src/sbml/compress/CompressCommon.h \
+ /usr/include/c++/4.4/exception \
+ /usr/include/c++/4.4/i486-linux-gnu/bits/c++config.h \
+ /usr/include/c++/4.4/i486-linux-gnu/bits/os_defines.h \
+ /usr/include/features.h /usr/include/bits/predefs.h \
+ /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-32.h \
+ /usr/include/c++/4.4/i486-linux-gnu/bits/cpu_defines.h \
+ /home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml-5.0.0/src/sbml/common/extern.h \
+ /home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml-5.0.0/src/sbml/common/libsbml-namespace.h
+
+/home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml-5.0.0/src/sbml/compress/CompressCommon.h:
+
+/usr/include/c++/4.4/exception:
+
+/usr/include/c++/4.4/i486-linux-gnu/bits/c++config.h:
+
+/usr/include/c++/4.4/i486-linux-gnu/bits/os_defines.h:
+
+/usr/include/features.h:
+
+/usr/include/bits/predefs.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-32.h:
+
+/usr/include/c++/4.4/i486-linux-gnu/bits/cpu_defines.h:
+
+/home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml-5.0.0/src/sbml/common/extern.h:
+
+/home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml-5.0.0/src/sbml/common/libsbml-namespace.h:

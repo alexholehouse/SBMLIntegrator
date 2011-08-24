@@ -1,0 +1,10 @@
+XMLBuffer.lo: XMLBuffer.cpp \
+ /home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml-5.0.0/src/sbml/xml/XMLBuffer.h \
+ /home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml-5.0.0/src/sbml/xml/XMLExtern.h \
+ /home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml-5.0.0/src/sbml/common/libsbml-namespace.h
+
+/home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml-5.0.0/src/sbml/xml/XMLBuffer.h:
+
+/home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml-5.0.0/src/sbml/xml/XMLExtern.h:
+
+/home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml-5.0.0/src/sbml/common/libsbml-namespace.h:
