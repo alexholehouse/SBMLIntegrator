@@ -1,9 +1,0 @@
-libsbml-version.lo: libsbml-version.cpp libsbml-version.h \
- /home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml-5.0.0/src/sbml/common/extern.h \
- /home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml-5.0.0/src/sbml/common/libsbml-namespace.h
-
-libsbml-version.h:
-
-/home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml-5.0.0/src/sbml/common/extern.h:
-
-/home/alex/Documents/imperial/project/work/SBMLIntegrator/source/libsbml-5.0.0/src/sbml/common/libsbml-namespace.h:
