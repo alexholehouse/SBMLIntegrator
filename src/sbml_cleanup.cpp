@@ -17,11 +17,15 @@ SBML_cleanup::SBML_cleanup(SBMLDocument* input_doc){
   SBML_cleanup(input_doc->getModel(), true);
 }
 
+
+
 // Constructor which takes an SBML model
 //-----------------------------------------------------------------------------------
 SBML_cleanup::SBML_cleanup(Model* input_model){
   SBML_cleanup(input_model, true);
 }
+
+
 
 // Constructor which takes an SBML model
 //-----------------------------------------------------------------------------------
@@ -32,9 +36,9 @@ SBML_cleanup::SBML_cleanup(Model* input_model, bool copy){
     
   else 
     clean_model = input_model;
-    
-  
 }
+
+
 
 // Identify unused units, remove them, and select and remove duplicate units
 //-----------------------------------------------------------------------------------
@@ -50,13 +54,9 @@ void SBML_cleanup::consolidate_units(){
   SBML_display* display_new = new SBML_display;
   SBML_search* search_framework = new SBML_search;
 
-  
-  // get a list of unused units - number unused is passed by reference, model is the 
+    // get a list of unused units - number unused is passed by reference, model is the 
   // original model, retunrs a list of units not used in model
   unused_units = search_framework->unused_units_lookup(number_unused, clean_model);
-  
-  // ALPHA debugging output
-  cout << endl << endl << "------DEBUG: unused_units:=" << number_unused << endl;
   
   // if there are no unused units carry on
   if (number_unused == 0){
@@ -104,7 +104,6 @@ void SBML_cleanup::consolidate_units(){
     cin.ignore();
     if (inputBi == 0)
       break;
-
     
     unit_defA = clean_model->getUnitDefinition(inputAi-1);
     unit_defB = clean_model->getUnitDefinition(inputBi-1);
@@ -164,6 +163,7 @@ bool SBML_cleanup::replace_unit(UnitDefinition* inputA, UnitDefinition* inputB, 
  
   switch (C){
     
+
     // For a compartment unit
   case 'M':{
     log_stream << "Model has substanceUnits " << clean_model->getSubstanceUnits()
@@ -172,6 +172,7 @@ bool SBML_cleanup::replace_unit(UnitDefinition* inputA, UnitDefinition* inputB, 
   }
     break;
     
+
     // For timeUnits
   case 'T':{
     log_stream << "Model has timeUnits " << clean_model->getTimeUnits()
@@ -180,6 +181,7 @@ bool SBML_cleanup::replace_unit(UnitDefinition* inputA, UnitDefinition* inputB, 
   }
     break; 
     
+
     // for volumeUnits
   case 'V':{
     log_stream << "Model has volumeUnits " << clean_model->getVolumeUnits()
@@ -270,12 +272,9 @@ bool SBML_cleanup::replace_unit(UnitDefinition* inputA, UnitDefinition* inputB, 
     break;
     
   default:
+    autoAbort("FATAL ERROR - undetermined case statement (line 271, sbml_cleanup.cpp). This should never happen - Exiting...");
     
-    cerr << "FATAL ERROR - undetermined case statement (line 210, sbml_cleanup.cpp). This should never happen - Exiting..." << endl;
-    exit(1);
-
   }    
-  
   return false;
 }
 
@@ -294,7 +293,7 @@ bool SBML_cleanup::replace_compartment(Compartment* inputA, Compartment* inputB,
     species->setCompartment(inputB->getId());}
     break;
     
-    // For a parameter compartment 
+    // For an initial assignment compartment 
   case 'I':{
     InitialAssignment* initAs = clean_model->getInitialAssignment(i);    
     log_stream << "Replacing compartent " << inputA->getId() << " in initial assignment  with " 
@@ -302,7 +301,7 @@ bool SBML_cleanup::replace_compartment(Compartment* inputA, Compartment* inputB,
     initAs->setSymbol(inputB->getId());}
     break;
     
-    // For a reaction compartment
+    // For a Rule compartment
   case 'R':{
     Rule* rule = clean_model->getRule(i); 
     log_stream << "Replacing compartent " << inputA->getId() << " in rule  with " 
@@ -338,8 +337,7 @@ bool SBML_cleanup::replace_compartment(Compartment* inputA, Compartment* inputB,
     break;
     
   default:
-    cerr << "FATAL ERROR - undetermined case statement (line 272, sbml_cleanup.cpp). This should never happen - Exiting..." << endl;
-    exit(1);
+    autoAbort("FATAL ERROR - undetermined case statement (line 336, sbml_cleanup.cpp). This should never happen - Exiting...");
     
   }    
   return false;
@@ -379,6 +377,10 @@ bool SBML_cleanup::replace_species(Species* inputA, Species* inputB, char C, int
       	       << " reactant list with " << inputB->getId() << endl;
    
     num_species = rxn->getNumReactants();
+
+    // We do not pass the speices number, only the reaction number, so we must now
+    // cycle through the reaction's species to find our target. The same is doen
+    // for products and modifiers below
     for (int j = 0 ; j < num_species ; j++){
       SR = rxn->getReactant(j);
       if (SR->getSpecies() == inputA->getId())
@@ -393,6 +395,7 @@ bool SBML_cleanup::replace_species(Species* inputA, Species* inputB, char C, int
 	       << " product list with "  << inputB->getId() << endl;
     
     num_species = rxn->getNumProducts();
+
     for (int j = 0 ; j < num_species ; j++){
       SR = rxn->getProduct(j);
       if (SR->getSpecies() == inputA->getId())
@@ -417,7 +420,7 @@ bool SBML_cleanup::replace_species(Species* inputA, Species* inputB, char C, int
     break;
     
 
-    //
+    // event
   case 'E':{
 
     Event* event = clean_model->getEvent(i);
@@ -437,10 +440,8 @@ bool SBML_cleanup::replace_species(Species* inputA, Species* inputB, char C, int
     break;
     
   default:
-    cerr << "FATAL ERROR - undetermined case statement (line 428, sbml_cleanup.cpp). This should never happen - Exiting..." << endl;
-    exit(1);
-
-
+    autoAbort("FATAL ERROR - undetermined case statement (line 336, sbml_cleanup.cpp). This should never happen - Exiting...");
+    
   }
   return false;
   
@@ -496,8 +497,7 @@ bool SBML_cleanup::replace_parameters(Parameter* inputA, Parameter* inputB, char
     break;
     
   default:
-    cerr << "FATAL ERROR - undetermined case statement (line 484, sbml_cleanup.cpp). This should never happen - Exiting..." << endl;
-    exit(1);
+     autoAbort("FATAL ERROR - undetermined case statement (line 336, sbml_cleanup.cpp). This should never happen - Exiting...");
   }
   
   return false;
@@ -510,13 +510,13 @@ bool SBML_cleanup::replace_parameters(Parameter* inputA, Parameter* inputB, char
 // #############################################################################################
 // This is just a nice interface, packaging up the complexitys of the behind-the-scenes system
 
-bool SBML_cleanup::replace(UnitDefinition* inputA, UnitDefinition* inputB){
-  log_stream << "-#-#-#-#-#-# Replacing Unit Definitions -#-#-#-#-#-#" << endl;
+bool SBML_cleanup::replace(FunctionDefinition* inputA, FunctionDefinition* inputB){
+  log_stream << "-#-#-#-#-#-# Replacing Function Definitions -#-#-#-#-#-#" << endl;
   return(locate_and_replace(clean_model, inputA, inputB));
 }
 
-bool SBML_cleanup::replace(FunctionDefinition* inputA, FunctionDefinition* inputB){
-  log_stream << "-#-#-#-#-#-# Replacing Function Definitions -#-#-#-#-#-#" << endl;
+bool SBML_cleanup::replace(UnitDefinition* inputA, UnitDefinition* inputB){
+  log_stream << "-#-#-#-#-#-# Replacing Unit Definitions -#-#-#-#-#-#" << endl;
   return(locate_and_replace(clean_model, inputA, inputB));
 }
 

@@ -10,7 +10,7 @@
 #include <iostream>
 #include <fstream>
 
-/*! \brief Class specifically for model-wide augmentation, and associated helper functions. .
+/*! \brief Class specifically for model-wide augmentation, and associated helper functions.
  *   
 SBML_augment is a class for making model-wide changes. Currently it's primary role is housing the method complete_model_id_rename_with_append(string to_append), a method to append a string onto every ID in a model. In the future additional system wide functionality such as rescaling will be implemented at least through parent functions based in this class.
 
