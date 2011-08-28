@@ -38,46 +38,7 @@ string SBML_formatter::dtostr(double in){
 }
 
 
-double SBML_formatter::doubleGet(double lower, double upper){
-  
-  string in;
-  char temp;
-  double val;
-  
-  in = stringGet();
-  const char* in_cstr = in.c_str();
 
-  if (in.length() == 0)
-    return c_FAIL_DOUBLEGET;
-  
-  for (unsigned int i = 0 ; i < in.length() ; i++){
-    temp = in_cstr[i];
-    if (static_cast<int>(temp) < 48 || static_cast<int>(temp) > 57){
-      // non 0-9 character in input, so invalid
-      return c_FAIL_DOUBLEGET;
-    }
-  }
-  
-  val = atoi(in_cstr);
-
-  if (val < lower || val > upper)
-    return c_FAIL_DOUBLEGET;
-
-  return val;
-}
-
-double SBML_formatter::doubleGet_guarenteed(double lower, double upper){
-  
-  double val = doubleGet(lower, upper);
-  
-  while (val == c_FAIL_DOUBLEGET){
-    cout << "**** Invalid selection ****" << endl;
-    cout << "Please reselect :";
-    val = doubleGet(lower,upper);
-  }
-
-  return val;
-}
 
     
 
@@ -139,29 +100,6 @@ void SBML_formatter::reset_cstr(char c_str[], int size){
     c_str[i] = ' ';
 }
 
-// default constructor -- called by all SBML_formatter inheriting classes
-// This is a relic of a previous build, keeping it in for now but actually not necessary, just 
-// use getline() inplace.
-//-----------------------------------------------------------------------------------
-string SBML_formatter::stringGet(){
-  string input;
-  getline(cin,input,'\n');
-
-  return input;
-}
-
-char* SBML_formatter::selectorGet(){
-  string input;
-  const char* input_c;
-  
-  getline(cin, input,'\n');
-  input_c = input.c_str();
-  
-  char* ret = new char[1];
-  ret[0] = input_c[0];
-  
-  return ret;
-}
 
 
 
@@ -263,23 +201,6 @@ void SBML_formatter::logfile_add_message(int error, std::string element, std::st
     log_stream << "WARNING - error " << error << " adding " << element << " to " << new_owner << endl;
 }
  
-char SBML_formatter::yes_or_no(){
-  char input;
-  cout << " Please select Y/N: ";
-
-  while (true){
-    cin >> input;
-    cin.ignore();
-    
-    if (input == 'Y'|| input == 'y')
-      return 'Y';
-    
-    if (input == 'N' || input == 'n')
-      return 'N';
-
-    cout << " Sorry - selection (" << input << ") not recognized.\n Please select Y or N: ";
-  }
-}
 
 //-----------------------------------------------------------------------------------
 bool SBML_formatter::write_to_file(Model* input, string filename){

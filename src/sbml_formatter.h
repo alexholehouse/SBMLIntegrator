@@ -44,11 +44,7 @@ class SBML_formatter {
   // resets a c_string to all spaces
   void reset_cstr(char* c_str, int size);
   
-  // get a line of text as a string from the std input
-  std::string stringGet();
   
-  // get yes or no (returns Y on yes and N on no)
-  char yes_or_no();
 
   // safe abort that closes the log_streams and prints message to stdout and log_stream
   void autoAbort(std::string message);
@@ -64,11 +60,6 @@ class SBML_formatter {
   
   ModifierSpeciesReference* species2ModifierSpeciesReference(const Species* species, const Reaction* rxn);
   
-  double doubleGet(double lower, double upper);
-  
-  double doubleGet_guarenteed(double lower, double upper);
-
-  char* selectorGet();
   
   
   void logfile_add_message(int error, std::string element, std::string new_owner);
