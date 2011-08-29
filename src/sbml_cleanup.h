@@ -214,7 +214,18 @@ class SBML_cleanup : protected SBML_search {
     If copy is set to false, then clean_model is set to the input_model, and cleanup operations are enacted on the input model!*/ 
   Model* clean_model;
   
-  // remove the units in the list of units (number defines the number of units in the list)
+  // remove the units in the list of units (number defines the number of units in the list) 
+
+  // -----------------------------------------------------------------------------------
+  /*! \brief UNFINISHED - consolidates a models units to avoid duplications
+    
+    \b Preconditions: None
+    
+    \b Postconditions: Is functioning, but is currently not used in SBMLIntegrator. Has
+    Not been checked for pathalogical models or its affect investigated on internal 
+    data consistency. DO NOT USE until further notice (~ASH 28/08/2011)
+    
+  */
   void remove_units(ListOfUnitDefinitions* toberemoved, int number);
   
   // Virtual counterparts to the SBML_search virtual functions. 
@@ -270,7 +281,7 @@ class SBML_cleanup : protected SBML_search {
     X - Reaction Compartment\n
     E - Event Assignment Compartment (when one or more assignments in an event assign a Compartment)
 
-    For example, replace_unit(inputA, inputB, 'S', 5) would replace the 5th Species' Compartment from inputA to inputB
+    For example, replace_compartment(inputA, inputB, 'S', 5) would replace the 5th Species' Compartment from inputA to inputB
     
     This is a virtual function, and has a polymorphic variation in SBML_search which simply returns true.
 
@@ -283,7 +294,7 @@ class SBML_cleanup : protected SBML_search {
   */
   virtual bool replace_compartment(Compartment* inputA, Compartment* inputB, char C, int i);
 
-    // -----------------------------------------------------------------------------------
+  // -----------------------------------------------------------------------------------
   /*!
     \brief Function for replacing some reference to a Species in a model with another Species.
 
@@ -296,27 +307,42 @@ class SBML_cleanup : protected SBML_search {
     m - Reaction Modifier\n
     E - Event Assignment Species (when one or more assignments in an event assign a Compartment)
 
-    For example, replace_unit(inputA, inputB, 'S', 5) would replace the 5th Species' Compartment from inputA to inputB
+    For example, replace_species(inputA, inputB, 'p', 5) would replace a species which 
+    is one of the products on the 5th reaction from inputA to inputB
     
     This is a virtual function, and has a polymorphic variation in SBML_search which simply returns true.
 
     \b Precondition: Both parameters are valid, depending on the section determined by C.\n 
-                     C must be one of those 5 letters listed above (if not the function aborts). \n
-                     There must be at least \b i different elements of that type in the loaded model.
-    
+    C must be one of those 6 letters listed above (if not the function aborts). \n
+    There must be at least \b i different elements of that type in the loaded model.
+		     
     \b Postcondition: The reference ID held by "some element", defined by C, which previously was equal to the ID held by inputA (parameter 1) is now set to be equal to the reference ID of inputB (parameter 2). 
 
   */
   virtual bool replace_species(Species* inputA, Species* inputB, char C, int i);  
 
   
-  /*!Funcion for replacing some reference to a Parameter in a model. Char C defines what is to be replaced, while int i defines it's location in the model. This is a virtual function, and has a polymorphic variation in SBML_search which simply returns true.
+  // -----------------------------------------------------------------------------------
+  /*!
+    \brief Function for replacing some reference to a Parameter in a model with another Parameter.
 
-    \b Precondition: Both parameters are valid, depending on the section determined by C, there must be at least i different elemenst of that type in the loaded model.
+    Char C defines what is to be replaced, while int i defines it's location in the model. The possible codes C can be are as follows;
+      
+    S - Species' conversion factor parameter
+    I - Initial Assignment symbol value
+    R - Rule variable value
+    E - Event Assignment variable value
+
+    For example, replace_parameter(inputA, inputB, 'R', 5) would replace the 5th Rule's variable from inputA to inputB
     
-    \b Postcondition: the reference ID held by "some element", defined by C, which previously was equal to the ID held by inputA (parameter 1) is now set to be equal to the reference ID of inputB (parameter 2). 
+    This is a virtual function, and has a polymorphic variation in SBML_search which simply returns true.
 
-    \b Notes N/A
+    \b Precondition: Both parameters are valid, depending on the section determined by C.\n 
+    C must be one of those 4 letters listed above (if not the function aborts). \n
+    There must be at least \b i different elements of that type in the loaded model.
+    
+    \b Postcondition: The reference ID held by "some element", defined by C, which previously was equal to the ID held by inputA (parameter 1) is now set to be equal to the reference ID of inputB (parameter 2). 
+
   */
   virtual bool replace_parameters(Parameter* inputA, Parameter* inputB, char C, int i);
   
@@ -327,17 +353,22 @@ class SBML_cleanup : protected SBML_search {
   // virtual bool replace_constraints doesn't exist as it's never needed
   // virtual bool replace_reactions doesn't exist as it's never needed
   // virtual bool replace_events doesn't exist as it's never needed
-  
-  // helper function for replacing a refernece in an ASTNode with a different reference
-  
-  /*!Helper function for replacing a reference in an ASTNode
+
+
+// -----------------------------------------------------------------------------------
+  /*!
+    \brief Function for replacing some variable which is found in an ASTNode with a string value. 
+
+
+    This is a helper function for replacing data in a MathML structure.
 
     \b Precondition: ASTNode must be a valid node, and should be of type AST_NAME
     
     \b Postcondition: the name attribute of node (parameter 1) is set to the value of replacement (parameter 2). 
 
     \b Notes replace_node(node, replacement) means parameter 2 replaces an aspect of parameter 1
-    !*/
+    
+  */
   virtual bool replace_node(ASTNode* node, std::string replacement);
   
 
