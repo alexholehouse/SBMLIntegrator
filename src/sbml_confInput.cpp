@@ -968,10 +968,13 @@ int SBML_confInput::get_number_list(int*& number_array){
 	// get a character
 	conf_stream.get(temp_char);
 	
-	// if we hit a comma we're at the end of a number
+	// if we hit a comma or a ] we're at the end of a number
 	if (temp_char == ','|| temp_char == ']'){
 	  ref_num = atoi(input);
-	  number_array[array_pos] = ref_num;
+	  
+	  // ref_num-1 as conf file indexes from 1 but all internal data
+	  // structures reference from zero...
+	  number_array[array_pos] = ref_num-1;
 	  // increment the array position
 	  array_pos++;
 	  

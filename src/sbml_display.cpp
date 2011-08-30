@@ -219,9 +219,11 @@ void SBML_display::show_unitDefinitions(const Model* model){
   for (int i = 0 ; i < num_units ; i++)
     {
       unit_def = units_list->get(i);
-      cout << "Unit[" << i+1 << "] Name(" << unit_def->getName() <<") ID(" 
-	   << unit_def->getId() << ") : ";
-      cout << search_framework->describe_units(unit_def->getListOfUnits(), unit_def->getNumUnits()) << endl;
+      cout << "Unit[" << i+1 << "]\n";
+      cout << "       Name = " << unit_def->getName() << endl
+	   <<"        ID =   " << unit_def->getId() << endl
+	   <<"        Units = " 
+	   << search_framework->describe_units(unit_def->getListOfUnits(), unit_def->getNumUnits()) << endl;
     }
   cout << endl;
   
@@ -573,7 +575,7 @@ void SBML_display::show_reactions(const Model* model){
     // get number of reactants, products and modifers
     num_mods = rxn->getNumModifiers();
     
-    cout << "Reaction [" << i << "] Name(" << rxn->getName() <<") ID(" 
+    cout << "Reaction [" << i+1 << "] Name(" << rxn->getName() <<") ID(" 
 	 << rxn->getId() << ")" << endl;
 
     cout << "    ";
@@ -625,7 +627,7 @@ void SBML_display::show_reactions(const Model* model){
 
       // rule == NULL if no rule was found
       if (rule != NULL){
-	cout << "      AKA: " << rule->getFormula() << endl;
+	cout << "      Referenced rule: " << rule->getFormula() << endl;
 	if (rule->isSetUnits())
 	  cout << "      Units = " << rule->getUnits();
       }
@@ -944,7 +946,7 @@ void SBML_display::list_unit_definitions(const Model* inputM){
   cout << "[No] <UnitDef ID> (<Unit description>)" << endl;
   for (int i = 0 ; i < num ; i++){
     udef = inputM->getUnitDefinition(i);
-    cout << "[" << i << "] " << udef->getId() << " (" 
+    cout << "[" << i+1 << "] " << udef->getId() << " (" 
 	 << search.units_lookup(inputM, udef->getId()) << ")" << endl;
   }
 }
@@ -954,7 +956,7 @@ void SBML_display::list_compartments(const Model* inputM){
   cout << "---- List of Compartments ----" << endl;
   cout << "[No] <Compartment ID>" << endl;
   for (int i = 0 ; i < num ; i++)
-    cout << "[" << i << "] " << (inputM->getCompartment(i))->getId() << endl;
+    cout << "[" << i+1 << "] " << (inputM->getCompartment(i))->getId() << endl;
 }
 
 void SBML_display::list_species(const Model* inputM){
@@ -962,7 +964,7 @@ void SBML_display::list_species(const Model* inputM){
   cout << "[No] <Species ID>" << endl;
   int num = inputM->getNumSpecies();
    for (int i = 0 ; i < num ; i++)
-    cout << "[" << i << "] " << (inputM->getSpecies(i))->getId() << endl;
+    cout << "[" << i+1 << "] " << (inputM->getSpecies(i))->getId() << endl;
 }
 
 void SBML_display::list_parameters(const Model* inputM){
@@ -970,7 +972,7 @@ void SBML_display::list_parameters(const Model* inputM){
   cout << "---- List of Parameters ----" << endl;
   cout << "[No] <Parameter ID>" << endl;
   for (int i = 0 ; i < num ; i++)
-    cout << "[" << i << "] " << (inputM->getParameter(i))->getId() << endl;
+    cout << "[" << i+1 << "] " << (inputM->getParameter(i))->getId() << endl;
 }
 
 void SBML_display::list_rules(const Model* inputM){
@@ -983,9 +985,9 @@ void SBML_display::list_rules(const Model* inputM){
     rule = inputM->getRule(i);
     
     if (rule->isAlgebraic())
-      cout << "[" << i << "] " << endl << "  Formula: " << rule->getFormula() << endl << endl;
+      cout << "[" << i+1 << "] " << endl << "  Formula: " << rule->getFormula() << endl << endl;
     else
-      cout << "[" << i << "] " << rule->getId() << endl << "  Formula: " 
+      cout << "[" << i+1 << "] " << rule->getId() << endl << "  Formula: " 
 	   << rule->getFormula()  << endl << endl;
   }
 }
@@ -995,7 +997,7 @@ void SBML_display::list_reactions(const Model* inputM){
   cout << "---- List of Reactions ----" << endl;
   cout << "\n[No] <Reaction ID> (<Reaction Name>)" << endl;
   for (int i = 0 ; i < num ; i++)
-    cout << "[" << i << "] " << (inputM->getReaction(i))->getId() 
+    cout << "[" << i+1 << "] " << (inputM->getReaction(i))->getId() 
 	 << " name (" << (inputM->getReaction(i))->getName() << ")" << endl;
 }
  

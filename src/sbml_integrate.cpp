@@ -437,12 +437,15 @@ void SBML_integrate::integrate_models_explore_models(bool quick){
       display_framework.select_components_to_list(model_B, "Import model - model being integrated into the base model to create the integration model");
     
     else
-      display_framework.select_components_to_list(model_B, "Import model - model being integrated into the base model to create the integration model");
+      display_framework.select_components_to_show(model_B, "Import model - model being integrated into the base model to create the integration model");
   }
   
-  if (AorBorC == 2)
-    display_framework.select_components_to_list(model_new, "Integration model - model being created");
-  
+  if (AorBorC == 2){
+    if (quick)
+      display_framework.select_components_to_list(model_new, "Integration model - model being created");
+    else
+      display_framework.select_components_to_show(model_new, "Integration model - model being created");
+  }
 }
 
 

@@ -32,6 +32,14 @@ public:
     integrate_B_list = new T1(1,2);
     
     log_stream << "WARNING - currently SBML lists used to store elements for integration, replacement and importing from modelB to the newly created model are hardcoded as version 1/level 2. This may cause problems, although we don't anticipate it" << endl;
+    
+    // lists index from 0, but configuration file does not (humans prefer to index from 1!)
+    //import_list->append(placeholder);
+    //replace_A_list->append(placeholder);
+    //replace_B_list->append(placeholder); 
+    //integrate_A_list->append(placeholder); 
+    //integrate_B_list->append(placeholder); 
+      
     // initialze counters to 0
     import_n = 0;
     replace_n = 0;
