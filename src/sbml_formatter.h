@@ -44,13 +44,8 @@ class SBML_formatter {
   // resets a c_string to all spaces
   void reset_cstr(char* c_str, int size);
   
-  
-
   // safe abort that closes the log_streams and prints message to stdout and log_stream
   void autoAbort(std::string message);
-  
-  // returns a string of <number> <repeated> characters
-  std::string printrepchar(char repeated, int number);
   
   std::string dtostr(const double in);
   
@@ -59,16 +54,14 @@ class SBML_formatter {
   SpeciesReference* species2SpeciesReference(const Species* species, const Reaction* rxn);
   
   ModifierSpeciesReference* species2ModifierSpeciesReference(const Species* species, const Reaction* rxn);
-  
-  
-  
+    
   void logfile_add_message(int error, std::string element, std::string new_owner);
   
   void append_to_modelID(Model* input, const std::string to_append); // INCOMPLETE - probably move to integrator no?
 
   bool write_to_file(Model* input, std::string filename);
 
-    // import_* helper functions ------------------------------------------------------------
+  // import_* helper functions ------------------------------------------------------------
   // template function needs to be in header file
   template <class T> void append_to_ID(T* element, std::string to_append){
     

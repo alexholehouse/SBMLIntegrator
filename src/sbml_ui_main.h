@@ -5,7 +5,6 @@
 #define SBML_UI_MAIN_H
 
 #include <sbml/SBMLTypes.h>
-#include "sbml_formatter.h"
 #include "sbml_ui_general.h"
 #include "sbml_display.h"
 #include "sbml_cleanup.h"

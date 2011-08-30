@@ -120,18 +120,33 @@ template <class T>
 int SBML_display::compare_units(const T compA, const T compB, const Model* modelA, const Model* modelB){
   char selector = ' ';
   
+  //SBML_search search_framework;
   SBML_search search_framework;
   
   while(true){
-    std::cout << "### Units ###" << std::endl;
-    std::cout << "Ensure that if you select option B, it actually exists in the model" << std::endl << "(i.e. you set it as one of the elements to import in the .conf file." << std::endl << "Software support to check this coming real soon, but at the moment" << std::endl << "please try and be careful!)" << std::endl << std::endl
-	      << " A ----- " << compA->getUnits() << " = " 
-	      << search_framework.units_lookup(modelA, compA->getUnits()) << std::endl
-      
-	      << " B ----- " << compB->getUnits() << " = " 
-	      << search_framework.units_lookup(modelB, compB->getUnits()) << std::endl;
     
- 
+    std::string unitsA = compA->getUnits();
+    std::string unitsB = compB->getUnits();
+    
+    std::cout << "### Units ###" << std::endl;
+    std::cout << "Ensure that if you select option B, it actually exists in the model" << std::endl << "(i.e. you set it as one of the elements to import in the .conf file." << std::endl << "Software support to check this coming real soon, but at the moment" << std::endl << "please try and be careful!)" << std::endl << std::endl;
+    
+    std::cout << " A ----- ";
+    if (unitsA != "")
+      std::cout << unitsA;
+    else
+      std::cout << "[None Defined]";
+
+    std::cout << " = " << search_framework.units_lookup(modelA, compA->getUnits()) << std::endl; 
+    
+    std::cout << " B ----- ";
+    if (unitsB != "")
+      std::cout << unitsB;
+    else
+      std::cout << "[None Defined]";
+
+    std::cout << " = " << search_framework.units_lookup(modelB, compB->getUnits()) << std::endl; 
+    
     std::cout << std::endl << " Select A or B: ";
     std::cin >> selector;
     std::cin.ignore();
@@ -142,7 +157,7 @@ int SBML_display::compare_units(const T compA, const T compB, const Model* model
 
     if (selector == 'B')
       return 1;
-  
+    
   }
 }
 #endif

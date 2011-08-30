@@ -279,7 +279,7 @@ void SBML_integrate_integrate::integrate_species(SBML_confInput& input_file, Mod
     // initial concentration------------------------------------------------------------------
     AorB = display_framework.compare("Initial Concentration", dtostr(inNew->getInitialConcentration()), dtostr(tempB->getInitialConcentration()), false); 
     if (AorB == 1)
-      inNew_copy->setInitialConcentration(tempB->getInitialConcentration());
+       inNew_copy->setInitialConcentration(tempB->getInitialConcentration());
     
     // units ---------------------------------------------------------------------------------
     // we use model_new for both as it's import any units defined in tempB would be referencable in the current

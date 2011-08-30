@@ -1023,8 +1023,13 @@ int SBML_display::compare(string title, string A, string B, bool disclaimer){
   char selector = ' ';
 
   // if both are the same no need to change!
-  if (A == B)
+  if (A == B){
+    
+    cout << "Both values of the '" << title << "' attribute thave the same value (" << A << ")" << endl;
+    any_key_to_continue();
+    
     return 0;
+  }
   
   while(true){
     cout << "### " << title << " ###" << endl;
