@@ -361,12 +361,12 @@ void SBML_confInput::set_replace_or_integrate_list(const Model* modelA, const Mo
     for (int i = 0 ; i < elements ; i=i+2){
       
       if (number_array[i] >= (int)modelA->getNumFunctionDefinitions() || number_array[i] < 0){
-	log_stream << "WARNING - in loading functionDefinitions for replacement/integration from conf file, non-existance functionDef referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading functionDefinitions for replacement/integration from conf file, non-existance functionDef referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
 
       if (number_array[i+1] >= (int)modelB->getNumFunctionDefinitions() || number_array[i+1] < 0){
-	log_stream << "WARNING - in loading functionDefinitions for replacement/integration from conf file, non-existance functionDef referenced( " << number_array[i+1] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading functionDefinitions for replacement/integration from conf file, non-existance functionDef referenced (" << number_array[i+1] << "). Ignoring..." << endl;
 	continue;
       }
       
@@ -393,12 +393,12 @@ void SBML_confInput::set_replace_or_integrate_list(const Model* modelA, const Mo
     for (int i = 0 ; i < elements ; i=i+2){
       
       if (number_array[i] >= (int)modelA->getNumUnitDefinitions() || number_array[i] < 0){
-	log_stream << "WARNING - in loading unitDefinitions for replacement/integration from conf file, non-existance unitDef referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading unitDefinitions for replacement/integration from conf file, non-existance unitDef referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
       
       if (number_array[i+1] >= (int)modelB->getNumUnitDefinitions() || number_array[i+1] < 0){
-	log_stream << "WARNING - in loading unitDefinitions for replacement/integration from conf file, non-existance functionDef referenced( " << number_array[i+1] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading unitDefinitions for replacement/integration from conf file, non-existance functionDef referenced (" << number_array[i+1] << "). Ignoring..." << endl;
 	continue;
       }
       
@@ -426,12 +426,12 @@ void SBML_confInput::set_replace_or_integrate_list(const Model* modelA, const Mo
     for (int i = 0 ; i < elements ; i=i+2){
       
       if (number_array[i] >= (int)modelA->getNumCompartments() || number_array[i] < 0){
-	log_stream << "WARNING - in loading compartments for replacement/integration from conf file, non-existance compartment referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading compartments for replacement/integration from conf file, non-existance compartment referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }  
       
       if (number_array[i+1] >= (int)modelB->getNumCompartments() || number_array[i+1] < 0){
-	log_stream << "WARNING - in loading compartment for replacement/integration from conf file, non-existance functionDef referenced( " << number_array[i+1] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading compartment for replacement/integration from conf file, non-existance functionDef referenced (" << number_array[i+1] << "). Ignoring..." << endl;
 	continue;
       }
       
@@ -458,12 +458,12 @@ void SBML_confInput::set_replace_or_integrate_list(const Model* modelA, const Mo
     for (int i = 0 ; i < elements ; i=i+2){
       
       if (number_array[i] >= (int)modelA->getNumSpecies() || number_array[i] < 0){
-	log_stream << "WARNING - in loading species for replacement/integration from conf file, non-existance compartment referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading species for replacement/integration from conf file, non-existance compartment referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
       
       if (number_array[i+1] >= (int)modelB->getNumSpecies() || number_array[i+1] < 0){
-	log_stream << "WARNING - in loading species for replacement/integration from conf file, non-existance functionDef referenced( " << number_array[i+1] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading species for replacement/integration from conf file, non-existance functionDef referenced (" << number_array[i+1] << "). Ignoring..." << endl;
 	continue;
       }
       
@@ -490,12 +490,12 @@ void SBML_confInput::set_replace_or_integrate_list(const Model* modelA, const Mo
     for (int i = 0 ; i < elements ; i=i+2){
       
       if (number_array[i] >= (int)modelA->getNumParameters() || number_array[i] < 0){
-	log_stream << "WARNING - in loading parameter for replacement/integration from conf file, non-existance compartment referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading parameter for replacement/integration from conf file, non-existance compartment referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
       
       if (number_array[i+1] >= (int)modelB->getNumParameters() || number_array[i+1] < 0){
-	log_stream << "WARNING - in loading parameter for replacement/integration from conf file, non-existance functionDef referenced( " << number_array[i+1] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading parameter for replacement/integration from conf file, non-existance functionDef referenced (" << number_array[i+1] << "). Ignoring..." << endl;
 	continue;
       }
       
@@ -522,12 +522,12 @@ void SBML_confInput::set_replace_or_integrate_list(const Model* modelA, const Mo
     for (int i = 0 ; i < elements ; i=i+2){
       
       if (number_array[i] >= (int)modelA->getNumInitialAssignments() || number_array[i] < 0){
-	log_stream << "WARNING - in loading  initial assignment for replacement/integration from conf file, non-existance compartment referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading  initial assignment for replacement/integration from conf file, non-existance compartment referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
       
       if (number_array[i+1] >= (int)modelB->getNumInitialAssignments() || number_array[i+1] < 0){
-	log_stream << "WARNING - in loading initial assignment for replacement/integration from conf file, non-existance functionDef referenced( " << number_array[i+1] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading initial assignment for replacement/integration from conf file, non-existance functionDef referenced (" << number_array[i+1] << "). Ignoring..." << endl;
 	continue;
       }
       
@@ -555,12 +555,12 @@ void SBML_confInput::set_replace_or_integrate_list(const Model* modelA, const Mo
     for (int i = 0 ; i < elements ; i=i+2){
       
       if (number_array[i] >= (int)modelA->getNumRules() || number_array[i] < 0){
-	log_stream << "WARNING - in loading rule for replacement/integration from conf file, non-existance compartment referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading rule for replacement/integration from conf file, non-existance compartment referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
       
       if (number_array[i+1] >= (int)modelB->getNumRules() || number_array[i+1] < 0){
-	log_stream << "WARNING - in loading rule for replacement/integration from conf file, non-existance functionDef referenced( " << number_array[i+1] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading rule for replacement/integration from conf file, non-existance functionDef referenced (" << number_array[i+1] << "). Ignoring..." << endl;
 	continue;
       }
       
@@ -588,12 +588,12 @@ void SBML_confInput::set_replace_or_integrate_list(const Model* modelA, const Mo
     for (int i = 0 ; i < elements ; i=i+2){
       
       if (number_array[i] >= (int)modelA->getNumConstraints() || number_array[i] < 0){
-	log_stream << "WARNING - in loading constraint for replacement/integration from conf file, non-existance compartment referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading constraint for replacement/integration from conf file, non-existance compartment referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }    
       
       if (number_array[i+1] >= (int)modelB->getNumConstraints() || number_array[i+1] < 0){
-	log_stream << "WARNING - in loading constraint for replacement/integration from conf file, non-existance functionDef referenced( " << number_array[i+1] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading constraint for replacement/integration from conf file, non-existance functionDef referenced (" << number_array[i+1] << "). Ignoring..." << endl;
 	continue;
       }
       
@@ -621,12 +621,12 @@ void SBML_confInput::set_replace_or_integrate_list(const Model* modelA, const Mo
     for (int i = 0 ; i < elements ; i=i+2){
       
       if (number_array[i] >= (int)modelA->getNumReactions() || number_array[i] < 0){
-	log_stream << "WARNING - in loading reaction for replacement/integration from conf file, non-existance compartment referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading reaction for replacement/integration from conf file, non-existance compartment referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
 
       if (number_array[i+1] >= (int)modelB->getNumReactions() || number_array[i+1] < 0){
-	log_stream << "WARNING - in loading reaction for replacement/integration from conf file, non-existance functionDef referenced( " << number_array[i+1] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading reaction for replacement/integration from conf file, non-existance functionDef referenced (" << number_array[i+1] << "). Ignoring..." << endl;
 	continue;
       }
 
@@ -655,12 +655,12 @@ void SBML_confInput::set_replace_or_integrate_list(const Model* modelA, const Mo
     for (int i = 0 ; i < elements ; i++){
       
       if (number_array[i] >= (int)modelB->getNumEvents() || number_array[i] < 0){
-	log_stream << "WARNING - in loading events for replacement/integration from conf file, non-existance compartment referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading events for replacement/integration from conf file, non-existance compartment referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
       
       if (number_array[i+1] >= (int)modelB->getNumEvents() || number_array[i+1] < 0){
-	log_stream << "WARNING - in loading events for replacement/integration from conf file, non-existance functionDef referenced( " << number_array[i+1] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading events for replacement/integration from conf file, non-existance functionDef referenced (" << number_array[i+1] << "). Ignoring..." << endl;
 	continue;
       }
       
@@ -716,7 +716,7 @@ void SBML_confInput::set_import_list(const Model* modelB){
     for (int i = 0 ; i < elements ; i++){
       
       if (number_array[i] >= (int)modelB->getNumFunctionDefinitions() || number_array[i] < 0){
-	log_stream << "WARNING - in loading functionDefinitions for import from conf file, non-existance functionDef referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading functionDefinitions for import from conf file, non-existance functionDef referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
       
@@ -737,7 +737,7 @@ void SBML_confInput::set_import_list(const Model* modelB){
     for (int i = 0 ; i < elements ; i++){
       
       if (number_array[i] >= (int)modelB->getNumUnitDefinitions() || number_array[i] < 0){
-	log_stream << "WARNING - in loading unitDefinitions for import from conf file, non-existance unitDef referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading unitDefinitions for import from conf file, non-existance unitDef referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
 
@@ -757,7 +757,7 @@ void SBML_confInput::set_import_list(const Model* modelB){
     for (int i = 0 ; i < elements ; i++){
       
       if (number_array[i] >= (int)modelB->getNumCompartments() || number_array[i] < 0){
-	log_stream << "WARNING - in loading compartments for import from conf file, non-existance compartment referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading compartments for import from conf file, non-existance compartment referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
       
@@ -777,7 +777,7 @@ void SBML_confInput::set_import_list(const Model* modelB){
     for (int i = 0 ; i < elements ; i++){
       
       if (number_array[i] >= (int)modelB->getNumSpecies() || number_array[i] < 0){
-	log_stream << "WARNING - in loading compartments for import from conf file, non-existance compartment referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading compartments for import from conf file, non-existance compartment referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
 
@@ -797,7 +797,7 @@ void SBML_confInput::set_import_list(const Model* modelB){
     for (int i = 0 ; i < elements ; i++){
       
       if (number_array[i] >= (int)modelB->getNumParameters() || number_array[i] < 0){
-	log_stream << "WARNING - in loading parameter for import from conf file, non-existance compartment referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading parameter for import from conf file, non-existance compartment referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
 
@@ -817,7 +817,7 @@ void SBML_confInput::set_import_list(const Model* modelB){
     for (int i = 0 ; i < elements ; i++){
       
       if (number_array[i] >= (int)modelB->getNumInitialAssignments() || number_array[i] < 0){
-	log_stream << "WARNING - in loading  assignment for import from conf file, non-existance compartment referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading  assignment for import from conf file, non-existance compartment referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
 
@@ -837,7 +837,7 @@ void SBML_confInput::set_import_list(const Model* modelB){
     for (int i = 0 ; i < elements ; i++){
       
       if (number_array[i] >= (int)modelB->getNumRules() || number_array[i] < 0){
-	log_stream << "WARNING - in loading rule for import from conf file, non-existance compartment referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading rule for import from conf file, non-existance compartment referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
 
@@ -856,7 +856,7 @@ void SBML_confInput::set_import_list(const Model* modelB){
     for (int i = 0 ; i < elements ; i++){
       
       if (number_array[i] >= (int)modelB->getNumConstraints() || number_array[i] < 0){
-	log_stream << "WARNING - in loading constraint for import from conf file, non-existance compartment referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading constraint for import from conf file, non-existance compartment referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
 
@@ -875,7 +875,7 @@ void SBML_confInput::set_import_list(const Model* modelB){
     for (int i = 0 ; i < elements ; i++){
       
       if (number_array[i] >= (int)modelB->getNumReactions() || number_array[i] < 0){
-	log_stream << "WARNING - in loading reaction for import from conf file, non-existance compartment referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading reaction for import from conf file, non-existance compartment referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
 
@@ -895,7 +895,7 @@ void SBML_confInput::set_import_list(const Model* modelB){
     for (int i = 0 ; i < elements ; i++){
       
       if (number_array[i] >= (int)modelB->getNumEvents() || number_array[i] < 0){
-	log_stream << "WARNING - in loading events for import from conf file, non-existance compartment referenced( " << number_array[i] << "). Ignoring..." << endl;
+	log_stream << "WARNING - in loading events for import from conf file, non-existance compartment referenced (" << number_array[i] << "). Ignoring..." << endl;
 	continue;
       }
       
