@@ -65,8 +65,6 @@ class SBML_augment : public SBML_UI_general {
     // set the ID of elcop to the original element id + the new_ref
     elcop->setId(id_var.append(new_ref));
     
-    std::cout << ".";
-    
     // replace requires two objects. This is to facilitate deep replacement in future 
     // implementations
     cleanup.replace(element, elcop);

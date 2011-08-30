@@ -315,7 +315,6 @@ bool SBML_search::is_present(Model* model, Event* inputA){
 bool SBML_search::locate_and_replace(ASTNode* node, string query, string replacement){
   
   bool end = false;
-  
   ASTNode* temp_node;
   
   int num_children = node->getNumChildren();
@@ -397,21 +396,25 @@ bool SBML_search::locate_and_replace_mathML(Model* model, std::string query, std
   
   ASTNode* new_node_p;
   
-  // FUNCTION ---------------------------------------------
+  // FUNCTION DEFINITIONS ---------------------------------------------
   num_elements = model->getNumFunctionDefinitions();
   for (int i = 0 ; i < num_elements ; i++){
     
     // get temporary function
     temp_func = model->getFunctionDefinition(i);
-
+    
     // create ASTNode tree structure using the copy constructor
     ASTNode new_node(*(temp_func->getMath()));
     
-    // set new_node_p pointer to the newly copied node - this gives us a root node pointer 
-    // which is *not* const - this is problem with getMath() function
+    // set new_node_p pointer to the newly copied node - 
+    // this gives us a root node pointer which is *not* 
+    // const - this is problem with getMath() function
     new_node_p = &new_node;
     
     end = locate_and_replace(new_node_p, query, replacement);
+    
+    // end will only be ever true if we're searching, not replacing
+    // saves us searching after we've found one instance!
     if (end)
       return true;
 
@@ -425,11 +428,14 @@ bool SBML_search::locate_and_replace_mathML(Model* model, std::string query, std
     // get temporary InitialAssignment
     temp_IA = model->getInitialAssignment(i);
     
-    // same logic as ub FUNCTION section
+    // same logic as in FUNCTION section
     ASTNode new_node(*(temp_IA->getMath()));
     new_node_p = &new_node;
     
     end = locate_and_replace(new_node_p, query, replacement);
+    
+    // end will only be ever true if we're searching, not replacing
+    // saves us searching after we've found one instance!
     if (end)
       return true;
     
@@ -448,15 +454,16 @@ bool SBML_search::locate_and_replace_mathML(Model* model, std::string query, std
     ASTNode new_node(*(temp_rule->getMath()));
     new_node_p = &new_node;
     
-    //log_stream << "----BEFORE RECURSIVE REPLACEMENT: " << SBML_formulaToString(new_node_p) << endl;
-    
     //log_stream << "RULE: " << temp_rule->getId() << endl;
     end = locate_and_replace(new_node_p, query, replacement);
+   
+    // end will only be ever true if we're searching, not replacing
+    // saves us searching after we've found one instance!
     if (end)
       return true;
     
     temp_rule->setMath(new_node_p);
-    //log_stream << "----AFTER RECURSIVE REPLACEMENT: " << SBML_formulaToString(temp_rule->getMath()) << endl;
+    
   }
   
   // CONSTRAINT ---------------------------------------------
@@ -471,6 +478,8 @@ bool SBML_search::locate_and_replace_mathML(Model* model, std::string query, std
 
     end = locate_and_replace(new_node_p, query, replacement);
     
+    // end will only be ever true if we're searching, not replacing
+    // saves us searching after we've found one instance!
     if (end)
       return true;
     
@@ -478,7 +487,7 @@ bool SBML_search::locate_and_replace_mathML(Model* model, std::string query, std
   }
   
   // REACTIONS ---------------------------------------------
-  num_elements = model->getNumConstraints();
+  num_elements = model->getNumReactions();
   for (int i = 0 ; i < num_elements ; i++){
     
     temp_rxn = model->getReaction(i);
@@ -486,14 +495,18 @@ bool SBML_search::locate_and_replace_mathML(Model* model, std::string query, std
     
     ASTNode new_node(*(temp_klaw->getMath()));
     new_node_p = &new_node;
-
+    
     end = locate_and_replace(new_node_p, query, replacement);
+    
+    // end will only be ever true if we're searching, not replacing
+    // saves us searching after we've found one instance!
     if (end)
       return true;
+    
+    temp_klaw->setMath(new_node_p);
   }
 
   // EVENTS ---------------------------------------------
-
   num_elements = model->getNumEvents();
   for (int i = 0 ; i < num_elements ; i++){
 
@@ -509,6 +522,8 @@ bool SBML_search::locate_and_replace_mathML(Model* model, std::string query, std
     
     if (end)
       return true;
+    
+    temp_trig->setMath(new_node_p);
 
     // Search priority object, if it exists
     if (temp_event->isSetPriority()){
@@ -521,6 +536,8 @@ bool SBML_search::locate_and_replace_mathML(Model* model, std::string query, std
 	
       if (end)
 	return true;
+
+      temp_pri->setMath(new_node_p);
     }
       
     // search delay object, if it exists

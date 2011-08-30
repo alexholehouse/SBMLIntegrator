@@ -219,7 +219,7 @@ void SBML_display::show_unitDefinitions(const Model* model){
   for (int i = 0 ; i < num_units ; i++)
     {
       unit_def = units_list->get(i);
-      cout << "Unit[" << i+1 << "]\n";
+      cout << "Unit[" << i+1 << "] ";
       cout << "       Name = " << unit_def->getName() << endl
 	   <<"        ID =   " << unit_def->getId() << endl
 	   <<"        Units = " 
@@ -410,6 +410,8 @@ void SBML_display::show_parameters(const Model* model){
     
     cout << endl << endl;
   }
+
+  delete search_framework;
 } 
 
 
@@ -545,6 +547,7 @@ void SBML_display::show_reactions(const Model* model){
   int num_mods, location;
   const Reaction* rxn;
   string string_var;
+  bool rulelookup;
   int num_rxns = model->getNumReactions();
   
   // Construct the search framework
@@ -569,6 +572,8 @@ void SBML_display::show_reactions(const Model* model){
    
   for (int i = 0 ; i < num_rxns ; i++){
     
+    rulelookup = false;
+    
     // get pointer to reaction i
     rxn = rxn_list->get(i);
 
@@ -592,7 +597,14 @@ void SBML_display::show_reactions(const Model* model){
     if (rxn->isSetKineticLaw()){
       rate_law = rxn->getKineticLaw();
       cout << endl << "    Rate law: ";
+
+      // get the formula of the rate law
       string_var = rate_law->getFormula();
+      
+      // BELOW is primarily an artifact of an model we worked on where the rate law was
+      // defined as a rule with the format RULENAME(). By removing the "()" we could
+      // then find what the rule's value was, and display that here. Don't worry about
+      // it too much...
       
       // Cut terminal () if necessary - MathML adds a () to the end of kineticLaws which 
       // reference somewhere else. This cuts off that terminal (). NOTE this could be a 
@@ -609,6 +621,8 @@ void SBML_display::show_reactions(const Model* model){
 	    
 	    log_stream << " however, after formating, string is " << string_var << endl << endl;
 	  }
+	  
+	  rulelookup = true;
 	}
       
       cout << string_var << endl << "      Local parameters: " 
@@ -618,12 +632,15 @@ void SBML_display::show_reactions(const Model* model){
       if (rate_law->getNumLocalParameters() > 1){
 	cout << "ERROR - At this stage, version " << get_version() << " cannot deal with local parameters in reactions. A workaround will be added, but currently this is not critical, so to avoid serious problems we're aborting the process. Sozzle." << endl;
 	log_stream << "ERROR - At this stage, version " << get_version() << " cannot deal with local parameters in reactions. A workaround will be added, but currently this is not critical, so to avoid serious problems we're aborting the process. Sozzle." << endl;
-	exit(1);
+	autoAbort("Aborting..");
       }
       
       // usinging the search framework we identify if the rule defined here is actually 
       // referencing a previously defined rule
-      const Rule* rule = search_framework->find_rule(model, string_var);
+      const Rule* rule = NULL;
+      
+      if (rulelookup)
+	rule = search_framework->find_rule(model, string_var);
 
       // rule == NULL if no rule was found
       if (rule != NULL){
