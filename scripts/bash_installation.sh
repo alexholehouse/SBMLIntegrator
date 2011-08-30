@@ -114,6 +114,7 @@ echo "_________________________________________________________________________"
 echo "Cleaning up installation...."
 echo "-------------------------------------------------------------------------"
 
+# Copy the two example models into the working directory
 cp example/* .
 
 # cleanup

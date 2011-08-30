@@ -1,4 +1,6 @@
-// configuration file for pathway_viewer - input file to define model integration
+#! /bin/bash
+
+echo "// configuration file for pathway_viewer - input file to define model integration
 //
 // Guidelines for use
 // This skeleton defines the necessary structure for the config file. The structure of each of
@@ -6,31 +8,34 @@
 // of the keywords such as FunctionDefinition, Import etc with a ":" at the end. This would
 // break everything.
 //
+// For the import list used [1,2,...n]
+// For replace list do [n,n] [n+1,n+1]
+// For integrate list do [n,n] [n+1,n+1]
 
 FunctionDefinitions:
-	Import: [1,2,3,4,5,6]
+	Import: 
 	Replace: 
 	Integrate: 
 
 UnitDefinitions:                                                                                                                                                                                                                               
-	Import: [1,2,3,4,5]
-	Replace: [6,7] [8,9]
+	Import: 
+	Replace: 
 	Integrate: 
 
 Compartments:
 	Import: 
-	Replace: [1,0]
-	Integrate: [1,0]
+	Replace: 
+	Integrate:
 
 Species:
-	Import: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]	
-	Replace: [7,1] [9,2] [11,3]
-	Integrate: [13,14]
+	Import: 
+	Replace:
+	Integrate: 
 
 Parameters:
-	Import: [5,6,7,8,9,10,12,13,14,15,16,17,18]	
-	Replace: [1,2] [3,4]
-	Integrate: [0,0]
+	Import: 
+	Replace: 
+	Integrate: 
 
 InitialAssignments:
 	Import: 	
@@ -40,7 +45,7 @@ InitialAssignments:
 Rules:
 	Import: 	
 	Replace: 
-	Integrate: [0,0] [1,3]
+	Integrate: 
 
 Constraints:
 	Import:	
@@ -50,9 +55,10 @@ Constraints:
 Reactions:
 	Import:
 	Replace: 
-	Integrate: [1,2] [2,2]
+	Integrate: 
 
 Events:
 	Import:
 	Replace: 
-	Integrate: 
+	Integrate: " > integrate.conf
+echo "Empty configuration file (integrate.conf) has been constructed"
