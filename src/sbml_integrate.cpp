@@ -399,7 +399,7 @@ void SBML_integrate::integrate_models_display_options(){
   cout << " [11] ----------- Explore models" << endl;
   cout << " [12] ----------- Explore replacement, import and integration parameters " << endl;
   cout << " [13] ----------- Write Integrated Model" << endl;
-  cout << " [14] ----------- Run replacementl" << endl;
+  cout << " [14] ----------- Re-run replacement" << endl;
   cout << " [15] ----------- Return to main menu " << endl;
 }
 
@@ -429,8 +429,7 @@ void SBML_integrate::integrate_models_explore_models(bool quick){
     
     else
       display_framework.select_components_to_show(model_A, "Base model - loaded model which the integration model is based on");
-  }
-  
+  } 
     
   if (AorBorC == 1){
     if (quick)
@@ -652,7 +651,7 @@ void SBML_integrate::import_elements(){
 // parameter, which is defined by an assignment rule. While this *is* legal, COPASI, for example,
 // doesn't let you do this for its import, and I suspect MATLAB might not appreciate it. 
 // It also makes about half the model redundant - not sure if they were being paid by LOC for 
-// the model, but whatever, it's arse.
+// the model, but whatever, it's arse*.
 
 //
 // This function is a quickfix that doesn't actually remove the redundancy from the file, but 
@@ -662,6 +661,13 @@ void SBML_integrate::import_elements(){
 // Cool.
 // Note, this method is not related to this class (or this software!) in any way, I just needed 
 // somewhere appropriate to put it and was working on this class at the time.
+//
+//	DELETE BEFORE RELEASE --> OR AT LEAST DO NOT INCLUDE IN FINAL SOFTWARE
+//
+//
+// * It's implementation may be arse, but the paper is stellar and this project wouldn't
+//   have in anyway way worked out had they not provided their supporting information.
+//   Props to Hendriks et al. - big love.
 
 //Returns an unretarded version of the pfizer model
 void SBML_integrate::unretarding_the_pfizer_model(Model* retarded_model){

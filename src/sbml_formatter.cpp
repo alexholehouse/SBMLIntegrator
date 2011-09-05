@@ -121,13 +121,13 @@ SBML_formatter::SBML_formatter(){
   if (!logfile_set){
     
     
-    // if logsfile not already present...
+    // if logsfile not already present make one, if it is skip this
     struct stat st;
     if(stat("logs",&st) != 0)
       system("mkdir logs\0");
     
+    // build logfile name
     string name = "logs/";
-    
     name.append("logat_");
     name.append(get_time());
     name.append(".txt");
