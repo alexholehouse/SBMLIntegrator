@@ -15,6 +15,7 @@
 #include <dirent.h>
 #include <unistd.h>
 #include <math.h>
+#include <sys/stat.h>
 
 using namespace std;
 
@@ -118,9 +119,12 @@ SBML_formatter::SBML_formatter(){
   // new logfile, which is then used throughout
   
   if (!logfile_set){
-
     
-    system("mkdir logs\0");
+    
+    // if logsfile not already present...
+    struct stat st;
+    if(stat("logs",&st) != 0)
+      system("mkdir logs\0");
     
     string name = "logs/";
     

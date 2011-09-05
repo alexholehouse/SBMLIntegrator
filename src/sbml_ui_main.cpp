@@ -56,18 +56,17 @@ void SBML_UI_main::print_help(){
   
   print_usage();
   
-  cerr << "Control options available within the tool, but can either take one or two sbml \nfiles. If one file is taken, the model can be displayed, and consolidated,\nremoving redundant components, and a copy saved. If two are files taken, \nthese can be integrated into a single SBML model."
+  cerr << "Control options available within the tool, but can either take one or two sbml \nfiles. If one file is taken, the software acts a simple, text-based model \nviewer. If two are files taken, these can be integrated into a single\nSBML model."
     
-       << endl << endl << endl
+       << endl << endl
     
-       << "We recommend writing the output of this program to a text file or piping to\nlessfor a clear method to overview the model being described. Hopefully in\nfuture releases we'll have a better interface and a GUI, but for now this is\nwhat we've got - functionality over usebility"
+       << "For the process of integration and correct configuration\nfile (integrate.conf) is required. This defines the elements\nto be imported, replaced and integrated. For more information\nsee theuser manual (README.txt)\n"
     
        << endl << endl
     
        << " [OPTIONS] " << endl
        << "  --help        Display this message" << endl 
        << "  --version     Display the program version" << endl
-       << "  -o            Define output model name (.xml added)" << endl
     
        << endl
        << endl
@@ -82,7 +81,7 @@ void SBML_UI_main::print_usage(){
 }
 
 void SBML_UI_main::print_version(){
-  cerr << "Pathway Viewer - version " << get_version() << endl;
+  cerr << "SBMLIntegrator - version " << get_version() << endl;
 }
 
 void SBML_UI_main::print_logo(){
