@@ -40,6 +40,8 @@ LD_LIB_dir=${PWD}
 cd ../../
 echo "_________________________________________________________________________"
 echo "Running ldconfig"
+echo "You will be promoted for the SUDO password - if you don't know it don't"
+echo "worry - just press enter three times and you'll skip over this step."
 echo "-------------------------------------------------------------------------"
 sudo ldconfig -v
 
