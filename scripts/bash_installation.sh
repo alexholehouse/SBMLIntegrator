@@ -12,7 +12,12 @@ echo "_________________________________________________________________________"
 echo "Running configure for the LibSBML API"
 echo "-------------------------------------------------------------------------"
 
-./configure --prefix $inst_dir
+#./configure --prefix $inst_dir
+
+echo -e "Configuration complete. \n\nIf it completed without any errors, press enter 
+\nIf not please press CTRL-C, try and rectify them (probably missing 
+libraries) and re-run"
+read ok1
 
 
 # LibSBML make
@@ -20,15 +25,24 @@ echo "_________________________________________________________________________"
 echo "Running make for LibSBML API"
 echo "-------------------------------------------------------------------------"
 
-make
+
+#make
+
+echo -e "Make complete. \n\nIf it completed without any errors, press enter 
+\nIf not please press CTRL-C, try and rectify them and re-run"
+read ok1
+
 
 # LibSBML make install
 echo "_________________________________________________________________________"
 echo "Running make install"
 echo "-------------------------------------------------------------------------"
 
-make install
+#make install
 
+echo -e "Make install complete. \n\nIf it completed without any errors, press enter 
+\nIf not please press CTRL-C, try and rectify them and re-run"
+read ok1
 echo "_________________________________________________________________________"
 echo "LibSBML C++ API succesfully installed locally at 
 $inst_dir"
