@@ -108,8 +108,48 @@ In keeping with the idea of keeping it simple, to install just run
 
 bash INSTALL.sh
 
-in the SBMLIntegrator folder
+in the SBMLIntegrator folder.
 
+Once this is done you should add the new complete libsbml/lib path to 
+the $LD_PATH variable. To do this you add an export command to your 
+.basrc (normally found in your home directory as a hidden file, use 
+ls -a to check it out).
+
+We use export as follows;
+
+export LD_LIBRARY_PATH=<lib directory path>:$LD_LIBRARY_PATH
+
+where lib directory path is the full path where you've now 
+installled LibSBML.
+
+For example, if I'd run INSTALL.sh from 
+
+	/home/john/Documents/SBMLIntegrator
+
+the export command would be be
+
+export LD_LIBRARY_PATH=/home/john/Documents/SBMLIntegrator/libsbml/lib:$LD_LIBRARY_PATH
+
+What this is doing is ADDING this new location to the LD_LIBRARY_PATH variable,
+the colon means we add it to the front of the variable.
+
+This line should be included anywhere in the .bashrc file, meaning
+everytime we start a terminal the variable is set (it resets itself
+on each session).
+
+If you're using csh, do the equvalent using setenv
+
+setenv LD_LIBRARY_PATH <lib directory path>
+
+If you're still confused try 
+http://sbml.org/Software/libSBML/docs/cpp-api/libsbml-accessing.html
+
+To check this has been done, use
+
+echo $LD_LIBRARY_PATH
+You should see the libsbml/lib directory there. If you don't see
+this you need to restart your shell for the new changes to take
+effect.
 
 
 //////////////////////////////////////////////////////////////////////

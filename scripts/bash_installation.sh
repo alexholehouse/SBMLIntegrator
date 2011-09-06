@@ -12,10 +12,10 @@ echo "_________________________________________________________________________"
 echo "Running configure for the LibSBML API"
 echo "-------------------------------------------------------------------------"
 
-./configure --prefix $inst_dir
+#./configure --prefix $inst_dir
 
-echo -e "Configuration complete. \n\nIf it completed without any errors, press enter 
-\nIf not please press CTRL-C, try and rectify them (probably missing 
+echo -e "\n~~ Configuration complete ~~ \n\nIf it completed without any errors, press enter 
+If not please press CTRL-C, try and rectify them (probably missing 
 libraries) and re-run"
 read ok1
 
@@ -26,10 +26,10 @@ echo "Running make for LibSBML API"
 echo "-------------------------------------------------------------------------"
 
 
-make
+#make
 
-echo -e "Make complete. \n\nIf it completed without any errors, press enter 
-\nIf not please press CTRL-C, try and rectify them and re-run"
+echo -e "\n~~ Make complete ~~ \n\nIf it completed without any errors, press enter 
+If not please press CTRL-C, try and rectify them and re-run"
 read ok1
 
 
@@ -38,10 +38,11 @@ echo "_________________________________________________________________________"
 echo "Running make install"
 echo "-------------------------------------------------------------------------"
 
-make install
+#make install
 
-echo -e "Make install complete. \n\nIf it completed without any errors, press enter 
-\nIf not please press CTRL-C, try and rectify them and re-run"
+echo -e "\n~~Make install complete~~ \n\nIf it completed without any errors, press enter 
+If not please press CTRL-C, try and rectify them and re-run. We deal with all
+the LD_PATH madness at the end, so don't worry about it untill then."
 read ok1
 echo "_________________________________________________________________________"
 echo "LibSBML C++ API succesfully installed locally at 
@@ -60,6 +61,7 @@ echo "-------------------------------------------------------------------------"
 sudo ldconfig -v
 
 export LD_LIBRARY_PATH=$LD_LIB_dir:$LD_LIBRARY_PATH
+
 
 echo "_________________________________________________________________________"
 echo "Making SBMLIntegrator"
@@ -124,7 +126,7 @@ clean:
 	rm -f src/*~" > Makefile
 
 
-make
+#make
 
 echo "_________________________________________________________________________"
 echo "Cleaning up installation...."
@@ -141,11 +143,47 @@ rm -f src/*~
 echo -e "\n\n#########################################################################"
 echo "Cleaning up installation...."
 echo "#########################################################################"
-if [ "$SHELL" == "/bin/bash" ]
-then 
-echo -e "You may also need to add;\n\nexport LD_LIBRARY_PATH=$LD_LIB_dir:\$LD_LIBRARY_PATH\n to your .bashrc\nAn error message './SBMLIntegrator: error while loading shared libraries: libsbml.so.5: cannot open shared object file: No such file or directory
-' is indicative of this!"
-fi
+echo -e "
+
+READ ME!
+------------------------------------------------------
+You may also need to add;
+
+TL/DR
+
+Add;
+export LD_LIBRARY_PATH=:$LD_LIB_dir:\$LD_LIBRARY_PATH
+to your .basrch
+
+
+More detailed:
+An error message 
+
+'./SBMLIntegrator: error while loading  shared libraries: 
+libsbml.so.5: cannot open shared object file: No such file or directory' 
+
+is indicative of the need to update the LD_LIBRARY_PATH
+variable. To do this carry out the following;
+
+1) run cd ~ (change to your home directory)
+2) open the file .bashrc with an editor of your choice 
+3) Add the following line
+
+export LD_LIBRARY_PATH=:$LD_LIB_dir:\$LD_LIBRARY_PATH
+
+   to the end of the file
+4) Save and close
+5) Run source .cshrc
+
+Alternativly, if you normally use csh you must add;
+
+setenv LD_LIBRARY_PATH $LD_LIB_dir
+
+to your .cshrc and then run source .bashrc. More details
+on this can be found in the README.txt. 
+------------------------------------------------------
+"
+
 
 
 
