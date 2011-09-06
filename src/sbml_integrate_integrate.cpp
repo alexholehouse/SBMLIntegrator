@@ -80,6 +80,7 @@ void SBML_integrate_integrate::integrate_compartments(SBML_confInput& input_file
   Compartment* tempB;
   Compartment* inNew;
   Compartment* inNew_copy;
+
   
   print_header("Integrate Compartments", true);
   
@@ -89,7 +90,7 @@ void SBML_integrate_integrate::integrate_compartments(SBML_confInput& input_file
     
     tempA = listA->get(i);
     tempB = listB->get(i);
-    
+
     // if unable to find the ID, getCompartment  will return NULL
     inNew = model_new->getCompartment(tempA->getId());
 
@@ -978,6 +979,9 @@ void SBML_integrate_integrate::reaction_seperator(const Reaction* tempA, const R
   
   // preamble, defining operation number to log_stream 
   log_stream << "[" << operation << "] Reaction integration: A(";
+  
+  operation++;
+  
   log_stream << tempA->getId() << ") and B(" << tempB->getId() << ")" << endl;
     
   // Build a header string
@@ -1071,7 +1075,7 @@ void SBML_integrate_integrate::edit_reaction_formula_reactants(Reaction* inNew_c
   
   cout << "##### EDIT REACTANTS #####" << endl;
   cout << "Reaction in current model is " << inNew_copy->getId() 
-       << ", while you are integrating " << tempB->getId() << " into this model" << endl;
+       << ", while you are integrating " << tempB->getId() << " into this model" << endl << endl;
   while (true){
 
     // Display the reactants in each of the reactions

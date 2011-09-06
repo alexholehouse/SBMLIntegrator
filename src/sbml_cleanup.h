@@ -4,7 +4,6 @@
 #ifndef SBML_CLEANUP_H
 #define SBML_CLEANUP_H
 
-#include "sbml_formatter.h"
 #include "sbml_search.h"
 
 #include <sbml/SBMLTypes.h>
@@ -36,10 +35,10 @@ class SBML_cleanup : protected SBML_search {
   
   //-----------------------------------------------------------------------------------
   /*! \brief Constructor for the SBML_cleaup object
-    \b Preconditions: input_Doc should be an error free SBMLDocument
+    \b Preconditions: input_doc should be an error free SBMLDocument
     
     \b Postconditions: creates an SBML_cleanup object, where the model we implement the 
-    classes methods on is a \i copy of the one enclosed in the SBMLDocument
+    classes methods on is a copy of the one enclosed in the SBMLDocument
   */
   SBML_cleanup(SBMLDocument* input_doc);
 
@@ -49,7 +48,7 @@ class SBML_cleanup : protected SBML_search {
     \b Preconditions: input_model should be an error free Model
     
     \b Postconditions: creates an SBML_cleanup object, where the model we implement the 
-    classes methods on is a \i copy of input_model
+    classes methods on is a copy of input_model
   */
   SBML_cleanup(Model* input_model);
 

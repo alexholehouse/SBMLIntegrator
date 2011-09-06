@@ -43,11 +43,12 @@ string SBML_formatter::dtostr(double in){
 
     
 
-
+// #######################################################################
 SpeciesReference* SBML_formatter::species2SpeciesReference(const Species* species, const Reaction* rxn){
   return (species2SpeciesReference(species, rxn, ""));
 }
 
+// #######################################################################
 SpeciesReference* SBML_formatter::species2SpeciesReference(const Species* species, const Reaction* rxn, string addToSpeciesID){
   string value = species->getId(); 
   
@@ -74,6 +75,7 @@ SpeciesReference* SBML_formatter::species2SpeciesReference(const Species* specie
   return SR;
 }
 
+// #######################################################################
 ModifierSpeciesReference* SBML_formatter::species2ModifierSpeciesReference(const Species* species, const Reaction* rxn) {
   
   string value;
@@ -95,7 +97,7 @@ ModifierSpeciesReference* SBML_formatter::species2ModifierSpeciesReference(const
   return MSR;
 }
 
-
+// #######################################################################
 void SBML_formatter::reset_cstr(char c_str[], int size){
   for (int i = 0 ; i < size ;i++)
     c_str[i] = ' ';
@@ -103,7 +105,8 @@ void SBML_formatter::reset_cstr(char c_str[], int size){
 
 
 
-
+// #######################################################################
+// Autoabort
 void SBML_formatter::autoAbort(string message){
   cout << message << endl;
   log_stream << message << endl;
@@ -197,6 +200,8 @@ string SBML_formatter::get_time(){
 string SBML_formatter::get_version(){
   return "0.1 (alpha)";
 }
+
+
 
 
 

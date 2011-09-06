@@ -23,46 +23,88 @@
 #include <iostream>
 #include <fstream>
 #include <sbml/SBMLTypes.h>
- /**
-     Base object for all classes. This class contains core functionality relating to SBML, type conversion, formatting and a range of other methods which may be required by multiple classes but are in no way linked to specific information. As a result, this functionality is grouped here for ease of access by other classes.
- **/
+/** \brief Base class for all classes
+   
+    
+   This class contains core functionality relating to SBML, type conversion, formatting and a range of other methods which may be required by multiple classes but are in no way linked to specific information. As a result, this functionality is grouped here for ease of access by other classes.
+**/
 class SBML_formatter {
- 
-
   
  public:
-
+  
+  /// Default value used to indicate failure
   static const int c_FAIL_DOUBLEGET = -9999999;
   
-  SBML_formatter();
+  /**
+     \brief Constructor function
+
+   **/
+  SBML_formatter();  
+
+  /*! \brief Function to close the software
+    
+    \b Preconditions: None
+    
+    \b Postconditions: Closes the logstream correctly to ensure file validity
+    
+  */
   int SBML_EXIT();
   
+  /** Returns the date in a standard format to string **/
   std::string get_date();
+  /** Returns the time in a standard format to string **/
   std::string get_time();
+  /** Returns the software verison in a standard format to string **/
   std::string get_version();
   
-  // resets a c_string to all spaces
+  /** Resets a c_string of size size to be empty - starts from beginning **/
   void reset_cstr(char* c_str, int size);
   
-  // safe abort that closes the log_streams and prints message to stdout and log_stream
+  /** Safe abort method which outouts a message to screen closes the software **/
   void autoAbort(std::string message);
   
+  /** Converts a double to a string **/
   std::string dtostr(const double in);
   
+  /** Converts a species to a species reference in a specific reaction, adding addToSpeciesID at the end **/
   SpeciesReference* species2SpeciesReference(const Species* species, const Reaction* rxn, std::string addToSpeciesID);
   
+  /** Converts a species to a species reference in a specific reaction**/
   SpeciesReference* species2SpeciesReference(const Species* species, const Reaction* rxn);
   
+  /** Converts a species to a modifier species reference in a specific reaction**/
   ModifierSpeciesReference* species2ModifierSpeciesReference(const Species* species, const Reaction* rxn);
     
+  /** Writes a logfile error message - DEPRECATED DO NOT USE **/
   void logfile_add_message(int error, std::string element, std::string new_owner);
   
-  void append_to_modelID(Model* input, const std::string to_append); // INCOMPLETE - probably move to integrator no?
-
+  /*! \brief Writes an SBML model to file as filename
+    
+    \b Preconditions: filename should include the .xml file extension. You should have write permission to the current working directory
+    
+    \b Postconditions: Writes a file in XML format with the SBML modell
+    
+  */
   bool write_to_file(Model* input, std::string filename);
 
-  // import_* helper functions ------------------------------------------------------------
-  // template function needs to be in header file
+  
+  /** Checks if a pointer is set to NULL, and if so aborts with an error message rather than segfaulting **/
+  template <class T> void nullchecker(T* pointer, std::string class_function){
+    if (pointer == NULL){
+      std::string message = "Null pointer exception in function ";
+      autoAbort(message.append(class_function));
+    }
+  }
+    
+
+  /** 
+      \brief Appends to_append onto any SBML element which can 
+    
+      \b Preconditions: Element must be able to have the getID() and setID() methods acted upon them
+    
+      \b Postconditions: Element is renamed
+      
+  **/
   template <class T> void append_to_ID(T* element, std::string to_append){
     
     // for diagnostics only (although worth keeping)

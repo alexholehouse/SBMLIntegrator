@@ -5,13 +5,28 @@
 #define SBML_INTEGRATE_HELPER_H
 
 #include "sbml_ui_general.h"
-
+/*!
+  \brief Parent class to all the integrate_* classes. 
+  
+  Provides widely used functionality, although presently mainly pertains to the interate_integrate class. Faciliates extension of functionality, potential to deal with multiple versions/levels of SBML.
+*/
 class SBML_integrate_helper : public SBML_UI_general {
  
  protected:
+
+  /// operation counter for logfile
   static int operation;
 
  public:
+
+  /*!
+    \brief Compare and edit a formula
+
+    \b Preconditions: T should be a class where getFormula() methods can be enacted on objects. 
+
+    \b Postconditions: Allows the user to select an existing formula, or call a function to define their own
+  */
+
   template <class T> 
     void compare_and_edit_maths(std::string title, T& inNew_copy, T& tempB, std::string message){
     
@@ -67,6 +82,14 @@ class SBML_integrate_helper : public SBML_UI_general {
       return;
   }
   
+  
+  /*!
+    \brief 
+
+    \b Preconditions: T should take the action of a setFormula() method
+
+    \b Postconditions: Creates a new, acceptable formula for the object.
+    */
   template <class T> void formula_editor(T*& inNew_copy){
     bool escape = false;
     print_header("Editing Formula", true);
@@ -99,7 +122,7 @@ class SBML_integrate_helper : public SBML_UI_general {
       if (new_node == "Q")
 	autoAbort("Aborting...");
       if (new_node == "")
-	std::cout << "Cannot have an empty formula - please try again. To abort press Q" << std::endl;
+	std::cout << "Cannot have an empty formula - please try again. To abort enter Q" << std::endl;
       else if (0 == inNew_copy->setFormula(new_node.c_str()))
 	escape = true;
       else {

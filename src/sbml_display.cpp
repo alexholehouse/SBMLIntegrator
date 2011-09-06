@@ -47,6 +47,9 @@ void SBML_display::show_summary(const Model* model, string filename){
 }
 
 void SBML_display::select_components_to_show(const Model* model, string message){
+
+  nullchecker(model, "SBML_display - select_components_to_show");
+  
   double selector;
   string input;
   system("clear");

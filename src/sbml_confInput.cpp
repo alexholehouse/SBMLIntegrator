@@ -22,23 +22,23 @@ const int MAX_NUMBER = 4;
 
 
 // #############################################################################################
-// CONSRTRUCTOR
+// CONSTRUCTOR
 // 
 SBML_confInput::SBML_confInput(){
 
   stream_set = false;
 
+  // set array elements to zero
   for (int i = 0 ; i < 10 ; i++){
     seek_locations[i] = 0;
-    replacements_pairs[i] = 0;
-    import_elements[i] = 0;
-    delete_elements[i] = 0;
   }
   
+  // to indicate the fact that locations have not yet been identified
   seek_locations[0] = -3;
   
   ifstream conf_stream;
 }
+
 
 bool SBML_confInput::load_conf(){
   return load_conf("");
@@ -70,6 +70,7 @@ bool SBML_confInput::load_conf(std::string conf_file)
   else
     log_stream << "User defined conf file used (" << conf_file  << ")" << endl;
 
+  // get current directory
   if (!getcwd(path_c, sizeof(path_c)))
     autoAbort("Fatal Error (line 223 in sbml_formatter.cpp) - unable to get current directory");
   
@@ -102,6 +103,7 @@ bool SBML_confInput::load_conf(std::string conf_file)
 	}
 	
     } 
+
     cout << "#######################################################" << endl;
     cerr << "ERROR - unable to find " << conf_file << " - files are;" << endl;
     log_stream << "ERROR - unable to find " << conf_file << " - files are;" << endl;
@@ -1004,41 +1006,10 @@ int SBML_confInput::get_number_list(int*& number_array){
   return ret_val;
 }
 
-
-
-// #############################################################################################
-// TEST_FUNCTION
-// Does what it says on the tin - debugging tool....
-void SBML_confInput::test_function(const Model* modelA, const Model* modelB){
-  
-  if (!load_conf()){
-    cout << "ERROR!" << endl;
-    exit(1);
-  }
-  
-  set_import_list(modelA);
-
-  cout << "TEST1 OK!" << endl;
-  set_replace_or_integrate_list(modelA, modelB, true);
-  cout << "TEST2 OK!" << endl;
-  set_replace_or_integrate_list(modelA, modelB, false);
-  cout << "TEST3 OK!" << endl;
-  
-}
-
-
-int SBML_confInput::number_import(int position){return 1; }
-int SBML_confInput::number_replace(int position){return 1; }
-int SBML_confInput::number_remove(int position){return 1; }
-
-
-// MOVE TO INLINE WHEN FINISHED
 // i.e. move into .h file
 void SBML_confInput::even_number(int elements){
-  if (2*(elements/2) != elements){
-    log_stream << "Fatal error - problem with conf_file formatting of pairs of elements for replacement or integration. Aborting" << endl;
-    exit(1);
-  }
+  if (2*(elements/2) != elements)
+    autoAbort("Fatal error - problem with conf_file formatting of pairs of elements for replacement or integration. Aborting");
 }
 
 // #############################################################################################

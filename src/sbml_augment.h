@@ -33,7 +33,7 @@ class SBML_augment : public SBML_UI_general {
   
   
     /*!
-    \breif Adds a string onto every ID into a model
+    \brief Adds a string onto every ID into a model
 
     \b Preconditions: to_append must be a valid string under 100 characters (arbitrary length set, could be changed in future)
 
@@ -44,12 +44,11 @@ class SBML_augment : public SBML_UI_general {
   
 
       /*!
-    \breif Template function to replace a reference to some ID in a model with another ID
+    \brief Template function to replace a reference to some ID in a model with another ID
 
     \b Preconditions: T should be an SBML type where the getId() method can be used (i.e. a FunctionDefinition, UnitDefinition, Compartment, Species, Parameter, Reaction and Event). Do *NOT* pass any other type into this method.
 
     \b Postconditions: Appends new_ref onto the end of the elements ID, and then goes about calling the replace method from the classes SBML_cleanup object to replace every reference to the original element ID with it's new ID
-
     */
   template <class T> void replace_reference_in_model(T* element, std::string new_ref){
 
@@ -72,7 +71,10 @@ class SBML_augment : public SBML_UI_general {
   
  private:
 
+  /// SBML_cleanup object used to enact searching operations
   SBML_cleanup cleanup;
+
+  /// Model pointer to the SBML model being augmented
   Model* model;
   
 };

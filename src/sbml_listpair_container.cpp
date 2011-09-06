@@ -10,20 +10,23 @@
 #include <sbml/SBMLTypes.h>
 
 using namespace std;
-
+/*!
+  \brief Simple class which holds a pair of lists
+  
+*/
 template<class T>
 class SBML_listpair_container : public SBML_formatter {
   
 public:
 
-  // default constructor
+  /// \brief Constructor function - overwrites default constructor
   SBML_listpair_container(){
     num = 0;
     list_A = NULL;
     list_B = NULL;
   }
   
-  // explicit constructor
+  /// \brief explicit constructor that takes two list objects and the number of elements in the list
   SBML_listpair_container(T* _list_A, T* _list_B, int& _num) {
     
     num = _num;
@@ -32,6 +35,7 @@ public:
     
   }
   
+  /// \brief Get lenth of lists
   int& get_num(){
     return num; }
   

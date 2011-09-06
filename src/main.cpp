@@ -141,7 +141,7 @@ int main (int argc, char* argv[])
 
       case 3:
 	if (integrate)
-	  integrate_framework->test(document1->getModel());
+	  integrate_framework->integration();
 	else{
 	  cout << "Exiting - thanks for playing!" << endl;
 	  exit = true;

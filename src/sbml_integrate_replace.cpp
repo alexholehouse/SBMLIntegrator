@@ -9,14 +9,10 @@
 
 using namespace std;
 
-
-
-
 SBML_integrate_replace::SBML_integrate_replace(){
-  
+  // no functionality...
+
 }
 
-void SBML_integrate_replace::replace_common_elements(){
-  
-}
+
 

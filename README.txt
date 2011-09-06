@@ -36,7 +36,7 @@ alex.holehouse@gmail.com
   | 2. Installation		                                    |
   | 3. User Guide                       		            |
   | 4. Code Documentation		                            |
-  | 5. Future Work                                                  |
+  |                                                                 |
    `---------------------------------------------------------------'
 
 
@@ -405,62 +405,15 @@ As described, if you select yes, this adds the pairing
 in the .conf file.
 
 
+_____________________________________________________________________
 
-#############################################################################################
-Things we need to add;
+4. Code documentation
+_____________________________________________________________________
+To access the code documentation use any browser to open index.html, 
+found in the docs folder. This provides an indepth overview of the code.
 
-Extra input checking
-+ Logic to ensure a value defined in the conf file is not defined in two or more of import/replace/integrate lists
-+ Logic to ensure all the elements in modelB are defined SOMEWHERE in the conf file
-+ When the user defines a new ID, make sure it's unique through the software 
-
-Extra usability
-+ Individual species lookup, or range lookup
-+ Output structure to file
-+ Select configuration file name
+The source code itself is also heavily commented.
 
 
-+ Integration
-	+ Suggest that if a unit is not correctly defined it may need to be imported?
-	+ FAR more choice in terms of what you can customize on integration - 
-	  rather than just selecting one of the two  options from the integrates 
-          (as is in alpha) input your own values, which lookup functions for SID based parameters!
-
-+ More in-depth log file reporting
-
-
-#############################################################################################
-Necessary assumptions we have for the alpha version;
-
-+ BOTH MODELS ARE THE SAME LEVEL AND VERSION - NOTE this will probably be the case for the BETA too!
-  - Look at writing some upgrade level/version software :-)
-
-+ Model attributes (shown below) are the same for both models
-	substanceUnits: UnitSIdRef 
-	timeUnits: UnitsSIdRef 
-	volumeUnits: UnitSIdRef 
-	areaUnits: UnitsSIdRef 
-	lengthUnits: UnitsSIdRef 
-	extentUnits: UnitsSIdRef 
-	conversionactor: SIdRef 
-  - This is important, as has model wide implications if they're different, requiring model wide conversion and scaling.
-
-+ Reactions cannot have local parameters - this is critical for the MATLAB integration too, so we should add support to translate local parameters into global ones if need be
-
-+ At this current stage, we're not supporting integration of 
-	-Constraints
-	-Events
-	-Initial assignments
-	 
-  - The MATLAB support for these is limited - the MATLAB SimBiology tool box does not support any of these 
-    elements, so adding support for them is irrelevant for this project. However, for a more general tool we should
-    certainly add this. The software's architecture is constructed to facilitate this addition, and will be completed
-    for BETA
-
-
-In beta these shortcomings will be rectified.
-
-#############################################################################################
-END
 
 

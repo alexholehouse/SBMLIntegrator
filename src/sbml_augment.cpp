@@ -1,7 +1,6 @@
 // Copyright Alex Holehouse 2011
 // Distributed under the terms of the GNU general public license - see COPYING.txt for more details
 #include "sbml_augment.h"
-#include "sbml_formatter.h"
 
 #include <sbml/SBMLTypes.h>
 #include <string>
@@ -9,15 +8,17 @@
 
 using namespace std;
 
+// constructor
 SBML_augment::SBML_augment(Model* _model) : cleanup(_model, false)
 { model = _model; }
 
-  
+
 
 void SBML_augment::complete_model_id_rename_with_append(string to_append){
+	
 
-  int num = model->getNumFunctionDefinitions();
 
+  int num = model->getNumFunctionDefinitions();			
   SBML_cleanup cleanup(model, false);
   
   for (int i = 0 ; i < num ; i++){

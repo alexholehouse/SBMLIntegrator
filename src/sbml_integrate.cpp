@@ -30,9 +30,17 @@ using namespace std;
 SBML_integrate::SBML_integrate(const Model* input_A, const Model* input_B, const char* _input_A_filename, const char* _input_B_filename)
 {
   
+  // check non of pointers are null
+  nullchecker(input_A, "SBML_integrate - constructor");
+  nullchecker(input_B, "SBML_integrate - constructor");
+  nullchecker(_input_A_filename, "SBML_integrate - constructor");
+  nullchecker(_input_B_filename, "SBML_integrate - constructor");
+
   // init allows the user to select which of the two files should make up the base model (and
   // by implication, which will be the import model).
   if (init(_input_A_filename, _input_B_filename) == 1){
+    // input_A is the base model and input_B the import model
+    
     model_A = input_A;
     model_new = input_A->clone();
     model_B = input_B->clone();
@@ -48,7 +56,7 @@ SBML_integrate::SBML_integrate(const Model* input_A, const Model* input_B, const
     model_B_filename = _input_B_filename;
   }
   
-  // if not (input_B has the most components) then a copy of input_B is the clone
+  // or if innit == 0, input_B is the base model and input_A the import model
   else {
     model_A = input_B;
     model_new = input_B->clone();
@@ -67,8 +75,7 @@ SBML_integrate::SBML_integrate(const Model* input_A, const Model* input_B, const
   cleanup_framework = new SBML_cleanup(model_new, false);
 
   // counter for log keeping
-  operation = 0;
-
+  
   // Initialize the replacement containers based on the config file.
   // Rather than keeping replacement data within the configuration data class, we import it
   // here into the SBML_integrate parent class. This is because this data is frequently updated
@@ -172,12 +179,12 @@ void SBML_integrate::integration(){
 // #############################################################################################
 // test function for debugging
 
-void SBML_integrate::test(Model* retarded){
+//void SBML_integrate::test(Model* retarded){
 
-  import_elements();
-  replace_elements();
-  integrate_models();
-}
+//import_elements();
+//replace_elements();
+//integrate_models();
+//}
 
 
 
@@ -398,7 +405,7 @@ void SBML_integrate::integrate_models_display_options(){
   
   cout << " [11] ----------- Explore models" << endl;
   cout << " [12] ----------- Explore replacement, import and integration parameters " << endl;
-  cout << " [13] ----------- Write Integrated Model" << endl;
+  cout << " [13] ----------- Write integrated model" << endl;
   cout << " [14] ----------- Re-run replacement" << endl;
   cout << " [15] ----------- Return to main menu " << endl;
 }
@@ -628,100 +635,4 @@ void SBML_integrate::import_elements(){
 				 input_file.get_num_import_events(), 
 				 input_file.get_import_events());
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-     
-// #############################################################################################
-// UNRETARDING_THE_PFIZER_MODEL 
-//
-//
-// The kids at Pfizer made their p38 model in a really bizzare way, whereby instead of directly 
-// defining a kinetic law in the aptly named "kinetic law" MathML structure, they reference a 
-// parameter, which is defined by an assignment rule. While this *is* legal, COPASI, for example,
-// doesn't let you do this for its import, and I suspect MATLAB might not appreciate it. 
-// It also makes about half the model redundant - not sure if they were being paid by LOC for 
-// the model, but whatever, it's arse*.
-
-//
-// This function is a quickfix that doesn't actually remove the redundancy from the file, but 
-// does from the model's logic, by moving the doubly-referenced assignment rule into the 
-// kinetic parameter bit.
-// 
-// Cool.
-// Note, this method is not related to this class (or this software!) in any way, I just needed 
-// somewhere appropriate to put it and was working on this class at the time.
-//
-//	DELETE BEFORE RELEASE --> OR AT LEAST DO NOT INCLUDE IN FINAL SOFTWARE
-//
-//
-// * It's implementation may be arse, but the paper is stellar and this project wouldn't
-//   have in anyway way worked out had they not provided their supporting information.
-//   Props to Hendriks et al. - big love.
-
-//Returns an unretarded version of the pfizer model
-void SBML_integrate::unretarding_the_pfizer_model(Model* retarded_model){
-
-  const ASTNode* formulanode;
-  
-  int num_rxns = retarded_model->getNumReactions();
-  Reaction* temp_rxn;
-  KineticLaw* klaw;
-  string formula;
-  
-  
-  for (int i = 0 ; i < num_rxns ;i++){
-    temp_rxn = retarded_model->getReaction(i);
-    klaw = temp_rxn->getKineticLaw();
-    formula = klaw->getFormula();
-
-    formula.resize(formula.length()-2);
-
-    cout << "On reaction " << temp_rxn->getId() << " looking for " << formula << "..." << endl;
-
-    formulanode = retarded_rules(retarded_model, formula);
-    if (formulanode == NULL){
-      autoAbort("Well this isn't good...");
-    }
-    
-    klaw->setMath(formulanode);
-  }
-
-  
-  SBMLDocument document(retarded_model->getLevel(), retarded_model->getVersion());
-
-  document.setModel(retarded_model);
-
-  const SBMLDocument* document_p = &document;
-  
-  SBMLWriter writer;
-
-  cout << "Writing return value = " << writer.writeSBML(document_p,"p38_alex.xml" ) << endl;
-  autoAbort("DONE");
-  
-}
-
-const ASTNode* SBML_integrate::retarded_rules(Model* model, string formula){
-  int num_rules = model->getNumRules();
-  Rule* temp_rule;
-  
-  for (int i = 0 ; i<num_rules ; i++){
-    temp_rule = model->getRule(i);
-    
-    if (temp_rule->getVariable() == formula)
-      return temp_rule->getMath();
-  }
-
-  return NULL;
-  
 }
