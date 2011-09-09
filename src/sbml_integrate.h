@@ -27,7 +27,7 @@ class SBML_integrate : public SBML_UI_general {
   /*!
     \brief Class constructor
 
-    \b Preconditions: All input should be valid. Models should be L2V1, and should not require function definition, constraint, inital assignment or event integration
+    \b Preconditions: All input should be valid. Models should be L2V1, and should not require function definition, constraint, initial assignment or event integration
 
     \b Postconditions: Creates an integration model, runs initial import and replacement, and then leads to an interactive environment where users can integrate any elements, explore the models or write the new integration model to disk
   */
@@ -41,7 +41,7 @@ class SBML_integrate : public SBML_UI_general {
   /*!
     \brief Driver function for the interactive integration process. 
 
-    Takes the decisions made by the (seperate) user interface function and acts on them appropriately
+    Takes the decisions made by the (separate) user interface function and acts on them appropriately
     
   */  
   void integrate_models();
@@ -51,7 +51,7 @@ class SBML_integrate : public SBML_UI_general {
   
   // -------------------------------------------------------------------------------------------
   /*! 
-    Initializer which gives the user the option to select which of the two files they're importing into the constructor whill be the base model, and which will be the import model. The integration model is based on the base model.
+    Initializer which gives the user the option to select which of the two files they're importing into the constructor while be the base model, and which will be the import model. The integration model is based on the base model.
 
     \b Preconditions: This must only be called from the constructor, which is why we have an init_called variable. fileA and fileB are the filenames as taken by the SBML_integrate constructor, and mean the user only needs to know the filename to select which model they want to be the base and which they want to be the import.
 

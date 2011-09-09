@@ -11,7 +11,7 @@
 /*!
   \brief Class which contains search and lookup functionality for the model
   
-  Includes functions to lookup model elements by ID, unit lookups and even determine the prescence or abscence of an ID in a complete, model wide manner.
+  Includes functions to lookup model elements by ID, unit lookups and even determine the presence or absence of an ID in a complete, model wide manner. In this implementation acts primarily as a parent class to give functionality to SBML_cleanup
     
 */
 
@@ -192,11 +192,7 @@ class SBML_search : public SBML_UI_general {
   bool locate_and_replace_mathML(Model* model, std::string queury, std::string replacement);
   /// \brief Search model for query in all MathML structures
   bool locate_and_replace(ASTNode* node, std::string query, std::string replacement);
-  
-  
-  
-
-  
+    
 };
 
 
@@ -244,8 +240,7 @@ int SBML_display::compare_units(const T compA, const T compB, const Model* model
       return 0;
 
     if (selector == 'B')
-      return 1;
-    
+      return 1;  
   }
 }
 #endif

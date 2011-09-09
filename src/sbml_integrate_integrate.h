@@ -15,7 +15,7 @@
 /*!
   \brief Class which contains integration functionality, allowing users to integrate two SBML elements together
     
-  Each SBML element has unique set of attribute, so each integration function is subtly different, although uses a consistent set of concepts to achive the task. Uses function from superclasses to facilitate a consistent user interface experience.
+  Each SBML element has unique set of attribute, so each integration function is subtly different, although uses a consistent set of concepts to achieve the task. Uses function from superclasses to facilitate a consistent user interface experience.
  
 */
 
@@ -41,7 +41,7 @@ class SBML_integrate_integrate : SBML_integrate_helper {
   /*!
     \brief Interactive unit definition integration based on integrate list
 
-    \b Preconditions: input_file must have already loaded it's data, model_new should be a valid model, listpair should be a valid SBML_listpair_container with replacement pairs
+    \b Preconditions: input_file must have already loaded it's data, model_new should be a valid model, list pair should be a valid SBML_listpair_container with replacement pairs
 
     \b Postconditions: An interactive integration between the two unit definitions occurs, giving the user the option to have this new integration element replace the original one, or be an additional element
   */
@@ -258,9 +258,9 @@ class SBML_integrate_integrate : SBML_integrate_helper {
   // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
   /*!
-    \brief User inteface for the reaction integration process
+    \brief User interface for the reaction integration process
 
-    Provides the following interace, returning one of the values listed as a char;\n
+    Provides the following interface, returning one of the values listed as a char;\n
 
     Please select an option\n
     [1] ----------- Edit Name\n
@@ -314,7 +314,7 @@ class SBML_integrate_integrate : SBML_integrate_helper {
      
      \b Preconditions: Both must be valid reactions
 
-    \b Postconditions: User choses to edit reactants or products, which invokes another interaction screen
+    \b Postconditions: User chooses to edit reactants or products, which invokes another interaction screen
     
    **/
   void edit_reaction_formula(Reaction* inNew_copy, Reaction* tempB);

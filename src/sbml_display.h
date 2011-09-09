@@ -14,7 +14,7 @@ class SBML_search;
 
 /*! \brief Class for outputting and describing components and lists to the standard output
  *   
-SBML_display is a class for printing lists or induvidual elements to the standard output. Inheriting from the UI_general class and using SBML_search object instances for lookup purposes, it is a standalone class with no attrbutes, instead requiring Model* for each display function. This ensures that any call will display a specific element, and not one pre-loaded which may or may not have changed depending on what has happened to the underlying data structure.
+SBML_display is a class for printing lists or individual elements to the standard output. Inheriting from the UI_general class and using SBML_search object instances for lookup purposes, it is a standalone class with no attributes, instead requiring Model* for each display function. This ensures that any call will display a specific element, and not one pre-loaded which may or may not have changed depending on what has happened to the underlying data structure.
 
 */
 
@@ -34,7 +34,7 @@ class SBML_display : public SBML_UI_general {
       Model ID ----------------- \n
       Model name --------------- \n
       Model version ------------ \n
-      ModeL level -------------- \n
+      Model level -------------- \n
       Model substance units ---- \n
       Model time units --------- \n
       Model volume units ------- \n
@@ -45,12 +45,12 @@ class SBML_display : public SBML_UI_general {
       ---------------------------------\n
       Summary of model components\n
       ---------------------------------\n
-      No of funtions ----------- \n
+      No of functions ----------- \n
       No of unit definitions --- \n
       No of compartments ------- \n
       No of species ------------ \n
       No of parameters --------- \n
-      No of initial assigments - \n
+      No of initial assignments  \n
       No of rules -------------- \n
       No of constraints -------- \n
       No of reactions ---------- \n
@@ -136,7 +136,7 @@ class SBML_display : public SBML_UI_general {
   /** \brief Function to display a standard message asking the user to select between A and B.
 
       \b Preconditions: A and B should be valid option in a [CHOSE "A" or CHOSE "B"] context.
-      \b Postconditions: If disclaimer is true, the output includes a dislaimer message on data integrity. Returns 0 for A and 1 for B
+      \b Postconditions: If disclaimer is true, the output includes a disclaimer message on data integrity. Returns 0 for A and 1 for B
 
    **/
   int compare(std::string title, std::string A, std::string B, bool disclaimer);
@@ -145,7 +145,7 @@ class SBML_display : public SBML_UI_general {
 
       \b Preconditions:  A and B should be valid option in a [CHOSE "A" or CHOSE "B" or CHOSE "C"] context.
 
-      \b Postconditions: If disclaimer is true, the output includes a dislaimer message on data integrity. Returns 0 for A, 1 for B and 2 for C
+      \b Postconditions: If disclaimer is true, the output includes a disclaimer message on data integrity. Returns 0 for A, 1 for B and 2 for C
 
    **/
   int compare3way(std::string title, std::string A, std::string B, std::string C, bool disclaimer);

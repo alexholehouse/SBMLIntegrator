@@ -20,7 +20,7 @@ void SBML_display::show_summary(const Model* model, string filename){
   cout << "Model ID ----------------- " << model->getId() << endl;
   cout << "Model name --------------- " << model->getName() << endl; 
   cout << "Model version ------------ " << model->getVersion() << endl;
-  cout << "ModeL level -------------- " << model->getLevel() << endl;
+  cout << "Model level -------------- " << model->getLevel() << endl;
   cout << "Model substance units ---- " << model->getSubstanceUnits() << endl;
   cout << "Model time units --------- " << model->getTimeUnits() << endl;
   cout << "Model volume units ------- " << model->getVolumeUnits() << endl;
@@ -32,12 +32,12 @@ void SBML_display::show_summary(const Model* model, string filename){
   cout << "---------------------------------" << endl;
   cout << "Summary of model components" << endl;
   cout << "---------------------------------" << endl;
-  cout << "No of funtions ----------- " << model->getNumFunctionDefinitions() << endl;
+  cout << "No of functions ----------- " << model->getNumFunctionDefinitions() << endl;
   cout << "No of unit definitions --- " << model->getNumUnitDefinitions() << endl;
   cout << "No of compartments ------- " << model->getNumCompartments() << endl;
   cout << "No of species ------------ " << model->getNumSpecies() << endl;
   cout << "No of parameters --------- " << model->getNumParameters() << endl;
-  cout << "No of initial assigments - " << model->getNumInitialAssignments() << endl;
+  cout << "No of initial assignments  " << model->getNumInitialAssignments() << endl;
   cout << "No of rules -------------- " << model->getNumRules() << endl;
   cout << "No of constraints -------- " << model->getNumConstraints() << endl;
   cout << "No of reactions ---------- " << model->getNumReactions() << endl;
@@ -580,7 +580,7 @@ void SBML_display::show_reactions(const Model* model){
     // get pointer to reaction i
     rxn = rxn_list->get(i);
 
-    // get number of reactants, products and modifers
+    // get number of reactants, products and modifiers
     num_mods = rxn->getNumModifiers();
     
     cout << "Reaction [" << i+1 << "] Name(" << rxn->getName() <<") ID(" 
@@ -589,13 +589,14 @@ void SBML_display::show_reactions(const Model* model){
     cout << "    ";
 
     output_reaction_formula(rxn);
+    cout << endl << "    Modifiers: ";
     output_reaction_modifiers(rxn);
     
     // Output modifiers
-    cout << endl << "    Modfiers: ";
+
 
     
-    // display a kinitic law - this is fiddly, because we check both the reactions kineticLaw 
+    // display a kinetic law - this is fiddly, because we check both the reactions kineticLaw 
     // variable and then search in rules for referenced kinetic laws
     if (rxn->isSetKineticLaw()){
       rate_law = rxn->getKineticLaw();
@@ -604,14 +605,14 @@ void SBML_display::show_reactions(const Model* model){
       // get the formula of the rate law
       string_var = rate_law->getFormula();
       
-      // BELOW is primarily an artifact of an model we worked on where the rate law was
+      // BELOW is primarily an artefact of an model we worked on where the rate law was
       // defined as a rule with the format RULENAME(). By removing the "()" we could
       // then find what the rule's value was, and display that here. Don't worry about
       // it too much...
       
       // Cut terminal () if necessary - MathML adds a () to the end of kineticLaws which 
       // reference somewhere else. This cuts off that terminal (). NOTE this could be a 
-      // source of error if a malformatted rule is cleaved
+      // source of error if a mal-formatted rule is cleaved
       location = string_var.rfind("()");
       if (location != -1)
 	{
@@ -622,7 +623,7 @@ void SBML_display::show_reactions(const Model* model){
 	    // chop off () at end by resizing string
 	    string_var.resize(string_var.size() - 2);
 	    
-	    log_stream << " however, after formating, string is " << string_var << endl << endl;
+	    log_stream << " however, after formatting, string is " << string_var << endl << endl;
 	  }
 	  
 	  rulelookup = true;
@@ -638,7 +639,7 @@ void SBML_display::show_reactions(const Model* model){
 	autoAbort("Aborting..");
       }
       
-      // usinging the search framework we identify if the rule defined here is actually 
+      // using the search framework we identify if the rule defined here is actually 
       // referencing a previously defined rule
       const Rule* rule = NULL;
       
@@ -1028,7 +1029,7 @@ int SBML_display::compare(string title, string A, string B, bool disclaimer){
   // if both are the same no need to change!
   if (A == B){
     
-    cout << "Both values of the '" << title << "' attribute thave the same value (" << A << ")" << endl;
+    cout << "Both values of the '" << title << "' attributes have the same value (" << A << ")" << endl;
     any_key_to_continue();
     
     return 0;

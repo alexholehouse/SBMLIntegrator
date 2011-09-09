@@ -14,9 +14,9 @@
 
 It is highly connected to SBML_Search in the following way.
 SBML_cleanup object calls "Replace(element_object)" ===> finds every instance of that element using SBML_search methods ==> runs the replacement method which is located in SBML_cleanup
-SBML_search can also be used to simply find an object (by another method). SBML_cleanup implements protected inheritance from SBML_search. This is to ensure "is_present" is not accidentally called from a cleanup object. This would damage the models data integrity, and so we have chosen to implement a hardcoding solution to avoid this from happening.
+SBML_search can also be used to simply find an object (by another method). SBML_cleanup implements protected inheritance from SBML_search. This is to ensure "is_present" is not accidentally called from a cleanup object. This would damage the models data integrity, and so we have chosen to implement a hard coding solution to avoid this from happening.
 
-SBML_search also includes a consolidates units function. This is infact not used in SBMLIntegrator (as of Alpha 0.1) but may be used as the software becomes more advanced
+SBML_search also includes a consolidates units function. This is in fact not used in SBMLIntegrator (as of Alpha 0.1) but may be used as the software becomes more advanced
 
 
  *   
@@ -199,7 +199,7 @@ class SBML_cleanup : protected SBML_search {
     \b Preconditions: None
 
     \b Postconditions: Is functioning, but is currently not used in SBMLIntegrator. Has
-    Not been checked for pathalogical models or its affect investigated on internal 
+    Not been checked for pathological models or its affect investigated on internal 
     data consistency. DO NOT USE until further notice (~ASH 28/08/2011)
     
   */
@@ -208,7 +208,7 @@ class SBML_cleanup : protected SBML_search {
  private:
   
   // -----------------------------------------------------------------------------------
-  /*! The clean model *does not exist anywhere else unless copy is set to false in the constructor* - it is initially a deep copy of the model fed into the constructor, but changes made to it via the replace functions only affect this model. As a result, it is the user;s responsibility to delete this object to avoid a memory leak.
+  /*! The clean model does not exist anywhere else unless copy is set to false in the constructor - it is initially a deep copy of the model fed into the constructor, but changes made to it via the replace functions only affect this model. As a result, it is the user's responsibility to delete this object to avoid a memory leak.
 
     If copy is set to false, then clean_model is set to the input_model, and cleanup operations are enacted on the input model!*/ 
   Model* clean_model;
@@ -221,7 +221,7 @@ class SBML_cleanup : protected SBML_search {
     \b Preconditions: None
     
     \b Postconditions: Is functioning, but is currently not used in SBMLIntegrator. Has
-    Not been checked for pathalogical models or its affect investigated on internal 
+    Not been checked for pathological models or its affect investigated on internal 
     data consistency. DO NOT USE until further notice (~ASH 28/08/2011)
     
   */
@@ -347,7 +347,7 @@ class SBML_cleanup : protected SBML_search {
   
 
 
-  // virtual bool replace_initial_assignmentss this doesn't exist as it's never needed
+  // virtual bool replace_initial_assignments this doesn't exist as it's never needed
   // virtual bool replace_rules doesn't exist as it's never needed
   // virtual bool replace_constraints doesn't exist as it's never needed
   // virtual bool replace_reactions doesn't exist as it's never needed

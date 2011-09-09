@@ -26,7 +26,7 @@ class SBML_integrate_replace : SBML_integrate_helper {
   /*!
     \brief Template function to replace any element in a model with another
     
-    \b Preconditions: Takes two objects of type T1 and T2. Type T1 should be an instanciated template class object of the SBML_listpair_container_type, while type T2 should be of ListOf* type, where * matches with the type of instantiation used in the SBML_listpair_container_type. For example, we could call the function with 
+    \b Preconditions: Takes two objects of type T1 and T2. Type T1 should be an instantiated template class object of the SBML_listpair_container_type, while type T2 should be of ListOf* type, where * matches with the type of instantiation used in the SBML_listpair_container_type. For example, we could call the function with 
     
     replacement_framework.replace_elements<SBML_listpair_container<ListOfFunctionDefinitions>, ListOfFunctionDefinitions>(model_new, functionDefinitions_rep_container, 0); \n \n
 
@@ -35,7 +35,7 @@ class SBML_integrate_replace : SBML_integrate_helper {
 
     i defines where in the list we begin from
 
-    \b Postconditions: The function goes through the repacement lists, replacing each pair appropriately, where in each pair the element from listB will replace the element from listA
+    \b Postconditions: The function goes through the replacement lists, replacing each pair appropriately, where in each pair the element from listB will replace the element from listA
   */
 
   template <class T1, class T2>

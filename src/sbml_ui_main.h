@@ -14,7 +14,7 @@
   /*!
     \brief UI class for the main interaction
 
-    User Interface class for main menu. For alpha this is remaining very simple, though in later releases we may refactor a lot of the UI methods from SBML_formatter and any subclasses into here.
+    User Interface class for main menu. For alpha this is remaining very simple, though in later releases we may re-factor a lot of the UI methods from SBML_formatter and any subclasses into here.
     !*/
 
 class SBML_UI_main : public SBML_UI_general {
@@ -34,7 +34,7 @@ class SBML_UI_main : public SBML_UI_general {
   void intro();
   
   // #############################################################################################
-  /*! \b Overview: Shows the main splashscreen for the software, giving users a range of options to select different activitues
+  /*! \b Overview: Shows the main splash screen for the software, giving users a range of options to select different activities
 
     \b Preconditions: Bool should be set to true if model integration is possible (i.e. two valid models have loaded) or false if not
 
@@ -55,7 +55,7 @@ class SBML_UI_main : public SBML_UI_general {
   int main_screen_display(bool integrate, bool reset);
   
   // #############################################################################################
-  /// \brief Print command line help for software initilziation
+  /// \brief Print command line help for software initialization
   void print_help();
 
   // #############################################################################################
@@ -71,7 +71,7 @@ class SBML_UI_main : public SBML_UI_general {
   void print_logo();
   
   // #############################################################################################
-  /** \brief select one of the imput models to explore and view the internal elements of 
+  /** \brief select one of the input models to explore and view the internal elements of 
       
       \b Preconditions: model1 and model2 should have the corresponding filenames of model1_name and model2_name. display_framework should refer to a constructed and intialized object
 

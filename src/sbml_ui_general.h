@@ -7,7 +7,7 @@
 #include <sbml/SBMLTypes.h>
 #include "sbml_formatter.h"
 /*!
-  \brief General user inteface class, providing generic functions used throughout the software
+  \brief General user interface class, providing generic functions used throughout the software
 */
 
 
@@ -56,7 +56,7 @@ class SBML_UI_general : public SBML_formatter {
     */
   std::string stringGet();
     /*!
-    \brief Get a value between lower or upper from STDIN, or c_FAILDOUBLE if inccorect value input
+    \brief Get a value between lower or upper from STDIN, or c_FAILDOUBLE if incorrect value input
 
     */
   double doubleGet(double lower, double upper);

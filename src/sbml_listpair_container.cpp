@@ -35,24 +35,29 @@ public:
     
   }
   
-  /// \brief Get lenth of lists
+  /// \brief Get length of lists
   int& get_num(){
     return num; }
   
+  /// \brief Returns a pointer to A
   T* get_listA(){
     return list_A; }
-
+    
+ /// \brief Returns a pointer to B
   T* get_listB(){
     return list_B; }
 
+ /// \brief Sets list A to the argument pointer
   void set_listA(T* _list_A){
     list_A = _list_A;
   }
-
+  
+ /// \brief Sets list B to the argument pointer
   void set_listB(T* _list_B){
     list_B = _list_B;
   }
   
+ /// \brief Sets the counter (DO NOT MESS AROUND WITH THIS!)
   void set_num(int new_num){
     num = new_num; 
   }

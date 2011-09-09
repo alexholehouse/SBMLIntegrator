@@ -14,7 +14,7 @@
 /**
    \brief Configuration file API, providing easy data access to the rest of the software while dealing with all the low level filestream handling
 
-   SBML_confInput is the class which provides an API to the data stored in the .conf file (by default called integrate.conf). The information translated from this configuration file is stored in ten SBML_integration_container objects.  These are described in more detail in their documentation, but encompasse five ListOf* objects, where * is one of the ten SBML model element types. SBML_confInpit serves as an API to these containers, allowing a single interface to get the information needed to integrate two models together.
+   SBML_confInput is the class which provides an API to the data stored in the .conf file (by default called integrate.conf). The information translated from this configuration file is stored in ten SBML_integration_container objects.  These are described in more detail in their documentation, but encompasses five ListOf* objects, where * is one of the ten SBML model element types. SBML_confInput serves as an API to these containers, allowing a single interface to get the information needed to integrate two models together.
    
  **/
 
@@ -27,12 +27,12 @@ class SBML_confInput : public SBML_UI_general {
     
     \brief Main function - used to set all the data structures in place and import all relevant data from the .conf file as defined by conf_file parameter
     
-    <b>Preconditions:</b> modelNew and modelB are valid SBML models, conf_file is the filename of a correctly formatted configuration file.
+    <b>Preconditions:</b> modelNew and modelB are valid SBML models, conf_file is the file name of a correctly formatted configuration file.
       
     <b>Postconditions:</b> Imports the data specified in the configuration file into this class. 
     Elements are stored in import, integrate and replace lists, with counters set to the number of elements in each of these lists. 
 
-    <b>Notes: </b> The storage of elements in lists is infact an abstraction, and instead imported elements are stored on SBML_Integration_Container objects. 
+    <b>Notes: </b> The storage of elements in lists is in fact an abstraction, and instead imported elements are stored on SBML_Integration_Container objects. 
     !*/
 
   
@@ -56,7 +56,7 @@ class SBML_confInput : public SBML_UI_general {
    **/
   int get_num_import_compartments();
   
-  /** \brief Returns the number of species defined in the species's "Import:" list in the .conf file.
+  /** \brief Returns the number of species defined in the species' "Import:" list in the .conf file.
    **/
   int get_num_import_species();
   
@@ -64,7 +64,7 @@ class SBML_confInput : public SBML_UI_general {
    **/
   int get_num_import_parameters();
 
-  /** \brief Returns the number of initialAssigments defined in the initialAssignments's "Import:" list in the .conf file.
+  /** \brief Returns the number of initialAssigments defined in the initialAssignment's "Import:" list in the .conf file.
    **/
   int get_num_import_initialAssignments();
 
@@ -72,7 +72,7 @@ class SBML_confInput : public SBML_UI_general {
    **/
   int get_num_import_rules();
 
-  /** \brief Returns the number of constraints defined in the contraint's "Import:" list in the .conf file.
+  /** \brief Returns the number of constraints defined in the constraint's "Import:" list in the .conf file.
    **/
   int get_num_import_constraints();
 
@@ -86,7 +86,7 @@ class SBML_confInput : public SBML_UI_general {
 
   //#########################################################################################
   
-  /** \brief Returns the number of events defined in the functionDefinitions's <b>"Replace:"</b> list in the .conf file.
+  /** \brief Returns the number of events defined in the functionDefinition's <b>"Replace:"</b> list in the .conf file.
     **/
   int get_num_replace_functionDefinitions();
 
@@ -98,7 +98,7 @@ class SBML_confInput : public SBML_UI_general {
   **/
   int get_num_replace_compartments();
 
-  /** \brief Returns the number of events defined in the species's <b>"Replace:"</b> list in the .conf file.
+  /** \brief Returns the number of events defined in the species' <b>"Replace:"</b> list in the .conf file.
   **/
   int get_num_replace_species();
 
@@ -106,41 +106,41 @@ class SBML_confInput : public SBML_UI_general {
   **/
   int get_num_replace_parameters();
 
-  /** \brief Returns the number of events defined in the initailAssignments's <b>"Replace:"</b> list in the .conf file.
+  /** \brief Returns the number of events defined in the initialAssignment's <b>"Replace:"</b> list in the .conf file.
    **/
   int get_num_replace_initialAssignments();
 
-  /** \brief Returns the number of events defined in the rules's <b>"Replace:"</b> list in the .conf file.
+  /** \brief Returns the number of events defined in the rules' <b>"Replace:"</b> list in the .conf file.
    **/
   int get_num_replace_rules();
 
-  /** \brief Returns the number of events defined in the constraints's <b>"Replace:"</b> list in the .conf file.
+  /** \brief Returns the number of events defined in the constraint's <b>"Replace:"</b> list in the .conf file.
    **/
   int get_num_replace_constraints();
 
-  /** \brief Returns the number of reactions defined in the constraints's <b>"Replace:"</b> list in the .conf file.
+  /** \brief Returns the number of reactions defined in the constraint's <b>"Replace:"</b> list in the .conf file.
    **/
   int get_num_replace_reactions();
 
-  /** \brief Returns the number of events defined in the constraints's <b>"Replace:"</b> list in the .conf file.
+  /** \brief Returns the number of events defined in the constraint's <b>"Replace:"</b> list in the .conf file.
    **/
   int get_num_replace_events();
   
   //#########################################################################################
 
-  /** \brief Returns the number of events defined in the function definitions's <b>"Integrate:"</b> list in the .conf file.
+  /** \brief Returns the number of events defined in the function definition's <b>"Integrate:"</b> list in the .conf file.
    **/
   int get_num_integrate_functionDefinitions();
 
-  /** \brief Returns the number of events defined in the unit definitions's <b>"Integrate:"</b> list in the .conf file.
+  /** \brief Returns the number of events defined in the unit definition's <b>"Integrate:"</b> list in the .conf file.
    **/
   int get_num_integrate_unitDefinitions();
 
-  /** \brief Returns the number of events defined in the compartments's <b>"Integrate:"</b> list in the .conf file.
+  /** \brief Returns the number of events defined in the compartment's <b>"Integrate:"</b> list in the .conf file.
    **/
   int get_num_integrate_compartments();
 
-  /** \brief Returns the number of events defined in the species's <b>"Integrate:"</b> list in the .conf file.
+  /** \brief Returns the number of events defined in the species' <b>"Integrate:"</b> list in the .conf file.
    **/
   int get_num_integrate_species();
 
@@ -152,7 +152,7 @@ class SBML_confInput : public SBML_UI_general {
    **/
   int get_num_integrate_initialAssignments();
 
-  /** \brief Returns the number of events defined in the rules's <b>"Integrate:"</b> list in the .conf file.
+  /** \brief Returns the number of events defined in the rules' <b>"Integrate:"</b> list in the .conf file.
    **/
   int get_num_integrate_rules();
 
@@ -340,7 +340,7 @@ class SBML_confInput : public SBML_UI_general {
   
   /*! \brief Imports the specified elements as defined by the Replace: or Integrate: lists in the .conf file into the replace or integrate containers
 
-    \b Preconditions: Must run preprocess first to ensure file is good and set seek locations, modelB should be the import model, model A the base model or the virgin integration model (which are the same thing). If replace is true we search and load the repaclement lists, if false the integration lists.
+    \b Preconditions: Must run pre-process first to ensure file is good and set seek locations, modelB should be the import model, model A the base model or the virgin integration model (which are the same thing). If replace is true we search and load the repaclement lists, if false the integration lists.
     
     \b Postconditions: Imports the defined elements into the replacement_list or integration_list in the SBML_integration_container elements
 

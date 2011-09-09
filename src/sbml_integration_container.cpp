@@ -10,7 +10,7 @@ using namespace std;
   /*!
     \brief Template class used to hold the list required for import, replacement and integration
 
-    T1 should be instanciated to a SBML list type, and T2 to the element stored in that list. With this in mind, the class becomes a container for five lists, one import lists and two pairs of replacment and integration lists. In these paired lists the parallel elements are pared - i.e. replace_A_list[1] and replace_B_list[1] are a pair.
+    T1 should be instantiated to a SBML list type, and T2 to the element stored in that list. With this in mind, the class becomes a container for five lists, one import lists and two pairs of replacement and integration lists. In these paired lists the parallel elements are pared - i.e. replace_A_list[1] and replace_B_list[1] are a pair.
 
   */
 template<class T1, class T2>
@@ -21,7 +21,7 @@ public:
   
   /** \brief Constructor method
       
-      WARNING - lists are currently hardcoded as SBML V1/L2. This may be a problem upon future API upgrades, so we'll look at making this 
+      WARNING - lists are currently hard coded as SBML V1/L2. This may be a problem upon future API upgrades, so we'll look at making this 
       dynamic to reflect the models.
   */
   //-----------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ public:
     
     // we declare these on the heap (as opposed to making them automatic) so if the object goes out
     // of scope these variables are still accessible by objects far down the line if they're passed
-    // (i.e. specifically the SBML_interate class)
+    // (i.e. specifically the SBML_integrate class)
     
     import_list = new T1(1,2);
     replace_A_list = new T1(1,2); 
@@ -51,7 +51,6 @@ public:
     delete replace_B_list;
     delete integrate_A_list;
     delete integrate_B_list;
-    log_stream << "==================IMPLEMENTING DESTRUCTOR =========================" << endl << endl;
   }
   
 

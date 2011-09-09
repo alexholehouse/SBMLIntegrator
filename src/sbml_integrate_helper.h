@@ -8,7 +8,7 @@
 /*!
   \brief Parent class to all the integrate_* classes. 
   
-  Provides widely used functionality, although presently mainly pertains to the interate_integrate class. Faciliates extension of functionality, potential to deal with multiple versions/levels of SBML.
+  Provides widely used functionality, although presently mainly pertains to the interate_integrate class. Facilitates extension of functionality, potential to deal with multiple versions/levels of SBML.
 */
 class SBML_integrate_helper : public SBML_UI_general {
  
@@ -107,7 +107,7 @@ class SBML_integrate_helper : public SBML_UI_general {
       << " /           division             binary       3            left   " << std::endl
       << " +           addition             binary       2            left   " << std::endl
       << " -           subtraction          binary       2            left   " << std::endl
-      << " ,           argument deliminter  binary       1            left   " << std::endl
+      << " ,           argument delimiter   binary       1            left   " << std::endl
       << std::endl
       << "Example formula"  << std::endl
       << "1)  0.10 * k4^2"  << std::endl
