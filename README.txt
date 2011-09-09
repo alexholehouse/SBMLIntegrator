@@ -27,7 +27,7 @@
                                 Y8b d88P
                                  Y88P"
 
-Updated 28/08/2011
+Updated 09/09/2011
 alex.holehouse@gmail.com
 
    ,---------------------------------------------------------------.
@@ -93,6 +93,10 @@ we used.
 However, to ensure a complete software package, this functionality 
 will be added for the beta release (which has a tentative release date
 of September 30th 2011).
+
+A more widespread issue is that both models must be L2V1. Multi-level
+support will be introduced ASAP, but for now, L2V1 represents an 
+easily accesible common denominator.
 
 _____________________________________________________________________
 
@@ -185,10 +189,12 @@ For integration, there are three models
   the integration model. Typically, you'd want the larger of the two models 
   to be the base model (and as a result the base of the integration model)
 
-SBMLIntegrator integrates two models based on a configuration file.
+SBMLIntegrator integrates two models based on a configuration file, named
+
+integrate.conf
 
 A configuration file defines what elements of one model (the import model)
-are brought into the other model (the integration model) . SBML files are 
+are brought into the other model (the integration model). SBML files are 
 based on lists of ten elements shown below;
 
 - Function Definitions
@@ -227,9 +233,10 @@ This section defines the following;
   integration model
 
 - In the integration model, replace references to species 1 (as defined 
-  in the import model) with references to species 7 as defined in the BASE 
-  model. Similarly, references to species 2 in the import model are replaced 
-  by references to species 9 in the base model
+  in the import model) with references to species the import species 7 
+  as defined in the BASE model. Similarly, references to species 2 
+  in the import model are replaced by references to species 9 in the 
+  base model, and references to species 3 --> species 11.
 
 - In the integration model, integrate species 13 from the base model and 14
   from the import mode together in an interactive manner, allowing you to 
