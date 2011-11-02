@@ -90,10 +90,6 @@ invalid in the SimBiology MATLAB package (with which our integrated
 models are simulated) and because they were not present in the models
 we used.
 
-However, to ensure a complete software package, this functionality 
-will be added for the beta release (which has a tentative release date
-of September 30th 2011).
-
 A more widespread issue is that both models must be L2V1. Multi-level
 support will be introduced ASAP, but for now, L2V1 represents an 
 easily accesible common denominator.
