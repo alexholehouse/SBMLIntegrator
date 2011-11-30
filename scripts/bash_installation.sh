@@ -12,7 +12,7 @@ echo "_________________________________________________________________________"
 echo "Running configure for the LibSBML API"
 echo "-------------------------------------------------------------------------"
 
-#./configure --prefix $inst_dir
+./configure --prefix $inst_dir
 
 echo -e "\n~~ Configuration complete ~~ \n\nIf it completed without any errors, press enter 
 If not please press CTRL-C, try and rectify them (probably missing 
