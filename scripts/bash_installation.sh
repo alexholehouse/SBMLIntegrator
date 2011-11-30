@@ -26,7 +26,7 @@ echo "Running make for LibSBML API"
 echo "-------------------------------------------------------------------------"
 
 
-#make
+make
 
 echo -e "\n~~ Make complete ~~ \n\nIf it completed without any errors, press enter 
 If not please press CTRL-C, try and rectify them and re-run"
@@ -38,7 +38,7 @@ echo "_________________________________________________________________________"
 echo "Running make install"
 echo "-------------------------------------------------------------------------"
 
-#make install
+make install
 
 echo -e "\n~~Make install complete~~ \n\nIf it completed without any errors, press enter 
 If not please press CTRL-C, try and rectify them and re-run. We deal with all
