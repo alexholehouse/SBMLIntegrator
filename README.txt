@@ -1,28 +1,28 @@
-
-     .-://///:`  .:/+++++/-`      .--.             `---`  `--
-  -/++//:---:.`://+syyyssoo+`    ohhy`            /hhh.  -hy`
-`/++/-`       ::/ohhyyssssoss-   ohhh+           .yhhh.  .hy`          
-:++/.        `:::sysoo+++++oss.  ohoyh-         `ohoyh.  .hy`          
-++//`        `--:/oo+///://+os:  oh//hs`        :hs.yh.  .hy`          
-/+//.       `..--:////:--:/oos.  oh/`sh/       `yh-`yh.  .hy`          
-`////:-.......---::://///++oo-   oh/ -hy.      +h+ `yh.  .hy`          
-  .:///:::::--::::://///++oo:    oh/  +hs     -hy` `yh.  .hy`          
-`::-``..--::::::://osyyysoooo.   oh/  `yh:   `sh:  `yh.  .hy`          
-:o+/`      .:////oyhyyyyyyssss`  oh/   :hy`  /ho`  `yh.  .hy`          
-/oo/        .///oyysoo+++oosyy-  oh/    oho .hh.   `yh.  .hy`          
-.sso:       `+++oso+//////syyy`  oh/    .hh-oh/    `yh.  .hy`          
- :sss+-`   ./oooooo//:::+syyy.   oh/     /hhhs`    `yh.  -hy`          
-  `/syssooossssssssssssyyyy/`    oh/      shh-     `yh.  -hhooooooooooo
-    `-/+oso+/-.-:/osyyso/-`      -:.      .:-      `--`  `:::::::::::::
+	
+        .-://///:`  .:/+++++/-`      .--.             `---`  `--
+     -/++//:---:.`://+syyyssoo+`    ohhy`            /hhh.  -hy`
+   `/++/-`       ::/ohhyyssssoss-   ohhh+           .yhhh.  .hy`          
+   :++/.        `:::sysoo+++++oss.  ohoyh-         `ohoyh.  .hy`          
+   ++//`        `--:/oo+///://+os:  oh//hs`        :hs.yh.  .hy`          
+   /+//.       `..--:////:--:/oos.  oh/`sh/       `yh-`yh.  .hy`          
+   `////:-.......---::://///++oo-   oh/ -hy.      +h+ `yh.  .hy`          
+     .:///:::::--::::://///++oo:    oh/  +hs     -hy` `yh.  .hy`          
+   `::-``..--::::::://osyyysoooo.   oh/  `yh:   `sh:  `yh.  .hy`          
+   :o+/`      .:////oyhyyyyyyssss`  oh/   :hy`  /ho`  `yh.  .hy`          
+   /oo/        .///oyysoo+++oosyy-  oh/    oho .hh.   `yh.  .hy`          
+   .sso:       `+++oso+//////syyy`  oh/    .hh-oh/    `yh.  .hy`          
+    :sss+-`   ./oooooo//:::+syyy.   oh/     /hhhs`    `yh.  -hy`          
+     `/syssooossssssssssssyyyy/`    oh/      shh-     `yh.  -hhooooooooooo
+       `-/+oso+/-.-:/osyyso/-`      -:.      .:-      `--`  `:::::::::::::
     
-8888888          888                                     888
-  888            888                                     888
-  888            888                                     888
-  888   88888b.  888888 .d88b.   .d88b.  888d888 8888b.  888888 .d88b.  888d888
-  888   888  88b 888   d8P  Y8b d88P 88b 888P        88b 888    d8888b  888P   
-  888   888  888 888   88888888 888  888 888    .d888888 888   888  888 888
-  888   888  888 Y88b. Y8b.     Y88b 888 888    888  888 Y88b. Y88..88P 888
-8888888 888  888  Y888   Y8888    Y88888 888    Y888888  Y888    Y88P   888
+   8888888          888                                     888
+     888            888                                     888
+     888            888                                     888
+     888   88888b.  888888 .d88b.   .d88b.  888d888 8888b.  888888 .d88b.  888d888
+     888   888  88b 888   d8P  Y8b d88P 88b 888P        88b 888    d8888b  888P   
+     888   888  888 888   88888888 888  888 888    .d888888 888   888  888 888
+     888   888  888 Y88b. Y8b.     Y88b 888 888    888  888 Y88b. Y88..88P 888
+   8888888 888  888  Y888   Y8888    Y88888 888    Y888888  Y888    Y88P   888
                                      888
                                 Y8b d88P
                                  Y88P"
@@ -89,10 +89,6 @@ These functionalities have not been completed yet, as they are
 invalid in the SimBiology MATLAB package (with which our integrated
 models are simulated) and because they were not present in the models
 we used.
-
-However, to ensure a complete software package, this functionality 
-will be added for the beta release (which has a tentative release date
-of September 30th 2011).
 
 A more widespread issue is that both models must be L2V1. Multi-level
 support will be introduced ASAP, but for now, L2V1 represents an 
