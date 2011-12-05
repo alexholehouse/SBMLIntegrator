@@ -9,9 +9,10 @@
 #include <string>
 #include <sbml/SBMLTypes.h>
 
-using namespace std;
+using std::string;
+
 /*!
-  \brief Simple class which holds a pair of lists
+  \brief Simple template class which holds a pair of lists
   
 */
 template<class T>
@@ -26,7 +27,7 @@ public:
     list_B = NULL;
   }
   
-  /// \brief explicit constructor that takes two list objects and the number of elements in the list
+  /// \brief Explicit constructor that takes two list objects and the number of elements in the list (remember listpair objects contain two lists of equal lengt)
   SBML_listpair_container(T* _list_A, T* _list_B, int& _num) {
     
     num = _num;
@@ -61,8 +62,7 @@ public:
   void set_num(int new_num){
     num = new_num; 
   }
-  
-  
+   
 private:
   
   T* list_A;

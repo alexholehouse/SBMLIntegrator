@@ -4,10 +4,15 @@
 #include <iostream>
 #include <string>
 #include <sbml/SBMLTypes.h>
-#include "sbml_ui_general.h"
 #include <cstdlib>
+#include "sbml_ui_general.h"
 
-using namespace std;
+// using declarations
+using std::cin;
+using std::cout;
+using std::endl;
+using std::string;
+
 
 void SBML_UI_general::any_key_to_continue(){
   cout << " Press any key to continue...";

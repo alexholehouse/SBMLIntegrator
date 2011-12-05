@@ -6,8 +6,9 @@
 #include <iostream>
 #include <stdlib.h>
 
-using namespace std;
-
+// using declarations
+using std::endl;
+using std::string;
 
 // Function which takes in a rule ID as a string, and searches through the  model argument
 // to return a pointer to that rule, if the rule is present, or a pointer to NULL if it is

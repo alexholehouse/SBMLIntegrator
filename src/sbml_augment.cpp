@@ -6,7 +6,11 @@
 #include <string>
 #include <iostream>
 
-using namespace std;
+//using namespace std;
+
+using std::endl;
+using std::string;
+using std::cout;
 
 // constructor
 SBML_augment::SBML_augment(Model* _model) : cleanup(_model, false)

@@ -6,7 +6,9 @@
 #include <string>
 #include <sbml/SBMLTypes.h>
 
-using namespace std;
+using std::string;
+using std::endl;
+
   /*!
     \brief Template class used to hold the list required for import, replacement and integration
 

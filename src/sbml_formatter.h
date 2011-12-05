@@ -430,7 +430,7 @@ in the .conf file.
 #ifndef SBML_FORMATTER_H
 #define SBML_FORMATTER_H
 
-#include <string>
+
 #include <iostream>
 #include <fstream>
 #include <sbml/SBMLTypes.h>

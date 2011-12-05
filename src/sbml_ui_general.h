@@ -4,8 +4,8 @@
 #ifndef SBML_UI_GENERAL_H
 #define SBML_UI_GENERAL_H
 
-#include <sbml/SBMLTypes.h>
 #include "sbml_formatter.h"
+
 /*!
   \brief General user interface class, providing generic functions used throughout the software
 */

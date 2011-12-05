@@ -5,12 +5,14 @@
 #define SBML_INTEGRATE_INTEGRATE_H
 
 #include "sbml_integrate_helper.h"
-#include "sbml_confInput.h"
+//#include "sbml_confInput.h"
 #include "sbml_display.h"
-#include "sbml_cleanup.h"
+//#include "sbml_cleanup.h"
 #include "sbml_listpair_container.cpp"
-#include <iostream>
 #include <sbml/SBMLTypes.h>
+
+class SBML_confInput;
+class SBML_cleanup;
 
 /*!
   \brief Class which contains integration functionality, allowing users to integrate two SBML elements together

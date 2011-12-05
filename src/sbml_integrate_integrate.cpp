@@ -2,11 +2,15 @@
 // Distributed under the terms of the GNU general public license - see COPYING.txt for more details
 
 #include "sbml_integrate_integrate.h"
+#include "sbml_cleanup.h"
+#include "sbml_confInput.h"
 #include <sbml/SBMLTypes.h>
 #include <string>
 #include <iostream>
 
-using namespace std;
+// using declaration
+using std::cout;
+using std::endl;
 
 // #############################################################################################
 // #                                                                                           #

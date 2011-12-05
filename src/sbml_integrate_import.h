@@ -4,9 +4,6 @@
 #ifndef SBML_INTEGRATE_IMPORT_H
 #define SBML_INTEGRATE_IMPORT_H
 
-#include "sbml_formatter.h"
-#include "sbml_cleanup.h"
-#include <iostream>
 #include <sbml/SBMLTypes.h>
 #include "sbml_integrate_helper.h"
 

@@ -6,7 +6,9 @@
 #include <string>
 #include <iostream>
 
-using namespace std;
+using std::cout;
+using std::endl;
+
 
 SBML_integrate_import::SBML_integrate_import(){
   cout << "OK..." << endl;

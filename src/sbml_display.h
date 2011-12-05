@@ -5,8 +5,6 @@
 #define SBML_DISPLAY_H
 
 #include "sbml_ui_general.h"
-
-
 #include <sbml/SBMLTypes.h>
 
 // included as a forward class declarition to avoid cyclic dependencies

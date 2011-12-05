@@ -7,8 +7,6 @@
 #include "sbml_ui_general.h"
 #include "sbml_cleanup.h"
 #include <sbml/SBMLTypes.h>
-#include <iostream>
-#include <fstream>
 
 /*! \brief Class specifically for model-wide augmentation, and associated helper functions.
  *   

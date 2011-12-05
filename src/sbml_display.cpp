@@ -3,13 +3,17 @@
 
 #include "sbml_display.h"
 #include "sbml_search.h"
-
 #include <string>
 #include <fstream>
 #include <sbml/SBMLTypes.h>
 #include <iostream>
 
-using namespace std;
+// using declarations - bit of namespace pollution, but if you're overriding cout, cin, endl or string you've got bigger problems...
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+
 
 // print a summary of the model to screen
 //-----------------------------------------------------------------------------------

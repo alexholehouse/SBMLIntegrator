@@ -8,7 +8,11 @@
 #include <iostream>
 #include <stdlib.h>
 
-using namespace std;
+// using delclarations, bit of namespace pollution, but if you're overriding cout, cin, endl or string you've got bigger problems...
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
 
 // Constructor which takes an SBML document
 //-----------------------------------------------------------------------------------

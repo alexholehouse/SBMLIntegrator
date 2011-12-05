@@ -5,6 +5,7 @@
 #define SBML_INTEGRATE_HELPER_H
 
 #include "sbml_ui_general.h"
+
 /*!
   \brief Parent class to all the integrate_* classes. 
   

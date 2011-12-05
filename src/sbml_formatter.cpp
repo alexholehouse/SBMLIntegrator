@@ -17,8 +17,11 @@
 #include <math.h>
 #include <sys/stat.h>
 
-using namespace std;
-
+// using declarations
+using std::cout;
+using std::endl;
+using std::string;
+using std::ofstream;
 
 // initial default values;
 int SBML_formatter::unique = rand()% 1000;
@@ -29,7 +32,7 @@ ofstream SBML_formatter::log_stream;
 //-----------------------------------------------------------------------------------
 string SBML_formatter::dtostr(double in){
 
-  ostringstream string_stream;
+  std::ostringstream string_stream;
   string return_string;
 
   string_stream << in;
@@ -40,13 +43,12 @@ string SBML_formatter::dtostr(double in){
 
 
 
-
-    
-
 // #######################################################################
 SpeciesReference* SBML_formatter::species2SpeciesReference(const Species* species, const Reaction* rxn){
   return (species2SpeciesReference(species, rxn, ""));
 }
+
+
 
 // #######################################################################
 SpeciesReference* SBML_formatter::species2SpeciesReference(const Species* species, const Reaction* rxn, string addToSpeciesID){
@@ -75,6 +77,8 @@ SpeciesReference* SBML_formatter::species2SpeciesReference(const Species* specie
   return SR;
 }
 
+
+
 // #######################################################################
 ModifierSpeciesReference* SBML_formatter::species2ModifierSpeciesReference(const Species* species, const Reaction* rxn) {
   
@@ -97,6 +101,8 @@ ModifierSpeciesReference* SBML_formatter::species2ModifierSpeciesReference(const
   return MSR;
 }
 
+
+
 // #######################################################################
 void SBML_formatter::reset_cstr(char c_str[], int size){
   for (int i = 0 ; i < size ;i++)
@@ -106,7 +112,7 @@ void SBML_formatter::reset_cstr(char c_str[], int size){
 
 
 // #######################################################################
-// Autoabort
+// AutoAbort
 void SBML_formatter::autoAbort(string message){
   cout << message << endl;
   log_stream << message << endl;
@@ -114,6 +120,8 @@ void SBML_formatter::autoAbort(string message){
   exit(1);
 }
 
+
+// #######################################################################
 // default constructor -- called by all SBML_formatter inheriting classes
 //-----------------------------------------------------------------------------------
 SBML_formatter::SBML_formatter(){
@@ -122,7 +130,6 @@ SBML_formatter::SBML_formatter(){
   // new logfile, which is then used throughout
   
   if (!logfile_set){
-    
     
     // if logsfile not already present make one, if it is skip this
     struct stat st;
@@ -139,11 +146,14 @@ SBML_formatter::SBML_formatter(){
     
     log_stream.open(output);
     
-    log_stream << "PathwayViewer version " << get_version() << " logfile for " << get_time() << " on " << get_date() << endl;
+    // write init message to logstream
+    log_stream << "SBMLIntegrator version " << get_version() << " logfile for " << get_time() << " on " << get_date() << endl;
     
     // set logfile so initial logfile message isn't printed again!
     logfile_set=true;
   }
+  
+  
 }
 
 

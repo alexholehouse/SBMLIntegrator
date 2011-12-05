@@ -4,12 +4,11 @@
 #ifndef SBML_UI_MAIN_H
 #define SBML_UI_MAIN_H
 
-#include <sbml/SBMLTypes.h>
 #include "sbml_ui_general.h"
-#include "sbml_display.h"
-#include "sbml_cleanup.h"
-#include "sbml_integrate.h"
-#include "sbml_confInput.h"
+
+class SBML_display;
+
+
 
   /*!
     \brief UI class for the main interaction
@@ -78,7 +77,7 @@ class SBML_UI_main : public SBML_UI_general {
       \b Postconditions: The user selects one of model1 and model2 to explore, which triggers other methods from the display_framework to cause model exploration
       
    **/
-  void explore_models(Model* model1, Model* model2, SBML_display* display_framework, string model1_name, string model2_name);
+  void explore_models(Model* model1, Model* model2, SBML_display* display_framework, std::string model1_name, std::string model2_name);
   
 };
 

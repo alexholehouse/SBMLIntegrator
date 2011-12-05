@@ -5,6 +5,10 @@
 #include "sbml_search.h"
 #include "sbml_integrate.h"
 #include "sbml_formatter.h"
+#include "sbml_augment.h"
+#include "sbml_integrate_integrate.h"
+#include "sbml_integrate_replace.h"
+#include "sbml_integrate_import.h"
 
 #include <sbml/SBMLTypes.h>
 #include <string>
@@ -15,11 +19,13 @@
 // constants and static variables
 const string c_FROMB = "_fromB";
 bool SBML_integrate::init_called = false;
-// c_FAIL_DOUBLEGET is static variable in formatter, which for all intents and purposes is a 
-// software wide global constant;
+// c_FAIL_DOUBLEGET (defined in sbml_formatter.h) is static variable in formatter, which 
+// for all intents and purposes is a software wide global constant
 
-using namespace std;
-
+// using declarations
+using std::cout;
+using std::endl;
+using std::string;
 
 
 // #############################################################################################
@@ -74,8 +80,6 @@ SBML_integrate::SBML_integrate(const Model* input_A, const Model* input_B, const
   
   cleanup_framework = new SBML_cleanup(model_new, false);
 
-  // counter for log keeping
-  
   // Initialize the replacement containers based on the config file.
   // Rather than keeping replacement data within the configuration data class, we import it
   // here into the SBML_integrate parent class. This is because this data is frequently updated
@@ -173,19 +177,6 @@ void SBML_integrate::integration(){
   replace_elements();
   integrate_models();
 }
-
-
-
-// #############################################################################################
-// test function for debugging
-
-//void SBML_integrate::test(Model* retarded){
-
-//import_elements();
-//replace_elements();
-//integrate_models();
-//}
-
 
 
 // #############################################################################################

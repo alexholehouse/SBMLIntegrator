@@ -15,7 +15,13 @@
 #include <dirent.h>
 #include <unistd.h>
 
-using namespace std;
+// using namespace std;
+
+// using delclarations, bit of namespace pollution, but if you're overriding cout, cin, endl or string you've got bigger problems...
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
 
 // assumes we won't go above 9999 items in a list.
 const int MAX_NUMBER = 4;

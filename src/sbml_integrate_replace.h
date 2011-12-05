@@ -4,11 +4,13 @@
 #ifndef SBML_INTEGRATE_REPLACE_H
 #define SBML_INTEGRATE_REPLACE_H
 
+
+// so many includes, but sort of necessary :-(
 #include "sbml_listpair_container.cpp"
-#include "sbml_cleanup.h"
-#include <iostream>
-#include <sbml/SBMLTypes.h>
 #include "sbml_integrate_helper.h"
+#include "sbml_cleanup.h"
+
+
 /*!
   \brief Class to hold and carry out replacement functionality
   
@@ -20,7 +22,8 @@ class SBML_integrate_replace : SBML_integrate_helper {
   
  public:
 
-  /// Overwritten default constructor - has no functionality
+  /// Overwritten default constructor - has no functionality, but good practice to at 
+  // least have the stubs for default constructors inplace
   SBML_integrate_replace();
 
   /*!

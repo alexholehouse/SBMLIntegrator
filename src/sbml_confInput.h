@@ -6,10 +6,8 @@
 
 #include "sbml_ui_general.h"
 #include "sbml_integration_container.cpp"
-
-#include <string>
 #include <sbml/SBMLTypes.h>
-#include <fstream>
+
 
 /**
    \brief Configuration file API, providing easy data access to the rest of the software while dealing with all the low level filestream handling

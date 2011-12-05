@@ -4,7 +4,6 @@
 #ifndef SBML_SEARCH_H
 #define SBML_SEARCH_H
 
-#include <sbml/SBMLTypes.h>
 #include "sbml_ui_general.h"
 #include "sbml_display.h"
 
@@ -198,7 +197,7 @@ class SBML_search : public SBML_UI_general {
 
 // To avoid cyclic dependencies we had to put this here, as a template function it must be in 
 // the.h file but as with search_framework a superclass of SBML_display had to be here
-// 
+// This is bad. I know. I'm sorry. We all make mistakes, and if I had more time I'd restructure the system to change the inheritance. But I don't, so here we are. But yeah, sozzle.
 
 template <class T> 
 int SBML_display::compare_units(const T compA, const T compB, const Model* modelA, const Model* modelB){

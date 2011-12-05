@@ -5,15 +5,10 @@
 #define SBML_INTEGRATE_H
 
 #include "sbml_confInput.h"
-#include "sbml_ui_general.h"
-#include "sbml_cleanup.h"
-#include "sbml_integrate_import.h"
-#include "sbml_integrate_replace.h"
-#include "sbml_integrate_integrate.h"
-#include "sbml_augment.h"
-#include <sbml/SBMLTypes.h>
-#include <iostream>
-#include <fstream>
+#include "sbml_listpair_container.cpp"
+
+class SBML_cleanup;
+
 /*!
   \brief Parent coordinator class, which provides the UI and structure to the IRI integration process
 
@@ -142,10 +137,10 @@ class SBML_integrate : public SBML_UI_general {
   const Model* model_B_original;
   
   /// base model filename
-  string model_A_filename;
+  std::string model_A_filename;
 
   /// import model filename
-  string model_B_filename;
+  std::string model_B_filename;
 
   /// Stops the init() method being called more than once. Set to false be default.
   static bool init_called;

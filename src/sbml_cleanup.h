@@ -5,10 +5,7 @@
 #define SBML_CLEANUP_H
 
 #include "sbml_search.h"
-
 #include <sbml/SBMLTypes.h>
-#include <iostream>
-#include <fstream>
 
 /*! \brief Class for implementing the replacement of a model element through a model. 
 

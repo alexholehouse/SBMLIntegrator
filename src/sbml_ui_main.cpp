@@ -4,8 +4,9 @@
 #include <iostream>
 #include <string>
 #include <sbml/SBMLTypes.h>
-#include "sbml_ui_main.h"
 #include <cstdlib>
+#include "sbml_ui_main.h"
+#include "sbml_display.h"
 
 
 using namespace std;
