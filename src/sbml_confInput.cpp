@@ -282,17 +282,14 @@ int SBML_confInput::find_in_file(std::string section, bool reset){
   char* section_c = new char[section.length() + 1];
   strcpy(section_c, section.c_str());
 
-  // While the confstream is open and good
   while (conf_stream.good()){
     
     // reset at the start of each comparison
     matching = false;
 
-    // get character
+
     conf_stream.get(temp_char);
 
-    // if character matches the current position in the section cstring
-    // set matching to true
     if (temp_char == section_c[location]){
       matching = true;
       
@@ -302,7 +299,7 @@ int SBML_confInput::find_in_file(std::string section, bool reset){
 	reset_seek();
 	return position-string_end;
       }
-      // else increment the cstring internal location position
+    
       location++;
     }
     
