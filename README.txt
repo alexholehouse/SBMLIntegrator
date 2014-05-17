@@ -32,11 +32,11 @@ alex.holehouse@gmail.com
 
    ,---------------------------------------------------------------.
   | Table of contents                                               |
+  |                                                                 |
   | 1. Foreword                                                     |
   | 2. Installation		                                    |
   | 3. User Guide                       		            |
   | 4. Code Documentation		                            |
-  |                                                                 |
    `---------------------------------------------------------------'
 
 
